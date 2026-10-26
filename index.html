@@ -1030,7 +1030,8 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
 
   draw('tab');
   var sp = $('#splash'); setTimeout(function () { sp.classList.add('out'); }, 1900);
-  if (location.hash === '#case') caseEl.classList.add('show'); sp.addEventListener('click', function () { sp.classList.add('out'); });
+  if (location.hash === '#case') caseEl.classList.add('show');
+  window.addEventListener('hashchange', function () { if (location.hash === '#case') { caseEl.scrollTop = 0; caseEl.classList.add('show'); } }); sp.addEventListener('click', function () { sp.classList.add('out'); });
 })();
 </script>
 
