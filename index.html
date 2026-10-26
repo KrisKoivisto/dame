@@ -1,0 +1,1038 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dame Dolla</title>
+<meta name="description" content="Be in reach. Hoops, music, Oakland, and every game night. A fan app concept for Damian Lillard.">
+<link rel="canonical" href="https://kriskoivisto.github.io/dame/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dame Dolla">
+<meta property="og:title" content="Dame Dolla">
+<meta property="og:description" content="Be in reach. Hoops, music, Oakland, and every game night. A fan app concept for Damian Lillard.">
+<meta property="og:url" content="https://kriskoivisto.github.io/dame/">
+<meta property="og:image" content="https://kriskoivisto.github.io/dame/og.jpg">
+<meta property="og:image:secure_url" content="https://kriskoivisto.github.io/dame/og.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Damian Lillard reaching toward the camera. Be in reach.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dame Dolla">
+<meta name="twitter:description" content="Be in reach. Hoops, music, Oakland, and every game night.">
+<meta name="twitter:image" content="https://kriskoivisto.github.io/dame/og.jpg">
+<meta name="theme-color" content="#0b0b0c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Dame Dolla">
+<link rel="apple-touch-icon" href="https://kriskoivisto.github.io/dame/img/icon180.png">
+<link rel="icon" type="image/png" sizes="64x64" href="https://kriskoivisto.github.io/dame/img/icon64.png">
+<link rel="manifest" href="https://kriskoivisto.github.io/dame/manifest.json">
+<style>html,body{height:100%;height:100dvh;margin:0;background:#0b0b0c}</style>
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0b0b0c; --ink2: #131315; --ink3: #1c1c1f; --line: rgba(255,255,255,.09); --line2: rgba(255,255,255,.16);
+  --txt: #f4f1ea; --mute: rgba(244,241,234,.62); --dim: rgba(244,241,234,.4);
+  --red: #e03a3e; --red2: #b4262b; --gold: #c8a15a; --purple: #6a4bc4;
+  --disp: 'Archivo', system-ui, sans-serif; --serif: 'Instrument Serif', Georgia, serif; --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --ease: cubic-bezier(.2,.8,.2,1);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; height: 100%; background: var(--ink); color: var(--txt); }
+body { font: 400 15px/1.5 var(--disp); -webkit-font-smoothing: antialiased; overflow: hidden; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ---------- stage: full screen on a phone, a device on a desktop ---------- */
+.stage { height: 100%; display: grid; place-items: center; }
+.phone { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--ink); isolation: isolate; }
+.side { display: none; }
+@media (min-width: 900px) {
+  body { background: radial-gradient(1200px 700px at 50% 40%, #1a0d0e 0%, #0b0b0c 60%); }
+  .stage { grid-template-columns: 1fr auto 1fr; gap: 64px; padding: 24px; }
+  .phone { width: 402px; height: min(874px, calc(100vh - 48px)); border-radius: 54px; box-shadow: 0 0 0 11px #1d1d20, 0 0 0 12px #2c2c30, 0 50px 120px rgba(0,0,0,.6); }
+  .side { display: block; max-width: 300px; }
+  .side.l { justify-self: end; } .side.r { justify-self: start; }
+}
+.side img { width: 150px; margin-bottom: 28px; }
+.side h4 { margin: 0 0 10px; font: 600 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+.side nav { display: grid; gap: 2px; margin-bottom: 26px; }
+.side nav button { text-align: left; padding: 9px 12px; border-radius: 10px; font: 600 14px/1.2 var(--disp); color: var(--mute); }
+.side nav button small { display: block; font: 400 12px/1.3 var(--disp); color: var(--dim); margin-top: 2px; }
+.side nav.case-nav button { background: var(--red); color: #fff; } .side nav.case-nav button small { color: rgba(255,255,255,.8); }
+.side nav button:hover, .side nav button.on { background: rgba(255,255,255,.06); color: var(--txt); }
+.side p { color: var(--mute); font-size: 14px; line-height: 1.55; margin: 0 0 12px; }
+.side .t { color: var(--txt); font: 900 34px/.92 var(--disp); font-stretch: 125%; text-transform: uppercase; margin: 0 0 16px; letter-spacing: -.01em; }
+.side .t em { font-style: normal; color: var(--red); }
+
+/* ---------- views ---------- */
+#views { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; overscroll-behavior: contain; }
+#views::-webkit-scrollbar { display: none; }
+.view { min-height: 100%; padding-bottom: 130px; animation: vin .5s var(--ease) both; }
+.view.back { animation-name: vback; }
+@keyframes vin { from { opacity: 0; transform: translateX(24px); } }
+@keyframes vback { from { opacity: 0; transform: translateX(-24px); } }
+.view.tab { animation-name: vfade; } @keyframes vfade { from { opacity: 0; } }
+
+/* top bar */
+.top { position: absolute; z-index: 20; left: 0; right: 0; top: 0; height: calc(58px + env(safe-area-inset-top)); padding: env(safe-area-inset-top) 14px 0; display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; transition: background .3s, backdrop-filter .3s; pointer-events: none; }
+.top > * { pointer-events: auto; }
+.top.solid { background: rgba(11,11,12,.78); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); box-shadow: 0 1px 0 var(--line); }
+.top .logo { justify-self: center; height: 26px; opacity: 1; transition: opacity .3s, transform .3s; }
+.top .logo img { height: 100%; width: auto; filter: drop-shadow(0 2px 10px rgba(0,0,0,.4)); }
+.top .ib { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: rgba(11,11,12,.42); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: inset 0 0 0 1px var(--line2); }
+.top .ib svg { width: 20px; height: 20px; }
+.top .ib.hide { visibility: hidden; }
+@media (min-width: 900px) { .top { padding-top: 14px; height: 72px; } }
+
+/* floating tab bar */
+.tabs { position: absolute; z-index: 30; left: 50%; transform: translateX(-50%); bottom: max(14px, env(safe-area-inset-bottom)); width: min(360px, calc(100% - 28px)); height: 64px; padding: 6px; border-radius: 26px; display: grid; grid-template-columns: repeat(4, 1fr); background: rgba(24,24,27,.72); backdrop-filter: blur(22px) saturate(1.5); -webkit-backdrop-filter: blur(22px) saturate(1.5); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1), 0 18px 40px rgba(0,0,0,.45); }
+.tabs button { position: relative; display: grid; justify-items: center; align-content: center; gap: 3px; border-radius: 20px; color: var(--dim); font: 600 10px/1 var(--disp); letter-spacing: .04em; transition: color .25s, background .25s; }
+.tabs button svg { width: 24px; height: 24px; }
+.tabs button.on { color: var(--txt); background: rgba(255,255,255,.08); }
+.tabs button.on svg .acc { color: var(--red); }
+.tabs button:active { transform: scale(.94); }
+@media (min-width: 900px) { .tabs { bottom: 18px; } }
+
+/* type */
+.kick { display: inline-flex; align-items: center; gap: 8px; font: 600 10.5px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--mute); }
+.kick i { width: 6px; height: 6px; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 4px rgba(224,58,62,.18); }
+.kick.live i { animation: pulse 1.6s ease-in-out infinite; }
+@keyframes pulse { 50% { box-shadow: 0 0 0 7px rgba(224,58,62,0); } }
+.disp { margin: 0; font: 900 44px/.88 var(--disp); font-stretch: 125%; text-transform: uppercase; letter-spacing: -.02em; }
+.disp em { font-style: normal; color: var(--red); }
+.h2 { margin: 0; font: 800 26px/.98 var(--disp); font-stretch: 112%; text-transform: uppercase; letter-spacing: -.01em; }
+.serif { font-family: var(--serif); font-weight: 400; }
+.lede { font: 400 26px/1.12 var(--serif); margin: 0; letter-spacing: -.005em; }
+.lede em { font-style: italic; }
+p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-height: 1.62; }
+.pad { padding: 0 20px; }
+.sec { padding: 44px 20px 0; }
+.sh { display: flex; align-items: end; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.sh .h2 { font-size: 22px; }
+.sh small { font: 600 10.5px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+
+/* buttons */
+.btn { display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 20px; border-radius: 999px; font: 700 14px/1 var(--disp); letter-spacing: .01em; background: var(--txt); color: var(--ink); transition: transform .2s var(--ease); }
+.btn svg { width: 18px; height: 18px; }
+.btn.red { background: var(--red); color: #fff; }
+.btn.ghost { background: rgba(255,255,255,.1); color: var(--txt); box-shadow: inset 0 0 0 1px var(--line2); backdrop-filter: blur(10px); }
+.btn:active, .press:active { transform: scale(.97); }
+.press { transition: transform .25s var(--ease); }
+
+/* images */
+.ph { position: relative; overflow: hidden; background: var(--ink3); }
+.ph img, .ph video { width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .6s ease, transform 1.2s var(--ease); }
+.ph img.in, .ph video.in { opacity: 1; }
+
+/* ---------- HOME ---------- */
+.hero { position: relative; height: max(640px, 100svh); min-height: 640px; overflow: hidden; background: #8e1b1f; }
+@media (min-width: 900px) { .hero { height: min(874px, calc(100vh - 48px)); min-height: 0; } }
+.hero .ph { position: absolute; inset: 0; background: #8e1b1f; }
+.hero .ph img { object-position: 58% 0%; transform: scale(1.06); }
+.hero .ph img.in { transform: scale(1); }
+.hero .copy { position: absolute; left: 20px; right: 20px; bottom: 112px; display: grid; gap: 14px; }
+.hero .disp { font-size: 62px; }
+.hero .q { font: 400 24px/1.12 var(--serif); font-style: italic; color: rgba(244,241,234,.92); max-width: 330px; }
+.hero .by { font: 600 10.5px/1.5 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+.hero .row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+.hero .cue { position: absolute; left: 50%; bottom: 92px; transform: translateX(-50%); width: 1px; height: 0; }
+.rise > * { animation: rise .9s var(--ease) both; }
+.rise > *:nth-child(2) { animation-delay: .08s; } .rise > *:nth-child(3) { animation-delay: .16s; } .rise > *:nth-child(4) { animation-delay: .24s; } .rise > *:nth-child(5) { animation-delay: .32s; }
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } }
+
+/* opening night */
+.on-card { margin: 0 14px; border-radius: 28px; padding: 22px 20px 20px; background: linear-gradient(160deg, #1d0f10, #120a0b 60%); box-shadow: inset 0 0 0 1px rgba(224,58,62,.28); position: relative; overflow: hidden; }
+.on-card::after { content: ''; position: absolute; right: -60px; top: -60px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(224,58,62,.35), transparent 70%); pointer-events: none; }
+.on-card .disp { font-size: 38px; margin: 14px 0 6px; }
+.on-card .meta { color: var(--mute); font-size: 14px; }
+.clock { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 18px 0; }
+.clock div { background: rgba(255,255,255,.05); border-radius: 14px; padding: 12px 0 10px; text-align: center; box-shadow: inset 0 0 0 1px var(--line); }
+.clock b { display: block; font: 800 30px/1 var(--disp); font-stretch: 112%; font-variant-numeric: tabular-nums; }
+.clock small { display: block; margin-top: 6px; font: 600 9.5px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+.on-card .foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 13px; color: var(--mute); }
+.on-card .foot b { color: var(--txt); font-weight: 700; }
+.art .on-card { margin: 26px 0; }
+.gtop { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.wl { font: 800 12px/1 var(--disp); padding: 7px 10px; border-radius: 9px; letter-spacing: .06em; }
+.wl.w { background: var(--red); color: #fff; } .wl.l { background: rgba(255,255,255,.1); }
+.score { display: flex; align-items: end; gap: 14px; margin: 16px 0 18px; }
+.score div { display: grid; gap: 8px; }
+.score small { font: 600 10.5px/1 var(--mono); letter-spacing: .14em; color: var(--mute); }
+.score b { font: 900 60px/.8 var(--disp); font-stretch: 118%; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.score .op b { color: var(--dim); }
+.score i { font: 300 40px/1 var(--disp); font-style: normal; color: var(--dim); padding-bottom: 4px; }
+.dl { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.dl div { background: rgba(255,255,255,.05); border-radius: 14px; padding: 12px 0 10px; text-align: center; box-shadow: inset 0 0 0 1px var(--line); }
+.dl div:first-child { background: var(--red); box-shadow: none; }
+.dl b { display: block; font: 800 25px/1 var(--disp); font-stretch: 112%; font-variant-numeric: tabular-nums; }
+.dl small { display: block; margin-top: 6px; font: 600 9.5px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+.dl div:first-child small { color: rgba(255,255,255,.82); }
+.gline { margin-top: 12px; font: 600 10px/1.5 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--mute); }
+.gnote { margin: 14px 0 0; font: italic 400 20px/1.18 var(--serif); }
+.gnote small { display: block; margin-top: 6px; font: 600 10px/1.4 var(--mono); font-style: normal; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+.nx { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); position: relative; z-index: 1; }
+.nx b { display: block; font: 800 20px/1 var(--disp); font-stretch: 112%; text-transform: uppercase; margin: 10px 0 6px; }
+.nx > div > span:not(.kick) { display: block; font-size: 12.5px; color: var(--mute); line-height: 1.4; }
+.clock.mini { grid-template-columns: repeat(3, 46px); gap: 5px; margin: 0; }
+.clock.mini div { padding: 8px 0 6px; border-radius: 11px; }
+.clock.mini b { font-size: 19px; } .clock.mini small { font-size: 8px; margin-top: 4px; letter-spacing: .08em; }
+.gc-more { display: flex; margin: 12px 14px 0; }
+.gc-more .btn { flex: 1; justify-content: center; }
+.sea { border-radius: 22px; background: var(--ink2); box-shadow: inset 0 0 0 1px var(--line); padding: 16px; }
+.sea-h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+.sea-h b { font: 800 16px/1 var(--disp); } .sea-h span { font-size: 12.5px; color: var(--mute); }
+.sea-g { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border-radius: 14px; overflow: hidden; }
+.sea-g div { background: var(--ink2); padding: 14px 12px 12px; }
+.sea-g b { display: block; font: 900 28px/.9 var(--disp); font-stretch: 112%; font-variant-numeric: tabular-nums; }
+.sea-g small { display: block; margin-top: 8px; font: 600 9.5px/1 var(--mono); letter-spacing: .12em; color: var(--dim); }
+.rows em.w { color: var(--red); } .rows em.l { color: var(--mute); }
+.rows .nextg b::after { content: 'Next'; margin-left: 8px; padding: 3px 6px; border-radius: 6px; background: var(--red); color: #fff; font: 600 9px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; vertical-align: 2px; }
+.side .appicon { display: flex; align-items: center; gap: 12px; margin: -10px 0 28px; font-size: 12.5px; color: var(--dim); }
+.side .appicon img { width: 52px; height: 52px; margin: 0; border-radius: 12px; box-shadow: 0 10px 24px rgba(0,0,0,.4); }
+
+/* story cards */
+.feed { display: grid; gap: 14px; padding: 0 14px; }
+.sc { position: relative; display: block; width: 100%; text-align: left; border-radius: 28px; overflow: hidden; background: var(--ink2); box-shadow: inset 0 0 0 1px var(--line); }
+.sc .ph { aspect-ratio: 4 / 5; }
+.sc .ph::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, transparent 26%, transparent 46%, rgba(0,0,0,.88) 100%); }
+.sc .tx { position: absolute; left: 20px; right: 20px; bottom: 20px; display: grid; gap: 10px; z-index: 2; }
+.sc.tt .tx { top: 52px; bottom: auto; }
+.sc.tt .ph::after { background: linear-gradient(180deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.55) 34%, transparent 58%, rgba(0,0,0,.3) 100%); }
+.sc.wall .wallart .stack { transform: scale(.8) rotateX(14deg) rotateZ(-6deg); margin-top: -190px; }
+.sc .tk { position: absolute; left: 20px; top: 20px; z-index: 2; }
+.sc .disp { font-size: 40px; }
+.sc .dek { color: rgba(244,241,234,.82); font-size: 15px; line-height: 1.4; max-width: 300px; }
+.sc .go { position: absolute; right: 18px; bottom: 18px; z-index: 2; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.14); backdrop-filter: blur(10px); }
+.sc .go svg { width: 18px; height: 18px; }
+.sc.cover { background: #5b7fa3; }
+.sc.cover .ph { background: #5b7fa3; aspect-ratio: auto; height: 470px; }
+.sc.cover .ph img { object-fit: contain; object-position: 50% 26px; height: 100%; padding: 0 30px; filter: drop-shadow(0 24px 30px rgba(0,0,0,.35)); }
+.sc.cover .ph::after { background: linear-gradient(180deg, transparent 50%, rgba(10,16,24,.92) 100%); }
+.sc.wall { background: #111; }
+.wallart { position: absolute; inset: 0; display: grid; place-items: center; perspective: 900px; }
+.wallart .stack { position: relative; width: 210px; height: 210px; transform: rotateX(14deg) rotateZ(-6deg); transform-style: preserve-3d; margin-top: -80px; }
+.wallart img { position: absolute; inset: 0; width: 210px; height: 210px; border-radius: 6px; box-shadow: 0 30px 50px rgba(0,0,0,.6); opacity: 1; }
+.wallart img:nth-child(1) { transform: translate(-96px, 20px) rotate(-10deg); }
+.wallart img:nth-child(2) { transform: translate(96px, 26px) rotate(9deg); }
+.wallart img:nth-child(3) { transform: translate(-46px, -18px) rotate(-4deg); }
+.wallart img:nth-child(4) { transform: translate(52px, -12px) rotate(5deg); }
+.wallart img:nth-child(5) { transform: translate(0, 0); }
+.sc.vid .ph video, .cov.reel .ph video, .art-h .ph video { object-position: 50% 30%; }
+.sc .badge { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 99px; background: rgba(0,0,0,.45); backdrop-filter: blur(8px); font: 600 10px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+.sc .badge svg { width: 12px; height: 12px; }
+
+.endnote { margin: 48px 20px 0; padding-top: 22px; border-top: 1px solid var(--line); display: grid; gap: 8px; color: var(--dim); font-size: 12.5px; line-height: 1.5; }
+.endnote img { width: 92px; opacity: .5; margin-bottom: 6px; }
+
+/* ---------- TAB LANDING ---------- */
+.cov { position: relative; height: 560px; overflow: hidden; }
+.cov .ph { position: absolute; inset: 0; }
+.cov .ph::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.5) 0%, transparent 30%, transparent 45%, var(--ink) 100%); }
+.cov .tx { position: absolute; left: 20px; right: 20px; bottom: 26px; display: grid; gap: 12px; z-index: 2; }
+.cov .disp { font-size: 76px; }
+.cov .line { font: 600 11px/1.4 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--mute); }
+.cov.albums { background: #0e0e10; }
+.cov.albums .wallart .stack { margin-top: -120px; }
+
+.story { padding: 26px 20px 0; }
+.story .lede { margin-bottom: 18px; }
+.story .more { max-height: 0; overflow: hidden; transition: max-height .7s var(--ease); }
+.story.open .more { max-height: 1600px; }
+.readmore { display: inline-flex; align-items: center; gap: 8px; font: 700 13px/1 var(--disp); color: var(--red); padding: 6px 0; }
+.readmore svg { width: 16px; height: 16px; transition: transform .3s; }
+.story.open .readmore svg { transform: rotate(180deg); }
+
+.chs { display: grid; gap: 12px; padding: 0 14px; }
+.ch { display: grid; grid-template-columns: 112px 1fr 20px; gap: 14px; align-items: center; padding: 10px 14px 10px 10px; border-radius: 22px; background: var(--ink2); box-shadow: inset 0 0 0 1px var(--line); text-align: left; width: 100%; }
+.ch .ph { width: 112px; height: 112px; border-radius: 15px; }
+.ch .n { font: 600 10px/1 var(--mono); letter-spacing: .14em; color: var(--red); margin-bottom: 8px; }
+.ch b { display: block; font: 800 19px/1 var(--disp); font-stretch: 112%; text-transform: uppercase; letter-spacing: -.01em; margin-bottom: 6px; }
+.ch span { display: block; color: var(--mute); font-size: 13.5px; line-height: 1.35; }
+.ch > svg { width: 18px; height: 18px; color: var(--dim); }
+
+/* ---------- CHAPTER ---------- */
+.art-h { position: relative; height: 520px; overflow: hidden; }
+.art-h .ph { position: absolute; inset: 0; }
+.art-h .ph::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.45) 0%, transparent 28%, transparent 40%, var(--ink) 100%); }
+.art-h .tx { position: absolute; left: 20px; right: 20px; bottom: 22px; display: grid; gap: 12px; z-index: 2; }
+.art-h .disp { font-size: 52px; }
+.art-h.cover { height: 600px; background: #5b7fa3; }
+.art-h.cover .ph { background: #5b7fa3; }
+.art-h.cover .ph img { object-fit: contain; object-position: 50% 70px; padding: 0 36px 120px; filter: drop-shadow(0 30px 40px rgba(0,0,0,.4)); }
+.art-h.cover .ph::after { background: linear-gradient(180deg, transparent 55%, var(--ink) 100%); }
+.art { padding: 22px 20px 0; }
+.art .dek { font: 400 24px/1.16 var(--serif); margin: 0 0 22px; color: var(--txt); }
+.pull { margin: 34px 0; padding: 0 0 0 18px; border-left: 3px solid var(--red); }
+.pull p { margin: 0 0 12px; font: italic 400 28px/1.1 var(--serif); }
+.pull small { font: 600 10.5px/1.5 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+.pull.gold { border-color: var(--gold); }
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border-radius: 22px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--line); margin: 30px 0; }
+.facts div { background: var(--ink2); padding: 18px 16px 16px; }
+.facts b { display: block; font: 900 34px/.9 var(--disp); font-stretch: 118%; letter-spacing: -.02em; margin-bottom: 10px; }
+.facts b em { font-style: normal; color: var(--red); }
+.facts span { display: block; font-size: 13px; line-height: 1.35; color: var(--mute); }
+.facts small { display: block; margin-top: 6px; font: 600 9.5px/1.3 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+.nextch { display: grid; grid-template-columns: 1fr 44px; align-items: center; gap: 12px; margin: 40px 14px 0; padding: 18px 18px 18px 20px; border-radius: 22px; background: var(--red); color: #fff; text-align: left; width: calc(100% - 28px); }
+.nextch small { display: block; font: 600 10px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; opacity: .75; margin-bottom: 8px; }
+.nextch b { font: 800 20px/1 var(--disp); font-stretch: 112%; text-transform: uppercase; }
+.nextch span { width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,.18); display: grid; place-items: center; }
+.nextch svg { width: 20px; height: 20px; }
+
+/* media rails */
+.rail { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 20px 4px; margin: 0 -20px; scrollbar-width: none; }
+.rail::-webkit-scrollbar { display: none; }
+.rail > * { scroll-snap-align: start; flex: none; }
+.vc { width: 264px; text-align: left; }
+.vc .ph { aspect-ratio: 16 / 9; border-radius: 16px; }
+.vc .ph::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,.55)); }
+.vc .pl { position: absolute; left: 10px; bottom: 10px; z-index: 2; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.92); color: #111; }
+.vc .pl svg { width: 14px; height: 14px; margin-left: 2px; }
+.vc b { display: block; margin-top: 10px; font: 700 15px/1.25 var(--disp); }
+.vc span { display: block; margin-top: 3px; font-size: 13px; color: var(--dim); }
+.vc.big { width: 100%; }
+.media-h { display: flex; justify-content: space-between; align-items: end; margin: 36px 0 14px; }
+.media-h b { font: 800 18px/1 var(--disp); font-stretch: 112%; text-transform: uppercase; }
+.media-h small { font: 600 10px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+
+/* timeline */
+.tl { position: relative; margin: 30px 0; padding-left: 26px; }
+.tl::before { content: ''; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(var(--red), rgba(224,58,62,.15)); }
+.tl div { position: relative; padding-bottom: 22px; }
+.tl div::before { content: ''; position: absolute; left: -25px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--ink); box-shadow: inset 0 0 0 3px var(--red); }
+.tl div.now::before { background: var(--red); box-shadow: 0 0 0 5px rgba(224,58,62,.2); }
+.tl small { display: block; font: 600 10.5px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--red); margin-bottom: 6px; }
+.tl b { display: block; font: 700 17px/1.2 var(--disp); margin-bottom: 4px; }
+.tl span { display: block; color: var(--mute); font-size: 14px; line-height: 1.45; }
+
+/* shoes */
+.shoes { display: flex; gap: 10px; overflow-x: auto; padding: 0 20px 4px; margin: 0 -20px; scrollbar-width: none; scroll-snap-type: x mandatory; }
+.shoes::-webkit-scrollbar { display: none; }
+.shoe { flex: none; width: 150px; scroll-snap-align: start; border-radius: 20px; padding: 16px; background: var(--ink2); box-shadow: inset 0 0 0 1px var(--line); }
+.shoe b { display: block; font: 900 56px/.85 var(--disp); font-stretch: 125%; color: transparent; -webkit-text-stroke: 1.5px var(--txt); margin-bottom: 14px; }
+.shoe.x { background: var(--purple); box-shadow: none; }
+.shoe.x b { color: #fff; -webkit-text-stroke: 0; }
+.shoe strong { display: block; font: 700 14px/1.2 var(--disp); }
+.shoe small { display: block; margin: 4px 0 8px; font: 600 10px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--dim); }
+.shoe.x small { color: rgba(255,255,255,.75); }
+.shoe span { display: block; font-size: 12.5px; line-height: 1.35; color: var(--mute); }
+.shoe.x span { color: rgba(255,255,255,.88); }
+
+/* albums */
+.albums-r { display: flex; gap: 14px; overflow-x: auto; padding: 0 20px 4px; margin: 0 -20px; scrollbar-width: none; scroll-snap-type: x mandatory; }
+.albums-r::-webkit-scrollbar { display: none; }
+.alb { flex: none; width: 168px; text-align: left; scroll-snap-align: start; }
+.alb .ph { aspect-ratio: 1; border-radius: 10px; box-shadow: 0 16px 30px rgba(0,0,0,.45); }
+.alb b { display: block; margin-top: 12px; font: 700 15px/1.2 var(--disp); }
+.alb span { display: block; margin-top: 3px; font-size: 13px; color: var(--dim); }
+
+/* list rows */
+.rows { border-top: 1px solid var(--line); margin: 20px 0; }
+.rows > div { display: grid; grid-template-columns: 1fr auto; gap: 14px; padding: 15px 0; border-bottom: 1px solid var(--line); }
+.rows b { font: 700 15px/1.3 var(--disp); }
+.rows span { display: block; font-size: 13.5px; color: var(--mute); margin-top: 3px; line-height: 1.4; }
+.rows em { font: 600 10.5px/1.4 var(--mono); letter-spacing: .1em; text-transform: uppercase; font-style: normal; color: var(--dim); text-align: right; }
+
+/* reel cover on Damian */
+.cov .play { position: absolute; z-index: 3; right: 20px; top: calc(76px + env(safe-area-inset-top)); }
+
+/* ---------- overlays ---------- */
+.ov { position: absolute; inset: 0; z-index: 60; background: #000; display: none; }
+.ov.show { display: block; animation: vfade .3s ease both; }
+.player video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; }
+.player .bar { position: absolute; left: 14px; right: 14px; top: calc(12px + env(safe-area-inset-top)); height: 3px; border-radius: 3px; background: rgba(255,255,255,.25); overflow: hidden; z-index: 2; }
+.player .bar i { display: block; height: 100%; width: 0; background: #fff; }
+.player .x, .player .snd { position: absolute; z-index: 3; top: calc(26px + env(safe-area-inset-top)); width: 40px; height: 40px; border-radius: 50%; background: rgba(0,0,0,.45); backdrop-filter: blur(10px); display: grid; place-items: center; }
+.player .x { right: 14px; } .player .snd { right: 62px; }
+.player .x svg, .player .snd svg { width: 20px; height: 20px; }
+.player .cap { position: absolute; left: 16px; right: 16px; bottom: calc(22px + env(safe-area-inset-bottom)); z-index: 2; display: grid; gap: 6px; text-shadow: 0 1px 12px rgba(0,0,0,.6); }
+.player .cap b { font: 800 18px/1.1 var(--disp); font-stretch: 112%; text-transform: uppercase; }
+.player .cap span { font: 600 10px/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.75); }
+.player .tapzone { position: absolute; inset: 80px 0 90px; z-index: 1; }
+.player .pp { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); z-index: 2; width: 72px; height: 72px; border-radius: 50%; background: rgba(0,0,0,.45); backdrop-filter: blur(8px); display: none; place-items: center; pointer-events: none; }
+.player.paused .pp { display: grid; }
+.player .pp svg { width: 28px; height: 28px; margin-left: 4px; }
+
+.sheet-wrap { background: rgba(0,0,0,.55); }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; max-height: 88%; overflow-y: auto; border-radius: 28px 28px 0 0; background: var(--ink2); box-shadow: 0 -1px 0 var(--line2); padding: 12px 20px calc(30px + env(safe-area-inset-bottom)); animation: sheet .45s var(--ease) both; }
+@keyframes sheet { from { transform: translateY(100%); } }
+.sheet .grab { width: 40px; height: 5px; border-radius: 3px; background: rgba(255,255,255,.2); margin: 0 auto 18px; }
+.sheet .hd { display: grid; grid-template-columns: 120px 1fr; gap: 16px; align-items: end; margin-bottom: 20px; }
+.sheet .hd .ph { width: 120px; height: 120px; border-radius: 8px; }
+.sheet .hd b { display: block; font: 800 22px/1 var(--disp); font-stretch: 112%; text-transform: uppercase; margin: 8px 0 6px; }
+.sheet .hd span { color: var(--mute); font-size: 13.5px; }
+.trk { counter-reset: t; border-top: 1px solid var(--line); }
+.trk > div { counter-increment: t; display: grid; grid-template-columns: 28px 1fr; gap: 8px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+.trk > div::before { content: counter(t); font: 600 12px/1.6 var(--mono); color: var(--dim); }
+.trk b { font: 600 15px/1.35 var(--disp); }
+.trk span { display: block; font-size: 12.5px; color: var(--dim); }
+
+/* splash */
+.splash { position: absolute; inset: 0; z-index: 80; background: #000; display: grid; place-items: center; transition: opacity .6s ease, visibility .6s; }
+.splash.out { opacity: 0; visibility: hidden; }
+.splash .in { display: grid; justify-items: center; gap: 22px; }
+.splash img { width: 210px; animation: sp 1.4s var(--ease) both; }
+.splash small { font: 600 9.5px/1 var(--mono); letter-spacing: .32em; text-transform: uppercase; color: var(--dim); animation: rise 1s .5s var(--ease) both; }
+.splash .ln { width: 120px; height: 2px; background: rgba(255,255,255,.12); overflow: hidden; border-radius: 2px; }
+.splash .ln i { display: block; height: 100%; width: 100%; background: var(--red); transform-origin: left; animation: ld 1.6s .2s var(--ease) both; }
+@keyframes sp { from { opacity: 0; transform: scale(.92); filter: blur(6px); } }
+@keyframes ld { from { transform: scaleX(0); } }
+
+/* business case, scoped under #case */
+#case {
+  --bg: #0b0b0c; --panel: #151517; --line: rgba(244,241,234,.1);
+  --ink: #f4f1ea; --soft: rgba(244,241,234,.74); --mute: rgba(244,241,234,.48);
+  --red: #e03a3e; --gold: #c8a15a;
+  --disp: 'Archivo', 'Helvetica Neue', Arial, sans-serif; --serif: 'Instrument Serif', Georgia, serif; --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  color-scheme: dark;
+}
+#case * { box-sizing: border-box; }
+#case { background: var(--bg); color: var(--ink); font: 400 16px/1.55 var(--disp); -webkit-font-smoothing: antialiased; }
+#case a { color: inherit; }
+#case .c-col { max-width: 560px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+#case .c-hero { position: relative; height: 380px; overflow: hidden; background: #8e1b1f; }
+#case .c-hero img { width: 100%; height: 100%; object-fit: cover; object-position: 58% 6%; }
+#case .c-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, var(--bg) 100%); }
+#case .c-intro { margin-top: -78px; position: relative; z-index: 2; display: grid; gap: 14px; padding-block: 0 8px; }
+#case .c-eyebrow { font: 600 10.5px/1.4 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--mute); }
+#case .c-eyebrow b { color: var(--red); font-weight: 600; }
+#case h1 { margin: 0; font: 900 48px/.9 var(--disp); font-stretch: 125%; text-transform: uppercase; letter-spacing: -.02em; text-wrap: balance; }
+#case h1 em { font-style: normal; color: var(--red); }
+#case .c-lede { margin: 0; font: 400 22px/1.2 var(--serif); color: var(--soft); max-width: 30ch; }
+#case .c-time { display: flex; gap: 8px; flex-wrap: wrap; }
+#case .c-time span { font: 600 10px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; padding: 8px 10px; border-radius: 99px; box-shadow: inset 0 0 0 1px var(--line); color: var(--soft); }
+#case .c-beat { padding-block: 44px; border-top: 1px solid var(--line); display: grid; gap: 12px; }
+#case .c-beat:first-of-type { border-top: 0; }
+#case .c-num { font: 900 clamp(64px, 21vw, 92px)/.82 var(--disp); font-stretch: 125%; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+#case .c-num small { font-size: .42em; letter-spacing: -.02em; }
+#case .c-num.c-red { color: var(--red); }
+#case .c-say { margin: 0; font: 800 22px/1.1 var(--disp); font-stretch: 112%; text-transform: uppercase; letter-spacing: -.01em; text-wrap: balance; }
+#case .c-why { margin: 0; color: var(--soft); max-width: 46ch; }
+#case .c-range { display: grid; gap: 8px; margin-top: 10px; }
+#case .c-range div { display: grid; grid-template-columns: 66px 1fr auto; gap: 10px; align-items: center; font-size: 13px; }
+#case .c-range span { white-space: nowrap; font: 600 10px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--mute); }
+#case .c-range i { display: block; height: 10px; border-radius: 6px; background: rgba(244,241,234,.16); }
+#case .c-range div.c-on i { background: var(--red); }
+#case .c-range div.c-on span, #case .c-range div.c-on b { color: var(--ink); }
+#case .c-range b { font: 700 13px/1 var(--disp); color: var(--soft); font-variant-numeric: tabular-nums; min-width: 52px; text-align: right; }
+#case .c-cap { font: 600 10px/1.5 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--mute); }
+#case .c-split { display: flex; height: 16px; border-radius: 8px; overflow: hidden; margin-top: 12px; gap: 2px; }
+#case .c-split i { display: block; }
+#case .c-legend { display: grid; gap: 0; margin-top: 6px; }
+#case .c-legend > div { display: grid; grid-template-columns: 12px 1fr auto; gap: 12px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--line); }
+#case .c-legend > div:last-child { border-bottom: 0; }
+#case .c-legend i { width: 12px; height: 12px; border-radius: 3px; transform: translateY(1px); }
+#case .c-legend b { display: block; font: 700 15px/1.3 var(--disp); }
+#case .c-legend span { display: block; font-size: 13.5px; color: var(--mute); line-height: 1.4; }
+#case .c-legend em { font: 700 15px/1.3 var(--disp); font-style: normal; font-variant-numeric: tabular-nums; }
+#case .c-flops { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+#case .c-flops div { background: var(--panel); border-radius: 16px; padding: 16px 14px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+#case .c-flops b { font: 900 30px/.9 var(--disp); font-stretch: 118%; letter-spacing: -.02em; }
+#case .c-flops span { font-size: 13px; color: var(--soft); line-height: 1.4; }
+#case .c-verdict { margin: 6px 0 0; font: italic 400 24px/1.18 var(--serif); }
+#case .c-costs { display: grid; margin-top: 4px; }
+#case .c-costs > div { display: flex; justify-content: space-between; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+#case .c-costs b { font: 700 15px/1.3 var(--disp); }
+#case .c-costs span { display: block; font-size: 13px; color: var(--mute); }
+#case .c-costs em { font: 800 17px/1.3 var(--disp); font-style: normal; font-variant-numeric: tabular-nums; white-space: nowrap; }
+#case .c-step { margin-top: 14px; background: var(--red); color: #fff; border-radius: 18px; padding: 18px; display: grid; gap: 6px; }
+#case .c-step small { font: 600 10px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; opacity: .8; }
+#case .c-step p { margin: 0; font: 800 20px/1.15 var(--disp); font-stretch: 112%; }
+#case .c-go { display: grid; gap: 10px; padding-block: 8px 28px; }
+#case .c-btn { display: flex; justify-content: space-between; align-items: center; height: 56px; padding: 0 20px; border-radius: 16px; font: 700 15px/1 var(--disp); text-decoration: none; background: var(--panel); box-shadow: inset 0 0 0 1px var(--line); }
+#case .c-btn.c-red { background: var(--ink); color: var(--bg); box-shadow: none; }
+#case .c-btn:focus-visible, #case summary:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+#case .c-btn svg { width: 18px; height: 18px; }
+#case details { border-top: 1px solid var(--line); }
+#case summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; padding-block: 18px; font: 600 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--soft); }
+#case summary::-webkit-details-marker { display: none; }
+#case summary::after { content: '+'; color: var(--mute); }
+#case details[open] summary::after { content: '–'; }
+#case details ul { margin: 0 0 22px; padding-left: 18px; display: grid; gap: 8px; color: var(--soft); font-size: 14px; }
+#case footer { padding-block: 10px 48px; color: var(--mute); font-size: 12.5px; line-height: 1.5; border-top: 1px solid var(--line); padding-top: 18px; }
+@media (prefers-reduced-motion: no-preference) {
+#case .c-intro > * { animation: c-up .8s cubic-bezier(.2,.8,.2,1) both; }
+#case .c-intro > *:nth-child(2) { animation-delay: .06s; }
+#case .c-intro > *:nth-child(3) { animation-delay: .12s; }
+#case .c-intro > *:nth-child(4) { animation-delay: .18s; }
+@keyframes c-up { from { transform: translateY(14px); } }
+}
+#case { position: absolute; inset: 0; z-index: 70; overflow-y: auto; overscroll-behavior: contain; display: none; }
+#case.show { display: block; animation: vfade .3s ease both; }
+#case .c-bar { position: sticky; top: 0; z-index: 5; display: flex; justify-content: space-between; align-items: center; padding: calc(12px + env(safe-area-inset-top)) 16px 12px; background: rgba(11,11,12,.8); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 1px 0 var(--line); }
+#case .c-bar button { display: inline-flex; align-items: center; gap: 6px; height: 38px; padding: 0 14px 0 10px; border-radius: 99px; background: rgba(255,255,255,.1); font: 700 13px/1 var(--disp); color: var(--ink); }
+#case .c-bar button svg { width: 18px; height: 18px; }
+#case .c-bar span { font: 600 10px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
+#case .c-hero { margin-top: -62px; }
+#case button.c-btn { width: 100%; text-align: left; color: var(--bg); }
+.pitch { display: grid; grid-template-columns: 1fr 40px; gap: 6px 14px; align-items: center; width: 100%; text-align: left; padding: 20px; border-radius: 24px; background: var(--ink2); box-shadow: inset 0 0 0 1px rgba(224,58,62,.4); }
+.pitch .kick { grid-column: 1 / -1; }
+.pitch b { font: 800 21px/1.05 var(--disp); font-stretch: 112%; text-transform: uppercase; margin-top: 6px; }
+.pitch .pn { grid-column: 1; font: 600 10.5px/1.5 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--mute); }
+.pitch .go2 { grid-column: 2; grid-row: 2 / 4; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--red); color: #fff; }
+.pitch .go2 svg { width: 18px; height: 18px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+
+<div class="stage">
+  <aside class="side l">
+    <img src="img/logo.png" alt="Dame Dolla">
+    <div class="appicon"><img src="img/icon.png" alt="App icon">The app icon. The D from his Dame Dolla script.</div>
+    <h4>Jump to a screen</h4>
+    <nav id="jump"></nav>
+  </aside>
+  <div class="phone" id="phone">
+    <div id="views"></div>
+    <header class="top" id="top">
+      <button class="ib hide" id="backBtn" type="button" aria-label="Back"></button>
+      <button class="logo" type="button" data-go="home" aria-label="Home"><img src="img/logo.png" alt="Dame Dolla"></button>
+      <span></span>
+    </header>
+    <nav class="tabs" id="tabs" aria-label="Sections"></nav>
+    <div class="ov player" id="player"></div>
+    <div class="ov sheet-wrap" id="sheet"></div>
+    <div id="case" role="dialog" aria-label="Business case"><div class="c-bar"><button type="button" data-act="closecase" aria-label="Back to the app"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>The app</button><span>Business case</span></div><div class="c-hero"><img src="img/hero_reach.jpg" alt="Damian Lillard reaching toward the camera"></div>
+
+<main class="c-col">
+  <header class="c-intro">
+    <span class="c-eyebrow"><b>Dame Dolla app</b> · The business case</span>
+    <h1>His app.<br><em>His audience.</em></h1>
+    <p class="c-lede">Six numbers. One minute. What a fan app is worth to Damian Lillard.</p>
+    <div class="c-time"><span>Base case</span><span>Estimates, not promises</span></div>
+  </header>
+
+  <section class="c-beat" aria-labelledby="cb1">
+    <span class="c-eyebrow">The problem</span>
+    <div class="c-num" id="cb1">9.5M</div>
+    <p class="c-say">Instagram followers. Rented, not owned.</p>
+    <p class="c-why">Instagram decides who sees each post, and it keeps the data. An app is a direct line: a push alert on game night, his own list of fans, and numbers his team can see.</p>
+  </section>
+
+  <section class="c-beat" aria-labelledby="cb2">
+    <span class="c-eyebrow">The audience</span>
+    <div class="c-num c-red" id="cb2">533K</div>
+    <p class="c-say">Downloads in year one</p>
+    <p class="c-why">About 14,000 people open it every day by month 12. Past 1 million downloads by year three.</p>
+    <div class="c-range" role="img" aria-label="Year-one downloads: bad year 300 thousand, base 533 thousand, great year 1.06 million">
+      <div><span>Bad year</span><i style="width:28%"></i><b>300K</b></div>
+      <div class="c-on"><span>Base</span><i style="width:50%"></i><b>533K</b></div>
+      <div><span>Great</span><i style="width:100%"></i><b>1.06M</b></div>
+    </div>
+  </section>
+
+  <section class="c-beat" aria-labelledby="cb3">
+    <span class="c-eyebrow">The reach</span>
+    <div class="c-num" id="cb3">78M</div>
+    <p class="c-say">Views of his content in year one</p>
+    <p class="c-why">Every one of them inside his app, not on someone else's platform. That is the inventory a sponsor pays for.</p>
+  </section>
+
+  <section class="c-beat" aria-labelledby="cb4">
+    <span class="c-eyebrow">How it pays</span>
+    <div class="c-num" id="cb4">$0</div>
+    <p class="c-say">For fans. One partner covers most of it.</p>
+    <p class="c-why">No paywall on anything fans came for. The money comes from three places, per year:</p>
+    <div class="c-split" aria-hidden="true"><i style="flex:300;background:var(--red)"></i><i style="flex:112;background:var(--ink)"></i><i style="flex:38;background:var(--gold)"></i></div>
+    <div class="c-legend">
+      <div><i style="background:var(--red)"></i><div><b>Presenting partner</b><span>"Presented by ___." One brand, one quiet spot per visit. adidas is the first call.</span></div><em>$300K</em></div>
+      <div><i style="background:var(--ink)"></i><div><b>Locker Pass</b><span>$29.99 a year for die-hards: early tickets, lyric notes, family stuff. Plus one ad tile.</span></div><em>$112K</em></div>
+      <div><i style="background:var(--gold)"></i><div><b>Merch, adidas links, YouTube</b><span>Small, steady, no extra work.</span></div><em>$38K</em></div>
+    </div>
+  </section>
+
+  <section class="c-beat" aria-labelledby="cb5">
+    <span class="c-eyebrow">The money</span>
+    <div class="c-num c-red" id="cb5">$450K</div>
+    <p class="c-say">A year, after Apple and Google take their cut</p>
+    <p class="c-why">Running it costs about $250K a year. It covers that and stays in the black from year two.</p>
+    <div class="c-range" role="img" aria-label="Revenue per year by year three: bad year 175 thousand, base 450 thousand, great year 2.2 million">
+      <div><span>Bad year</span><i style="width:8%"></i><b>$175K</b></div>
+      <div class="c-on"><span>Base</span><i style="width:20.5%"></i><b>$450K</b></div>
+      <div><span>Great</span><i style="width:100%"></i><b>$2.2M</b></div>
+    </div>
+    <span class="c-cap">Per year by year three. A deep playoff run moves it toward Great.</span>
+  </section>
+
+  <section class="c-beat" aria-labelledby="cb6">
+    <span class="c-eyebrow">Why this one works</span>
+    <p class="c-say" id="cb6">Celebrity apps have a graveyard</p>
+    <div class="c-flops">
+      <div><b>900K</b><span>Paying subscribers the Kardashian apps signed up in 48 hours. Gone by 2019.</span></div>
+      <div><b>1 yr</b><span>How long Taylor Swift's app lasted. Thin content, and she stopped posting about it.</span></div>
+    </div>
+    <p class="c-verdict">They didn't fail on demand. They ran out of things to show, and the star stopped showing up.</p>
+    <p class="c-why">This one runs on his stories, his family, his music and every game night. There's a reason to open it every day of the season.</p>
+  </section>
+
+  <section class="c-beat" aria-labelledby="cb7">
+    <span class="c-eyebrow">What it takes</span>
+    <p class="c-say" id="cb7">Three costs</p>
+    <div class="c-costs">
+      <div><div><b>Build it</b><span>iPhone and Android, one time</span></div><em>~$300K</em></div>
+      <div><div><b>Run it</b><span>Content producer, updates, hosting</span></div><em>~$250K / yr</em></div>
+      <div><div><b>Launch it</b><span>Promo in year one, less after</span></div><em>~$300K</em></div>
+    </div>
+    <div class="c-step"><small>Step one</small><p>A 90-day soft launch. Then we swap these guesses for real numbers.</p></div>
+  </section>
+
+  <nav class="c-go" aria-label="Next">
+    <button class="c-btn c-red" type="button" data-act="closecase">Open the app <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    <a class="c-btn" href="https://claude.ai/artifact/CHptbNDQNiZtW46hp1T92d" target="_blank" rel="noopener">See the full model <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </nav>
+
+  <details>
+    <summary>The assumptions</summary>
+    <ul>
+      <li>About 12 million people follow him across Instagram, Facebook and X, after overlap. 3% of them download the app in year one.</li>
+      <li>12% are still using it a month later. Fan apps for one person should beat the 3–9% that entertainment apps average.</li>
+      <li>$300,000 in launch promo at about $3 per install, then 30% of that each year after.</li>
+      <li>Normal seasons. No deep playoff run built in.</li>
+      <li>2% of monthly users buy the $29.99 Locker Pass. The presenting partner pays a $300,000 floor.</li>
+      <li>Apple and Google take 25% of in-app payments, blended.</li>
+      <li>Build, running and promo costs are US agency market rates. The full model shows every source and lets you change any of these.</li>
+    </ul>
+  </details>
+</main>
+
+<footer class="c-col">Prepared by Kris Koivisto. Not affiliated with Damian Lillard, adidas, the Trail Blazers or the NBA.</footer></div>
+    <div class="splash" id="splash"><div class="in"><img src="img/logo.png" alt="Dame Dolla"><div class="ln"><i></i></div><small>Different on levels the Lord allows</small></div></div>
+  </div>
+  <aside class="side r">
+    <p class="t">An app built<br>to be <em>in reach.</em></p>
+    <p>Concept by Kris Koivisto for Damian Lillard. Four doors: Home, Hoops, Music, Damian. Every one opens on a story a stranger can follow.</p>
+    <p>Video plays from the reel Stu 212 filmed at his backpack giveaway in East Oakland, Sept 5, 2026. Highlight links go to the original uploads on YouTube.</p>
+    <p style="color:var(--dim);font-size:12.5px">Not affiliated with Damian Lillard, adidas, the Trail Blazers or the NBA. Photos used for this pitch only.</p>
+  </aside>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  // the schedule drives the game module: a countdown before tip, "live" for three hours after, the final once a result is in.
+  // r = [Portland, opponent], s = Dame's line. After each game, add r and s to that game.
+  var GAMES = [
+    { d: '2026-10-21T19:00:00-07:00', opp: 'Suns', ab: 'PHX', home: 1, at: 'Moda Center', tv: 'KUNP 16 · BlazerVision', r: [124, 83],
+      s: { min: 24, pts: 25, reb: 3, ast: 6, fgm: 7, fga: 12, tpm: 6, tpa: 10, ftm: 5, fta: 5, pm: 23 },
+      note: ['It was a lot of love. The fans showed a lot of love.', 'Dame, postgame · his first game that counted in 542 days'], vid: ['hixdCrFdOYc', 'UDMiaOIamcw'] },
+    { d: '2026-10-23T19:00:00-07:00', opp: 'Kings', ab: 'SAC', at: 'Golden 1 Center', tv: 'KUNP 16 · BlazerVision' },
+    { d: '2026-10-27T20:00:00-07:00', opp: 'Lakers', ab: 'LAL', at: 'Crypto.com Arena', tv: 'Peacock · NBC' },
+    { d: '2026-10-29T19:00:00-07:00', opp: 'Grizzlies', ab: 'MEM', home: 1, at: 'Moda Center', tv: 'KUNP 16 · BlazerVision' },
+    { d: '2026-10-31T12:00:00-07:00', opp: 'Jazz', ab: 'UTA', at: 'Delta Center', tv: 'KUNP 16 · BlazerVision' },
+    { d: '2026-11-02T18:00:00-08:00', opp: 'Nuggets', ab: 'DEN', at: 'Ball Arena', tv: 'KUNP 16 · BlazerVision' },
+    { d: '2026-11-04T18:00:00-08:00', opp: 'Suns', ab: 'PHX', at: 'Mortgage Matchup Center', tv: 'KUNP 16 · BlazerVision' },
+    { d: '2026-11-06T19:00:00-08:00', opp: 'Lakers', ab: 'LAL', at: 'Crypto.com Arena', tv: 'Prime Video' }
+  ];
+  GAMES.forEach(function (g) { g.t = Date.parse(g.d); });
+  var LIVE_FOR = 3 * 36e5;
+
+  var IC = {
+    back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>',
+    chev: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>',
+    down: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg>',
+    arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+    play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></svg>',
+    x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+    mute: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M22 9l-6 6M16 9l6 6"/></svg>',
+    sound: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>',
+    // tab marks: a clock face for Dame Time, a ball, a mic, the Oakland tree
+    tHome: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path class="acc" d="M12 7v5l3.2 2" stroke="currentColor"/></svg>',
+    tHoops: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5v17M6 6c2.6 2.2 2.6 9.8 0 12M18 6c-2.6 2.2-2.6 9.8 0 12"/></svg>',
+    tMusic: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/></svg>',
+    tTree: '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="7.2" r="4.2"/><circle cx="7.4" cy="9.6" r="3.3"/><circle cx="16.6" cy="9.6" r="3.3"/><circle cx="12" cy="11.4" r="3.2"/><path d="M11.1 12.5h1.8l.5 6.8h-2.8z"/><path d="M12 19c-1.4 1.3-3.4 1.7-5.2 2M12 19c1.4 1.3 3.4 1.7 5.2 2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>'
+  };
+
+  // ---------- content ----------
+  var YT = function (id) { return 'https://www.youtube.com/watch?v=' + id; };
+  var V = {
+    mZlwBG5CaZo: ['0.9 seconds', 'Game 6 vs Houston · May 2, 2014'],
+    f_EXSf2teB0: ['37 feet. Series over.', 'Game 5 vs OKC · Apr 23, 2019'],
+    'zt-sFSEBJyk': ['Title No. 3', '3-Point Contest final · 2026'],
+    DNkdlSvb6OY: ['15 in his return', 'Preseason vs Golden State · Oct 7, 2026'],
+    u6Ex_V5MIak: ['DAME TIME', 'The Damian Lillard Story · adidas'],
+    vIAaSopHvVw: ['The KICKS cover', 'SLAM · on set'],
+    xdF74W0hHJE: ['D Lillard 1', 'The first signature · 2015'],
+    e3sj9FYiSTQ: ['Dame 9', 'Unveiled at All-Star Weekend · 2024'],
+    PLHYJPJ4RmA: ['Dame X', '$90 · July 2025'],
+    eDjiueari_M: ['Every Dame shoe', '2015 to 2025'],
+    hixdCrFdOYc: ['25 in the opener', 'Highlights · W 124-83 vs Suns'],
+    UDMiaOIamcw: ['"A lot of love"', 'Postgame · Oct 21, 2026'],
+    '1FRIRmI8gbo': ['DOLLA Season', 'Feat. Ivory Scott · new'],
+    jFsAOeLVbPc: ['Right One', 'Feat. Lil Wayne & Mozzy · 2021'],
+    xuhEdfWtGbg: ['Paid In Full', 'Feat. Tobe Nwigwe · 2023'],
+    SlN9qCygm1I: ['Home Team', 'Feat. Dreebo · 2021'],
+    JBBsDXW232o: ['Don D.O.L.L.A.', 'Feat. Rexx Life Raj · 2023'],
+    CS_8BGTA8hM: ['The Way It Goes', 'Lead single · 2023'],
+    mP96O3iAQDM: ['Dre Grant', 'Feat. Brookfield Duece · 2019'],
+    bRN9L80o4TA: ['Inside Formula Zero', 'His invite-only camp'],
+    Nhv6sMKI9C0: ['Graduation day, with Mom', 'Weber State · May 2015'],
+    PmQdTN8xYpE: ['The commencement speech', 'Weber State'],
+    F0eHTfyAiq0: ['Dame Jr. does Dame Time', '"That was the moment I knew he was mine"'],
+    JrvxU2rkx68: ['Postgame with Dame Jr.', 'Father and son, after a win'],
+    zqaF72wfXCA: ['Bill Walton Community Impact Award', 'Portland · Sept 2024'],
+    o7GOz00WKcU: ['The block party', 'Brookfield Park, Oakland'],
+    B7X8PiXWx6g: ['Brookfield picnic', 'Back home · 2013']
+  };
+
+  var ALBUMS = [
+    { id: 'don', t: 'Don D.O.L.L.A.', y: 'Aug 17, 2023', img: 'al_DWCvAvp2SAk', yt: 'DWCvAvp2SAk', note: 'Lil Wayne, Ty Dolla $ign, Rick Ross. Distributed through EMPIRE.', tr: [['Don D.O.L.L.A.', 'Rexx Life Raj'], ['Paid In Full', 'Tobe Nwigwe'], ['The Way It Goes'], ['Mike Breen', 'Brookfield Duece & Yxung Rell']], part: true },
+    { id: 'doltla', t: 'Different On Levels The Lord Allowed', y: 'Aug 2021', img: 'al_JC-2jPdEBt0', yt: 'JC-2jPdEBt0', note: 'Twelve tracks. Lil Wayne, Snoop Dogg, Q-Tip.', tr: [['The Juice'], ['Right One', 'Lil Wayne & Mozzy'], ['Overnight'], ['Home Team', 'Dreebo'], ['Kobe'], ['GOAT Spirit', 'Raphael Saadiq']], part: true },
+    { id: 'big', t: 'Big D.O.L.L.A.', y: 'Aug 9, 2019', img: 'al_fyttopyG7Y4', yt: 'fyttopyG7Y4', note: 'The cover is big Dame and 1-year-old Dame Jr. in matching Bentleys.', tr: [['Sorry', 'Lil Wayne'], ['Check'], ['Bestie', 'Marley Waters'], ['Baggage Claim', 'Mozzy'], ['Dre Grant', 'Brookfield Duece'], ['Cupid'], ['Ricky Bobby'], ['Money Ball', 'Jeremih, Derrick Milano & Danny From Sobrante'], ['Beach', 'Derrick Milano'], ['Track Meet', 'Major Myjah']] },
+    { id: 'confirmed', t: 'Confirmed', y: 'Oct 6, 2017', img: 'al_ZVBTEIu8F4c', yt: 'ZVBTEIu8F4c', note: 'Thirteen tracks. "Run It Up" with Lil Wayne, produced by Scott Storch.', tr: [['No Punches'], ['Boss Life'], ['Switch Sides', 'Verse Simmonds & Brookfield Duece'], ['Run It Up', 'Lil Wayne'], ['Shoota', 'Expensive Melodies'], ['Anomaly', '2 Chainz'], ['Marshawn Lynch', 'Danny From Sobrante'], ['Trap Party (Funeral)'], ['5th of Henn', 'Danny From Sobrante'], ['One & Only'], ['The Let Down', 'Nick Grant & BJ the Chicago Kid'], ['Members Only', 'Allstar Bozzle'], ['Wonderland']] },
+    { id: 'o', t: 'The Letter O', y: 'Oct 21, 2016', img: 'al_v2QoU54tKK4', yt: 'v2QoU54tKK4', note: 'The debut. Tales from Oakland, with 90s hip-hop in it.', tr: [['Bill Walton'], ['Wasatch Front'], ['Loyal to the Soil', 'Lil Wayne'], ['Growth Spurt', "Dupre'"], ['Misguided'], ['Hero', 'Raphael Saadiq']], part: true }
+  ];
+
+  var SHOES = [
+    ['1', 'D Lillard 1', 'Feb 2015', 'The first. Rip City and Weber State colorways.'],
+    ['2', 'D Lillard 2', 'Dec 2015', 'Boost cushioning. The "Rose City" pair.'],
+    ['3', 'Dame 3', 'Dec 2016', 'First one to carry the name Dame.'],
+    ['4', 'Dame 4', 'Oct 2017', 'The Bape collabs came in 2018.'],
+    ['5', 'Dame 5', 'Feb 2019', 'Out the month he dropped 50 on OKC.'],
+    ['6', 'Dame 6', 'Dec 2019', 'Lightstrike. The "Jamfest" pair.'],
+    ['7', 'Dame 7', 'Oct 2020', 'The bubble shoe.'],
+    ['8', 'Dame 8', 'Dec 2021', 'The one on the KICKS cover.'],
+    ['9', 'Dame 9', 'Sep 2024', 'Unveiled at All-Star Weekend.'],
+    ['X', 'Dame X', 'Jul 2025', '$90. Priced for the kids who hoop in it.']
+  ];
+
+  // chapters: one template for every story in the app
+  var CH = {
+    origin: {
+      tab: 'hoops', n: '01', t: 'Pick No. 6', list: 'From a milk crate to draft night', img: 'draft', pos: '22% 30%', thumb: 'yt_u6Ex_V5MIak',
+      kick: 'Hoops · Where it started',
+      dek: 'His first hoop was a milk crate nailed to a telephone pole in East Oakland.',
+      body: [
+        'Brookfield Village, deep East Oakland. He shot on that crate until it broke, then on whatever came next. Two high schools before Oakland High. A two-star recruit ranked 214th in the country, with one offer that mattered: an assistant from Weber State saw him at a tournament in Texas and offered on the spot.',
+        'Four years in Ogden, Utah. Two Big Sky Player of the Year awards. Then June 28, 2012: Portland took him sixth. He was Rookie of the Year by a unanimous vote.'
+      ],
+      facts: [['No.<em>6</em>', 'Pick in the 2012 draft', 'Portland'], ['214', 'His national recruiting rank', 'Out of Oakland High'], ['ROY', 'Rookie of the Year', '2013 · unanimous'], ['1,934', 'Points at Weber State', 'No. 1 retired in 2017']],
+      media: ['u6Ex_V5MIak'], next: 'moments'
+    },
+    moments: {
+      tab: 'hoops', n: '02', t: 'Dame Time', list: '0.9 seconds, 37 feet, 71 points', img: 'yt_mZlwBG5CaZo', pos: '62% 30%', thumb: 'yt_f_EXSf2teB0',
+      kick: 'Hoops · The shots',
+      dek: 'In May 2014, with 0.9 seconds left, a 25-footer ended a playoff series and gave the whole thing a name.',
+      body: [
+        'He pointed at his wrist. Dame Time. It came back five years later from 37 feet over Paul George, a shot that ended OKC\'s season and got waved goodbye on the way down.',
+        'Then the nights that don\'t need a buzzer: 61 on Dallas in the bubble, 71 on Houston in 2023 with 13 threes, the most ever by a player that age. Three 3-Point Contest titles, the last one in 2026, tied with Larry Bird and Craig Hodges for the most ever.'
+      ],
+      facts: [['0.9', 'Seconds left', 'Game 6 vs Houston · 2014'], ['37<em>FT</em>', '50 points, series over', 'Game 5 vs OKC · 2019'], ['71', 'Career high, 13 threes', 'vs Houston · Feb 26, 2023'], ['3<em>×</em>', '3-Point Contest titles', '2023 · 2024 · 2026']],
+      quote: ['I was like, "Dame Time."', 'On the shot against Houston, 2014'],
+      media: ['mZlwBG5CaZo', 'f_EXSf2teB0', 'zt-sFSEBJyk'], next: 'resume'
+    },
+    resume: {
+      tab: 'hoops', n: '03', t: 'The resume', list: 'Nine All-Stars, and one point past Drexler', img: 'yt_f_EXSf2teB0', pos: '50% 30%', thumb: 'yt_zt-sFSEBJyk',
+      kick: 'Hoops · The record',
+      dek: 'On Dec. 20, 2022, he passed Clyde Drexler for the most points in Blazers history. By one point.',
+      body: ['Eleven seasons in Portland, then two in Milwaukee. The numbers that follow him into every arena:'],
+      facts: [['9<em>×</em>', 'All-Star', 'Selected nine times'], ['7<em>×</em>', 'All-NBA', '1 First · 4 Second · 2 Third'], ['75', 'NBA 75th Anniversary Team', 'Named 2021'], ['MVP', 'All-Star Game', '2024 · 39 points, 11 threes'], ['18,041', 'Blazers all-time points', 'Passed Drexler · 18,040'], ['GOLD', 'Olympic gold', 'Tokyo · 2021']],
+      rows: [['J. Walter Kennedy Citizenship Award', 'For his RESPECT program in Portland schools', '2018-19'], ['Big Sky Hall of Fame', 'Weber State, two-time Player of the Year', 'Ogden']],
+      media: [], next: 'kicks'
+    },
+    kicks: {
+      tab: 'hoops', n: '04', t: 'Earned it.', list: 'Why he gave every pair of Jordans away', img: 'kicks25', cover: true, thumb: 'kicks25', tpos: '50% 18%',
+      kick: 'Kicks · adidas since 2012',
+      dek: 'He grew up in Jordans. The day he signed with adidas, he gave every pair away.',
+      body: [
+        'Jordans on his feet all through Oakland and Ogden, right up to the YouTube series he filmed before the 2012 draft. Then adidas signed him, and he cleared the closet. Once he was with the three stripes, he was all the way with them. He hasn\'t played a minute in anything else since.',
+        'A ten-year deal after Rookie of the Year. The D Lillard 1 in February 2015. Ten signature shoes later, the Dame X went out at $90, because he wanted the kids who actually hoop in them to afford them. In December 2024, adidas made it a deal for life.'
+      ],
+      shoes: true,
+      facts: [['10', 'Signature shoes', '2015 to 2025'], ['LIFE', 'Lifetime adidas deal', 'December 2024']],
+      media: ['vIAaSopHvVw', 'xdF74W0hHJE', 'e3sj9FYiSTQ', 'PLHYJPJ4RmA', 'eDjiueari_M'], next: 'back'
+    },
+    season: {
+      tab: 'hoops', n: '00', t: 'This season', list: 'Last game, next game, his numbers', img: 'season_back', pos: '60% 22%', thumb: 'season_back', tpos: '60% 25%',
+      kick: 'Hoops · 2026-27', season: true,
+      dek: 'Back in Portland, back in red. Every game, his line, and the next tip.', next: 'origin'
+    },
+    back: {
+      tab: 'hoops', n: '05', t: 'The return', list: 'Achilles, then home to Portland', img: 'yt_DNkdlSvb6OY', pos: '58% 30%', thumb: 'yt_DNkdlSvb6OY',
+      kick: 'Hoops · The comeback',
+      dek: 'He tore his Achilles in April 2025. On Oct. 21, 2026, he scored 25 in a 41-point win, at home, in red.',
+      timeline: [
+        ['Sept 2023', 'Traded to Milwaukee', 'He released "Farewell" for Portland the same day.'],
+        ['Apr 27, 2025', 'Left Achilles', 'Torn in the playoffs. Surgery days later.'],
+        ['July 2025', 'Home', 'Waived by the Bucks, back with the Blazers on a three-year deal. He has said he wants his last game to be in Portland.'],
+        ['Oct 7, 2026', '15 in his return', 'Preseason vs Golden State. All three of his threes in the first quarter.'],
+        ['Oct 21, 2026', '25 in the opener', 'W 124-83 over the Suns at Moda Center. Six threes in 24 minutes.', 1]
+      ],
+      media: ['hixdCrFdOYc', 'DNkdlSvb6OY'], next: 'season'
+    },
+
+    four: {
+      tab: 'music', n: '01', t: 'Four bars', list: 'How a Friday hashtag became a label', img: 'yt_mP96O3iAQDM', pos: '40% 30%', thumb: 'yt_mP96O3iAQDM',
+      kick: 'Music · Dame D.O.L.L.A.',
+      dek: 'He was writing rhymes in middle school. He just didn\'t tell anybody.',
+      body: [
+        'Raised in a house full of soul and hip-hop, he started rapping before he started dunking. Through college and his first NBA season, it stayed private.',
+        'On Sept. 13, 2013, he tweeted a challenge: post four bars, tag it #4BarFriday. Fans did it. Then NBA players. Then LeBron. In October 2016 came a debut album, The Letter O, under a name that says what he believes: Different On Levels The Lord Allows.',
+        'He didn\'t wait on a label. He started one, Front Page Music, and put his cousins on first.'
+      ],
+      facts: [['5', 'Studio albums', '2016 to 2023'], ['2013', '#4BarFriday starts', 'Sept 13']],
+      media: ['1FRIRmI8gbo', 'jFsAOeLVbPc', 'xuhEdfWtGbg', 'SlN9qCygm1I', 'JBBsDXW232o', 'CS_8BGTA8hM', 'mP96O3iAQDM'], next: 'label'
+    },
+    label: {
+      tab: 'music', n: '02', t: 'Front Page', list: 'The label, the cousins, the features', img: 'yt_xuhEdfWtGbg', pos: '50% 30%', thumb: 'yt_xuhEdfWtGbg',
+      kick: 'Music · The label',
+      dek: 'Independent and family-run. Started so his cousins would have a platform.',
+      body: ['Brookfield Duece runs A&R and has three solo albums on the label. Danny From Sobrante has been on the mic since day one. "Home Team" is dedicated to their cousin Brandon "Chef B" Johnson, who passed in 2020.'],
+      rows: [['Lil Wayne', 'Run It Up · Sorry · Right One · Loyal to the Soil', ''], ['Snoop Dogg', 'Kobe', ''], ['Raphael Saadiq', 'Hero · GOAT Spirit', ''], ['Q-Tip', 'Different On Levels The Lord Allowed', ''], ['Tobe Nwigwe', 'Paid In Full', ''], ['Mozzy', 'Baggage Claim · Right One', ''], ['Jeremih', 'Money Ball', ''], ['2 Chainz', 'Anomaly', '']],
+      rowsTitle: 'On his records',
+      media: ['SlN9qCygm1I'], next: 'four'
+    },
+
+    homeoak: {
+      tab: 'damian', n: '01', t: 'Oakland, period.', list: 'The 15th annual backpack giveaway', img: 'reach_loop', pos: '50% 30%', thumb: 'reach_loop', tpos: '50% 25%', reel: true,
+      kick: 'Damian · Back home',
+      dek: 'Every summer he goes back to the rec center where he trained as a kid. This year was the 15th.',
+      body: [
+        'Saturday, Sept. 5, 2026, Ira Jinkins Park in deep East Oakland. Food trucks, music, a climbing wall, and backpacks stuffed with school supplies for nearly 400 kids. It\'s held in memory of his grandfather, Albert Johnson.',
+        'He\'s paying for new courts on the same floor he used to run before rec league games across town. The city dedicated one of them to him in 2025. Last Christmas, he covered gifts for more than 400 families.'
+      ],
+      quote: ['I grew up here. I live these kids\' lives&hellip; just letting them have a good day. A good Saturday.', 'Damian, at the giveaway · Sept 5, 2026'],
+      facts: [['15th', 'Annual backpack giveaway', 'Since his rookie year'], ['~400', 'Kids with new backpacks', 'Sept 5, 2026']],
+      media: ['B7X8PiXWx6g', 'o7GOz00WKcU'], next: 'dad'
+    },
+    dad: {
+      tab: 'damian', n: '02', t: 'Dad', list: 'Dame Jr., the twins, and a promise to Mom', img: 'yt_F0eHTfyAiq0', pos: '70% 30%', thumb: 'yt_JrvxU2rkx68',
+      kick: 'Damian · Family',
+      dek: 'He promised his mom he\'d finish school. Three seasons into the NBA, he walked.',
+      body: [
+        'Raised by Gina Johnson and Houston Lillard, with a big brother, Houston, and a sister, LaNae. In May 2015 he got his degree from Weber State with his mom in the front row.',
+        'Damian Jr. was born in 2018. The twins, Kali and Kalii, came in 2021. When he told them they were going back to Portland, his daughter asked if that meant no more airplanes to Milwaukee.'
+      ],
+      quote: ['Wait, so we don\'t have to get on an airplane to Milwaukee no more?', 'His daughter · July 2025'],
+      media: ['F0eHTfyAiq0', 'JrvxU2rkx68', 'Nhv6sMKI9C0', 'PmQdTN8xYpE'], next: 'next'
+    },
+    next: {
+      tab: 'damian', n: '03', t: 'The next ones', list: 'Formula Zero, scholarships, Weber State', img: 'yt_bRN9L80o4TA', pos: '50% 30%', thumb: 'yt_bRN9L80o4TA',
+      kick: 'Damian · Paying it forward',
+      dek: 'Weber State took him when nobody else would. He has been paying that back ever since.',
+      body: ['Formula Zero is his invite-only camp: 20 high schoolers and 20 college players a year, picked for being overlooked. The Lillard Scholars send East Bay seniors to Portland State at $25,000 a year. And in August 2025, Weber State named him general manager of the program that found him.'],
+      quote: ['The guys who are underrated, underappreciated. The dogs.', 'On who gets the Formula Zero invite'],
+      facts: [['$25K', 'A year, per Lillard Scholar', 'Portland State · 2025'], ['GM', 'Weber State men\'s basketball', 'Named Aug 2, 2025']],
+      rows: [['RESPECT', 'Show up. Work hard. Be kind. In Portland schools since his rookie year.', '2013'], ['Bill Walton Community Impact Award', 'The first one ever given', '2024']],
+      rowsTitle: 'Also',
+      media: ['bRN9L80o4TA', 'zqaF72wfXCA'], next: 'homeoak'
+    }
+  };
+
+  var TABS = {
+    hoops: { t: 'Hoops', line: 'Oakland · Ogden · Portland', img: 'draft', pos: '24% 30%', chs: ['season', 'origin', 'moments', 'resume', 'kicks', 'back'],
+      lede: 'A two-star recruit with one real offer became the greatest scorer in Blazers history.', story: ['He shot on a milk crate in East Oakland, played four years at a school nobody watched, and went sixth in 2012. In his 15th season he is back where his NBA career started, and he opened the comeback with 25.'] },
+    music: { t: 'Music', line: 'Dame D.O.L.L.A. · Front Page Music', chs: ['four', 'label'], albums: true,
+      lede: 'Five albums, his own label, and Lil Wayne on four of his songs.', story: ['Different On Levels The Lord Allows. He writes his own bars, and he has been doing it longer than he has been dunking.'] },
+    damian: { t: 'Damian', line: 'Brookfield Village · East Oakland', reel: true, chs: ['homeoak', 'dad', 'next'],
+      lede: 'The Oakland tree is tattooed across his chest. Everything else comes from that.', story: ['Damian Lamonte Ollie Lillard. Born July 15, 1990. Son of Gina and Houston, dad of three. Psalm 37 on his left arm.'] }
+  };
+
+  // ---------- helpers ----------
+  function img(src, alt, pos, cls) { return '<div class="ph ' + (cls || '') + '"><img src="img/' + src + '.jpg" alt="' + (alt || '') + '" loading="lazy" decoding="async"' + (pos ? ' style="object-position:' + pos + '"' : '') + '></div>'; }
+  function vcard(id, big) { var v = V[id]; return '<a class="vc press' + (big ? ' big' : '') + '" href="' + YT(id) + '" target="_blank" rel="noopener"><div class="ph"><img src="img/yt_' + id + '.jpg" alt="" loading="lazy"><span class="pl">' + IC.play + '</span></div><b>' + v[0] + '</b><span>' + v[1] + '</span></a>'; }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function left(t) { var l = Math.max(0, t - Date.now()); return { d: Math.floor(l / 864e5), h: Math.floor(l / 36e5) % 24, m: Math.floor(l / 6e4) % 60, s: Math.floor(l / 1e3) % 60 }; }
+  function clock(t, mini) { var p = left(t), u = mini ? [['d', 'Days'], ['h', 'Hrs'], ['m', 'Min']] : [['d', 'Days'], ['h', 'Hrs'], ['m', 'Min'], ['s', 'Sec']]; return '<div class="clock' + (mini ? ' mini' : '') + '" data-tip="' + t + '">' + u.map(function (x) { return '<div><b data-u="' + x[0] + '">' + pad(p[x[0]]) + '</b><small>' + x[1] + '</small></div>'; }).join('') + '</div>'; }
+  function gs() { var now = Date.now(), done = GAMES.filter(function (g) { return g.r && g.t < now; }), next = GAMES.filter(function (g) { return g.t + LIVE_FOR > now && !(g.r && g.t < now); })[0]; return { last: done[done.length - 1], next: next, live: !!next && next.t <= now, done: done }; }
+  function day(g) { return new Date(g.t).toLocaleDateString('en-US', { timeZone: 'America/Los_Angeles', weekday: 'short', month: 'short', day: 'numeric' }).replace(',', ''); }
+  function hour(g) { return new Date(g.t).toLocaleTimeString('en-US', { timeZone: 'America/Los_Angeles', hour: 'numeric', minute: '2-digit' }) + ' PT'; }
+  function rel(g) { var f = function (t) { return Date.parse(new Date(t).toLocaleDateString('en-CA', { timeZone: 'America/Los_Angeles' })); }, n = Math.round((f(g.t) - f(Date.now())) / 864e5); return n === 0 ? 'Tonight' : n === 1 ? 'Tomorrow' : n === -1 ? 'Last night' : ''; }
+  function vs(g) { return (g.home ? 'vs ' : 'at ') + g.opp; }
+  // last final with his line, then what's next; before the opener it's a countdown
+  function gameCard() {
+    var S = gs(), g = S.last, n = S.next;
+    if (!g) return n ? '<div class="on-card"><span class="kick live"><i></i>Opening night · ' + (rel(n) || day(n)) + '</span><h2 class="disp">Dame Time<br><em>is back.</em></h2><div class="meta">The first game that counts since he tore his Achilles on April 27, 2025.</div>' + clock(n.t) + '<div class="foot"><span><b>' + vs(n) + '</b> · ' + day(n) + ' · ' + hour(n) + ' · ' + n.at + '</span></div></div>' : '';
+    var w = g.r[0] > g.r[1], s = g.s;
+    return '<div class="on-card"><div class="gtop"><span class="kick"><i></i>Final · ' + (rel(g) || day(g)) + ' · ' + vs(g) + '</span><span class="wl ' + (w ? 'w' : 'l') + '">' + (w ? 'W' : 'L') + '</span></div>' +
+      '<div class="score"><div><small>POR</small><b>' + g.r[0] + '</b></div><i>–</i><div class="op"><small>' + g.ab + '</small><b>' + g.r[1] + '</b></div></div>' +
+      '<div class="dl"><div><b>' + s.pts + '</b><small>Pts</small></div><div><b>' + s.tpm + '</b><small>3PM</small></div><div><b>' + s.ast + '</b><small>Ast</small></div><div><b>' + (s.pm > 0 ? '+' : '') + s.pm + '</b><small>+/–</small></div></div>' +
+      '<div class="gline">Dame · ' + s.fgm + '-' + s.fga + ' FG · ' + s.tpm + '-' + s.tpa + ' 3PT · ' + s.ftm + '-' + s.fta + ' FT · ' + s.min + ' min</div>' +
+      (g.note ? '<p class="gnote">"' + g.note[0] + '"<small>' + g.note[1] + '</small></p>' : '') +
+      (n ? '<div class="nx"><div><span class="kick' + (S.live ? ' live' : '') + '"><i></i>' + (S.live ? 'Live now' : 'Next' + (rel(n) ? ' · ' + rel(n) : '')) + '</span><b>' + vs(n) + '</b><span>' + day(n) + ' · ' + hour(n) + ' · ' + n.at + '</span><span>' + n.tv + '</span></div>' + (S.live ? '' : clock(n.t, 1)) + '</div>' : '') +
+      '</div>';
+  }
+  function seasonCard() {
+    var d = gs().done, n = d.length, t = { pts: 0, reb: 0, ast: 0, fgm: 0, fga: 0, tpm: 0, tpa: 0 }, w = 0;
+    if (!n) return '';
+    d.forEach(function (g) { for (var k in t) t[k] += g.s[k]; if (g.r[0] > g.r[1]) w++; });
+    var avg = function (k) { return (t[k] / n).toFixed(1); }, pct = function (a, b) { return t[b] ? (100 * t[a] / t[b]).toFixed(1) : '–'; };
+    return '<div class="sea"><div class="sea-h"><b>2026-27 · per game</b><span>' + n + ' game' + (n > 1 ? 's' : '') + ' · Blazers ' + w + '-' + (n - w) + '</span></div><div class="sea-g">' +
+      [[avg('pts'), 'PTS'], [avg('ast'), 'AST'], [avg('reb'), 'REB'], [avg('tpm'), '3PM'], [pct('fgm', 'fga'), 'FG%'], [pct('tpm', 'tpa'), '3P%']].map(function (x) { return '<div><b>' + x[0] + '</b><small>' + x[1] + '</small></div>'; }).join('') + '</div></div>';
+  }
+  function schedule() {
+    var nx = gs().next, done = function (g) { return g.r && g.t < Date.now(); };
+    return '<div class="rows" style="margin-top:0">' + GAMES.map(function (g) {
+      var w = g.r && g.r[0] > g.r[1];
+      return '<div' + (g === nx ? ' class="nextg"' : '') + '><div><b>' + vs(g) + '</b><span>' + day(g) + ' · ' + g.at + (done(g) ? ' · Dame ' + g.s.pts + ' pts' : '') + '</span></div>' +
+        (done(g) ? '<em class="' + (w ? 'w' : 'l') + '">' + (w ? 'W ' : 'L ') + g.r[0] + '-' + g.r[1] + '</em>' : '<em>' + hour(g) + '</em>') + '</div>';
+    }).join('') + '</div>';
+  }
+  function wall() { return '<div class="wallart"><div class="stack">' + ['al_v2QoU54tKK4', 'al_ZVBTEIu8F4c', 'al_JC-2jPdEBt0', 'al_DWCvAvp2SAk', 'al_fyttopyG7Y4'].map(function (s) { return '<img src="img/' + s + '.jpg" alt="">'; }).join('') + '</div></div>'; }
+  function reelVid() { return '<div class="ph"><video src="img/reach_loop.mp4" poster="img/reach_loop.jpg" muted playsinline loop autoplay preload="metadata"></video></div>'; }
+
+  // ---------- screens ----------
+  var R = {};
+  R.home = function () {
+    return '<section class="hero">' + img('hero_reach', 'Damian Lillard reaching toward the camera') +
+      '<div class="copy rise"><span class="kick"><i></i>In his words</span>' +
+      '<h1 class="disp">Be in<br>reach.</h1>' +
+      '<p class="q">"Where they can see me, and they can touch me, and know it\'s real."</p>' +
+      '<span class="by">Damian Lillard · East Oakland · Sept 5, 2026</span>' +
+      '<div class="row"><button class="btn red press" type="button" data-act="reel">' + IC.play + 'Hear him say it</button><button class="btn ghost press" type="button" data-act="down">Explore ' + IC.down + '</button></div></div></section>' +
+
+      '<section class="sec" id="below" style="padding-left:0;padding-right:0;padding-top:34px"><div class="sh pad"><h2 class="h2">Game center</h2><small>' + (gs().live ? 'Live' : '2026-27') + '</small></div>' + gameCard() +
+      '<div class="gc-more"><button class="btn ghost press" type="button" data-go="ch:season">Season stats and schedule ' + IC.arrow + '</button></div></section>' +
+
+      '<section class="sec" style="padding-left:0;padding-right:0"><div class="sh pad"><h2 class="h2">Start here</h2><small>Four stories</small></div><div class="feed">' +
+      '<button class="sc tt press" type="button" data-go="ch:origin">' + img('draft', '', '0% 50%') + '<span class="tk kick" style="color:#fff"><i></i>Hoops</span><div class="tx"><h3 class="disp">Pick<br>No. 6</h3><p class="dek">A milk crate on a telephone pole, one scholarship offer, then draft night 2012.</p></div><span class="go">' + IC.arrow + '</span></button>' +
+      '<button class="sc cover press" type="button" data-go="ch:kicks">' + img('kicks25', 'SLAM KICKS cover') + '<span class="tk kick" style="color:#fff"><i></i>Kicks</span><div class="tx"><h3 class="h2" style="font-size:26px">He gave every pair of Jordans away.</h3><p class="dek">The day he signed with adidas, the closet went. Ten signature shoes since.</p></div><span class="go">' + IC.arrow + '</span></button>' +
+      '<button class="sc wall press" type="button" data-go="ch:four"><div class="ph">' + wall() + '</div><span class="tk kick" style="color:#fff"><i></i>Music</span><div class="tx"><h3 class="h2" style="font-size:26px">He didn\'t wait on a label. He started one.</h3><p class="dek">Five albums as Dame D.O.L.L.A., and his cousins signed first.</p></div><span class="go">' + IC.arrow + '</span></button>' +
+      '<button class="sc vid press" type="button" data-go="ch:homeoak">' + reelVid(10.5) + '<span class="tk"><span class="badge">' + IC.sound + 'Tap for sound inside</span></span><div class="tx"><h3 class="disp" style="font-size:36px">Oakland,<br>period.</h3><p class="dek">His 15th annual backpack giveaway. Nearly 400 kids. Same rec center he trained in.</p></div><span class="go">' + IC.arrow + '</span></button>' +
+      '</div></section>' +
+      '<section class="sec" style="padding-left:14px;padding-right:14px"><button class="pitch press" type="button" data-act="case"><span class="kick"><i></i>The business case</span><b>Why build it. Six numbers, one minute.</b><span class="pn">533K downloads · 78M views · $450K a year</span><span class="go2">' + IC.arrow + '</span></button></section>' +
+      '<div class="endnote"><img src="img/logo.png" alt="">A concept by Kris Koivisto. Not affiliated with Damian Lillard, adidas, the Trail Blazers or the NBA.</div>';
+  };
+
+  function tabPage(k) {
+    var T = TABS[k], h;
+    if (T.reel) h = '<section class="cov reel">' + reelVid(5) + '<button class="btn ghost press play" type="button" data-act="reel">' + IC.sound + 'Watch</button>';
+    else if (T.albums) h = '<section class="cov albums"><div class="ph" style="background:#0e0e10">' + wall() + '</div>';
+    else h = '<section class="cov">' + img(T.img, '', T.pos);
+    h += '<div class="tx rise"><span class="line">' + T.line + '</span><h1 class="disp">' + T.t + '</h1></div></section>';
+    h += '<section class="story" id="story"><p class="lede">' + T.lede + '</p><div class="more">' + T.story.map(function (p) { return '<p class="b">' + p + '</p>'; }).join('') + '</div><button class="readmore" type="button" data-act="more">The story ' + IC.down + '</button></section>';
+    if (k === 'hoops') h += '<section class="sec" style="padding:30px 0 0">' + gameCard() + '</section>';
+    if (T.albums) h += '<section class="sec"><div class="sh"><h2 class="h2">Albums</h2><small>Tap a cover</small></div><div class="albums-r">' + ALBUMS.map(function (a) { return '<button class="alb press" type="button" data-alb="' + a.id + '">' + img(a.img, a.t) + '<b>' + a.t + '</b><span>' + a.y.slice(-4) + '</span></button>'; }).join('') + '</div></section>';
+    h += '<section class="sec" style="padding-left:0;padding-right:0"><div class="sh pad"><h2 class="h2">Chapters</h2><small>' + T.chs.length + ' stories</small></div><div class="chs">' +
+      T.chs.map(function (id) { var c = CH[id]; return '<button class="ch press" type="button" data-go="ch:' + id + '">' + img(c.thumb, '', c.tpos || '50% 30%') + '<div><div class="n">' + c.n + '</div><b>' + c.t + '</b><span>' + c.list + '</span></div>' + IC.chev + '</button>'; }).join('') + '</div></section>';
+    return h;
+  }
+  R.hoops = function () { return tabPage('hoops'); };
+  R.music = function () { return tabPage('music'); };
+  R.damian = function () { return tabPage('damian'); };
+
+  R.ch = function (id) {
+    var c = CH[id], h;
+    if (c.reel) h = '<section class="art-h">' + reelVid(10.5) + '<div class="tx rise"><span class="kick" style="color:#fff"><i></i>' + c.kick + '</span><h1 class="disp">' + c.t + '</h1><div><button class="btn red press" type="button" data-act="reel">' + IC.play + 'Watch with sound</button></div></div></section>';
+    else h = '<section class="art-h' + (c.cover ? ' cover' : '') + '">' + img(c.img, '', c.pos) + '<div class="tx rise"><span class="kick" style="color:#fff"><i></i>' + c.kick + '</span><h1 class="disp">' + c.t + '</h1></div></section>';
+    h += '<article class="art"><p class="dek">' + c.dek + '</p>' + (c.body || []).map(function (p) { return '<p class="b">' + p + '</p>'; }).join('');
+    if (c.season) { var lg = gs().last; h += gameCard() + '<div class="media-h"><b>Season</b><small>Adds up after every game</small></div>' + seasonCard() + '<div class="media-h"><b>Schedule</b><small>Pacific time</small></div>' + schedule(); if (lg && lg.vid) c.media = lg.vid; }
+    if (c.timeline) h += '<div class="tl">' + c.timeline.map(function (r) { return '<div' + (r[3] ? ' class="now"' : '') + '><small>' + r[0] + '</small><b>' + r[1] + '</b><span>' + r[2] + '</span></div>'; }).join('') + '</div>';
+    if (c.quote) h += '<blockquote class="pull' + (c.tab === 'damian' ? ' gold' : '') + '"><p>"' + c.quote[0] + '"</p><small>' + c.quote[1] + '</small></blockquote>';
+    if (c.facts) h += '<div class="facts">' + c.facts.map(function (f) { return '<div><b>' + f[0] + '</b><span>' + f[1] + '</span><small>' + f[2] + '</small></div>'; }).join('') + '</div>';
+    if (c.shoes) h += '<div class="media-h"><b>The line</b><small>Swipe · 10 shoes</small></div><div class="shoes">' + SHOES.map(function (s) { return '<div class="shoe' + (s[0] === 'X' ? ' x' : '') + '"><b>' + s[0] + '</b><strong>' + s[1] + '</strong><small>' + s[2] + '</small><span>' + s[3] + '</span></div>'; }).join('') + '</div>';
+    if (c.rows) h += '<div class="media-h"><b>' + (c.rowsTitle || 'More') + '</b><small></small></div><div class="rows" style="margin-top:0">' + c.rows.map(function (r) { return '<div><div><b>' + r[0] + '</b><span>' + r[1] + '</span></div><em>' + r[2] + '</em></div>'; }).join('') + '</div>';
+    if (c.media && c.media.length) h += '<div class="media-h"><b>Watch</b><small>YouTube</small></div>' + (c.media.length === 1 ? vcard(c.media[0], true) : '<div class="rail">' + c.media.map(function (m) { return vcard(m); }).join('') + '</div>');
+    h += '</article>';
+    var nx = CH[c.next];
+    h += '<button class="nextch press" type="button" data-go="ch:' + c.next + '"><div><small>Next · ' + TABS[nx.tab].t + '</small><b>' + nx.t + '</b></div><span>' + IC.arrow + '</span></button>';
+    return h;
+  };
+
+  // ---------- nav ----------
+  var views = $('#views'), top = $('#top'), backBtn = $('#backBtn');
+  var S = { tab: 'home', screen: 'home', stack: [] };
+  function draw(dir) {
+    var parts = S.screen.split(':');
+    var html = parts[0] === 'ch' ? R.ch(parts[1]) : R[parts[0]]();
+    views.innerHTML = '<div class="view ' + (dir || '') + '">' + html + '</div>';
+    views.scrollTop = 0;
+    backBtn.classList.toggle('hide', !S.stack.length);
+    backBtn.innerHTML = IC.back;
+    $$('#tabs button').forEach(function (b) { b.classList.toggle('on', b.dataset.tab === S.tab); });
+    $$('#jump button').forEach(function (b) { b.classList.toggle('on', b.dataset.go === S.screen); });
+    wire(); onScroll();
+  }
+  function go(screen) {
+    if (screen === S.screen) { views.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+    var p = screen.split(':');
+    if (p[0] === 'ch') { S.stack.push({ screen: S.screen, tab: S.tab, y: views.scrollTop }); S.screen = screen; S.tab = CH[p[1]].tab; draw(''); }
+    else { S.stack = []; S.screen = screen; S.tab = screen; draw('tab'); }
+  }
+  function back() { var p = S.stack.pop(); if (!p) return; S.screen = p.screen; S.tab = p.tab; draw('back'); views.scrollTop = p.y || 0; }
+
+  function wire() {
+    $$('.ph img', views).forEach(function (im) { if (im.complete && im.naturalWidth) im.classList.add('in'); else im.addEventListener('load', function () { im.classList.add('in'); }); });
+    $$('video', views).forEach(function (v) {
+      var st = parseFloat(v.dataset.start || 0);
+      v.addEventListener('loadedmetadata', function () { try { v.currentTime = st; } catch (e) {} });
+      v.addEventListener('playing', function () { v.classList.add('in'); });
+      v.muted = true; var pr = v.play(); if (pr && pr.catch) pr.catch(function () { v.classList.add('in'); });
+    });
+  }
+  function onScroll() { top.classList.toggle('solid', views.scrollTop > 140); }
+  views.addEventListener('scroll', onScroll, { passive: true });
+
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-go],[data-act],[data-tab],[data-alb]');
+    if (!t) return;
+    if (t.dataset.tab) return go(t.dataset.tab);
+    if (t.dataset.go) return go(t.dataset.go);
+    if (t.dataset.alb) return openAlbum(t.dataset.alb);
+    var a = t.dataset.act;
+    if (a === 'reel') openReel();
+    else if (a === 'down') { var b = $('#below'); if (b) views.scrollTo({ top: b.offsetTop - 70, behavior: 'smooth' }); }
+    else if (a === 'more') { var s = $('#story'); s.classList.toggle('open'); }
+    else if (a === 'close') closeOv();
+    else if (a === 'case') { $$('video', views).forEach(function (v) { v.pause(); }); caseEl.scrollTop = 0; caseEl.classList.add('show'); }
+    else if (a === 'closecase') { caseEl.classList.remove('show'); $$('video', views).forEach(function (v) { v.play().catch(function () {}); }); }
+    else if (a === 'snd') { var v = $('#player video'); v.muted = !v.muted; t.innerHTML = v.muted ? IC.mute : IC.sound; }
+    else if (a === 'pp') { var v2 = $('#player video'); if (v2.paused) v2.play(); else v2.pause(); }
+  });
+  backBtn.addEventListener('click', back);
+
+  // reel player
+  var player = $('#player'), sheet = $('#sheet'), caseEl = $('#case');
+  function openReel() {
+    $$('video', views).forEach(function (v) { v.pause(); });
+    player.innerHTML = '<video src="img/reach.mp4" poster="img/reach_poster.jpg" playsinline preload="auto"></video><div class="bar"><i></i></div>' +
+      '<button class="snd" type="button" data-act="snd" aria-label="Sound">' + IC.sound + '</button><button class="x" type="button" data-act="close" aria-label="Close">' + IC.x + '</button>' +
+      '<button class="tapzone" type="button" data-act="pp" aria-label="Play or pause"></button><span class="pp">' + IC.play + '</span>' +
+      '<div class="cap"><b>"I\'m from here."</b><span>15th annual backpack giveaway · East Oakland · Sept 5, 2026 · Video: @stu212music</span></div>';
+    player.classList.add('show');
+    var v = $('video', player), bar = $('.bar i', player);
+    v.addEventListener('timeupdate', function () { bar.style.width = (v.currentTime / (v.duration || 1) * 100) + '%'; });
+    v.addEventListener('pause', function () { player.classList.add('paused'); });
+    v.addEventListener('play', function () { player.classList.remove('paused'); });
+    v.addEventListener('ended', closeOv);
+    v.muted = false; var pr = v.play();
+    if (pr && pr.catch) pr.catch(function () { v.muted = true; $('.snd', player).innerHTML = IC.mute; v.play().catch(function () { player.classList.add('paused'); }); });
+  }
+  function closeOv() {
+    [player, sheet].forEach(function (o) { var v = $('video', o); if (v) v.pause(); o.classList.remove('show'); o.innerHTML = ''; });
+    $$('video', views).forEach(function (v) { v.play().catch(function () {}); });
+  }
+  function openAlbum(id) {
+    var a = ALBUMS.filter(function (x) { return x.id === id; })[0];
+    sheet.innerHTML = '<div class="sheet" role="dialog" aria-label="' + a.t + '"><div class="grab"></div><div class="hd">' + img(a.img, a.t) + '<div><span class="kick"><i></i>Album</span><b>' + a.t + '</b><span>' + a.y + '</span></div></div>' +
+      '<p class="b" style="font-size:14.5px">' + a.note + '</p><div class="trk">' + a.tr.map(function (t) { return '<div><div><b>' + t[0] + '</b>' + (t[1] ? '<span>feat. ' + t[1] + '</span>' : '') + '</div></div>'; }).join('') + '</div>' +
+      (a.part ? '<p style="color:var(--dim);font-size:12.5px;margin:12px 0 0">Selected tracks.</p>' : '') +
+      '<div style="display:flex;gap:10px;margin-top:20px"><a class="btn red press" href="' + YT(a.yt) + '" target="_blank" rel="noopener">' + IC.play + 'Listen</a><button class="btn ghost press" type="button" data-act="close">Close</button></div></div>';
+    sheet.classList.add('show');
+    $$('.ph img', sheet).forEach(function (im) { im.classList.add('in'); });
+  }
+  sheet.addEventListener('click', function (e) { if (e.target === sheet) closeOv(); });
+
+  // tabs + jump list
+  $('#tabs').innerHTML = [['home', 'Home', IC.tHome], ['hoops', 'Hoops', IC.tHoops], ['music', 'Music', IC.tMusic], ['damian', 'Damian', IC.tTree]].map(function (t) { return '<button type="button" data-tab="' + t[0] + '">' + t[2] + '<span>' + t[1] + '</span></button>'; }).join('');
+  $('#jump').insertAdjacentHTML('afterend', '<nav class="case-nav"><button type="button" data-act="case">Business case<small>Six numbers, one minute</small></button></nav>');
+  $('#jump').innerHTML = [['home', 'Home', 'Be in reach, game center'], ['ch:season', 'This season', 'Last game, next game, stats'], ['hoops', 'Hoops', 'Six chapters'], ['ch:kicks', 'Kicks', 'Earned it'], ['music', 'Music', 'Albums and the label'], ['damian', 'Damian', 'Oakland, family, the next ones'], ['ch:homeoak', 'Oakland, period.', 'The backpack giveaway']].map(function (j) { return '<button type="button" data-go="' + j[0] + '">' + j[1] + '<small>' + j[2] + '</small></button>'; }).join('');
+
+  setInterval(function () { $$('[data-tip]').forEach(function (c) { var p = left(+c.dataset.tip); $$('[data-u]', c).forEach(function (b) { b.textContent = pad(p[b.dataset.u]); }); }); }, 1000);
+
+  draw('tab');
+  var sp = $('#splash'); setTimeout(function () { sp.classList.add('out'); }, 1900);
+  if (location.hash === '#case') caseEl.classList.add('show'); sp.addEventListener('click', function () { sp.classList.add('out'); });
+})();
+</script>
+
+</body>
+</html>

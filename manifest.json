@@ -1,0 +1,11 @@
+{
+  "name": "Dame Dolla",
+  "short_name": "Dame Dolla",
+  "description": "Be in reach. A fan app concept for Damian Lillard.",
+  "start_url": "/dame/",
+  "scope": "/dame/",
+  "display": "standalone",
+  "background_color": "#0b0b0c",
+  "theme_color": "#0b0b0c",
+  "icons": [{ "src": "/dame/icon-512.png", "sizes": "512x512", "type": "image/png" }, { "src": "/dame/img/icon180.png", "sizes": "180x180", "type": "image/png" }]
+}
