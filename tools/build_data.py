@@ -16,24 +16,40 @@ ALBUM_YT = {'letter-o': 'v2QoU54tKK4', 'confirmed': 'ZVBTEIu8F4c', 'big-dolla': 
 import urllib.parse
 def genius(t): return t['genius'] if t.get('genius') else 'https://genius.com/search?q=' + urllib.parse.quote('Dame D.O.L.L.A. ' + t['title'])
 SHOE_VIDEO = {'d-lillard-1': ['xdF74W0hHJE'], 'dame-9': ['e3sj9FYiSTQ'], 'dame-x': ['PLHYJPJ4RmA']}
+NAME = {'pe-2012-2014': ('The PEs', "Real Deal 'ROY' · Crazy 8 · Crazy 1 · Crazyquick"), 'd-lillard-1': ('D Lillard 1', 'The first signature'), 'd-lillard-2': ('D Lillard 2', ''), 'dame-3': ('Dame 3', "First to carry the name Dame"), 'dame-4': ('Dame 4', ''), 'dame-5': ('Dame 5', ''), 'dame-6': ('Dame 6', 'First on Lightstrike'), 'dame-7': ('Dame 7', 'The NBA 2K21 shoe'), 'dame-8': ('Dame 8', ''), 'dame-certified-1': ('Dame Certified', 'The family line'), 'dame-8-extply': ('Dame 8 EXTPLY', 'Extended play'), 'dame-certified-2': ('Certified 2.0', ''), 'dame-9': ('Dame 9', ''), 'dame-certified-3': ('Certified 3', 'The Dame 9 takedown'), 'dame-x': ('Dame X', 'The tenth, under $100')}
+def norm(x): return re.sub(r'[^a-z0-9]+', '', (x or '').lower())
+HERO = {'d-lillard-2': 'raw/d-lillard-2--rose-city-1.jpg', 'dame-x': 'raw/dame-x--brookfield-1.png'}
+TECH = {'pe-2012-2014': 'Retro PEs', 'd-lillard-1': 'adiprene+', 'd-lillard-2': 'Bounce', 'dame-3': 'Bounce', 'dame-4': 'Bounce', 'dame-5': 'Bounce', 'dame-6': 'Lightstrike', 'dame-7': 'Lightstrike', 'dame-8': 'Bounce Pro', 'dame-certified-1': 'Bounce', 'dame-8-extply': 'Bounce Pro', 'dame-certified-2': 'Bounce', 'dame-9': 'Lightstrike', 'dame-certified-3': 'Bounce', 'dame-x': 'Lightstrike'}
+def short(x, n=28):
+    if not x: return x
+    x = re.split(r' \(|; ', x)[0].strip(); return x if len(x) <= n else re.split(r', ', x)[0][:n].rstrip(' ,')
+
 
 def jsq(x): return "'" + str(x).replace('\\', '\\\\').replace("'", "\\'").replace('\n', ' ') + "'"
 
 def knockout(src, dst, maxw=1000):
-    im = Image.open(src).convert('RGBA'); im.thumbnail((maxw, maxw), Image.LANCZOS)
-    a = np.asarray(im).astype(np.float32); rgb = a[..., :3]
-    border = np.concatenate([rgb[0], rgb[-1], rgb[:, 0], rgb[:, -1]])
-    if border.mean() < 215:  # not a white studio shot: keep as is
-        im.convert('RGB').save(dst.with_suffix('.jpg'), quality=88); return dst.with_suffix('.jpg').name
-    near = (rgb.min(-1) > 218) & (rgb.max(-1) - rgb.min(-1) < 22)
-    lab, n = ndimage.label(near)
-    edge = set(np.unique(np.concatenate([lab[0], lab[-1], lab[:, 0], lab[:, -1]]))) - {0}
-    bg = np.isin(lab, list(edge))
-    alpha = Image.fromarray(((~bg) * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(1.0))
-    al = np.asarray(alpha).astype(np.float32) / 255
-    # soften the white fringe: darken edge pixels toward their own color
-    out = np.dstack([rgb, al * 255]).astype(np.uint8)
-    o = Image.fromarray(out, 'RGBA'); o = o.crop(o.getbbox())
+    import cv2
+    im = Image.open(src).convert('RGB'); im.thumbnail((maxw, maxw), Image.LANCZOS)
+    a = np.asarray(im).astype(np.float32); h, w = a.shape[:2]
+    border = np.concatenate([a[:4].reshape(-1, 3), a[-4:].reshape(-1, 3), a[:, :4].reshape(-1, 3), a[:, -4:].reshape(-1, 3)])
+    if border.std(0).mean() > 38:  # a photo with a real background: keep it
+        im.save(dst.with_suffix('.jpg'), quality=88); return dst.with_suffix('.jpg').name
+    bgr = cv2.cvtColor(np.asarray(im), cv2.COLOR_RGB2BGR)
+    mask = np.zeros((h, w), np.uint8); bgm = np.zeros((1, 65), np.float64); fgm = np.zeros((1, 65), np.float64)
+    rect = (int(w * .03), int(h * .03), int(w * .94), int(h * .94))
+    cv2.grabCut(bgr, mask, rect, bgm, fgm, 6, cv2.GC_INIT_WITH_RECT)
+    fg = ((mask == cv2.GC_FGD) | (mask == cv2.GC_PR_FGD)).astype(np.uint8)
+    # drop specks, fill holes
+    lab, n = ndimage.label(fg)
+    if n > 1:
+        sizes = ndimage.sum(fg, lab, range(1, n + 1)); keep = [i + 1 for i, sz in enumerate(sizes) if sz > 0.02 * sizes.max()]
+        fg = np.isin(lab, keep).astype(np.uint8)
+    fg = ndimage.binary_fill_holes(fg)
+    fg = ndimage.binary_erosion(fg, iterations=2).astype(np.uint8)  # eat the light fringe left by the cut
+    if fg.mean() < 0.08 or fg.mean() > 0.92:  # cut went wrong: keep the photo
+        im.save(dst.with_suffix('.jpg'), quality=88); return dst.with_suffix('.jpg').name
+    alpha = Image.fromarray(fg * 255).filter(ImageFilter.GaussianBlur(0.8))
+    o = Image.fromarray(np.dstack([a.astype(np.uint8), np.asarray(alpha)]), 'RGBA'); o = o.crop(o.getbbox())
     o.save(dst.with_suffix('.png'), optimize=True); return dst.with_suffix('.png').name
 
 def albums(path):
@@ -57,12 +73,13 @@ def kicks(path):
     data = json.load(open(path)); base = pathlib.Path(path).parent; out = []
     for k in data:
         hero = [i for i in k.get('images', []) if i.get('kind') == 'hero'] or k.get('images', [])[:1]
+        if k['id'] in HERO: hero = [{'file': HERO[k['id']]}]
         img = None
         if hero:
             img = knockout(base / hero[0]['file'] if not str(hero[0]['file']).startswith('/') else pathlib.Path(hero[0]['file']), IMG / ('shoe_' + k['id']))
         cws = []
         for c in k.get('colorways', []):
-            ci = [i for i in k.get('images', []) if i.get('kind') == 'colorway' and (i.get('colorway') or '').lower() == c['name'].lower()]
+            ci = [i for i in k.get('images', []) if i.get('kind') == 'colorway' and (norm(i.get('colorway')) == norm(c['name']) or (norm(i.get('colorway')) and (norm(i.get('colorway')) in norm(c['name']) or norm(c['name']) in norm(i.get('colorway')))))]
             cimg = None
             if ci:
                 p = base / ci[0]['file'] if not str(ci[0]['file']).startswith('/') else pathlib.Path(ci[0]['file'])
@@ -72,9 +89,10 @@ def kicks(path):
         dek = story[0] if story else ''; rest = story[1:]
         # group the rest into one or two paragraphs
         paras = [' '.join(rest)] if rest else []
-        out.append('    { id: %s, n: %s, name: %s, released: %s, price: %s, tech: %s, designer: %s, dek: %s, story: [%s], colorways: [%s], moment: %s, img: %s, media: [%s], link: %s }' % (
-            jsq(k['id']), jsq(k['n']), jsq(k['name']), jsq(k.get('released') or ''), jsq(k['price']) if k.get('price') else 'null', jsq(k['tech']) if k.get('tech') else 'null',
-            jsq(k['designer']) if k.get('designer') else 'null', jsq(dek), ', '.join(jsq(p) for p in paras), ', '.join(cws), jsq(k['moment']) if k.get('moment') else 'null',
+        nm = NAME.get(k['id'], (k['name'], ''))
+        out.append('    { id: %s, n: %s, name: %s, sub: %s, released: %s, price: %s, tech: %s, techShort: %s, designer: %s, dek: %s, story: [%s], colorways: [%s], moment: %s, img: %s, media: [%s], link: %s }' % (
+            jsq(k['id']), jsq(k['n']), jsq(nm[0]), jsq(nm[1]), jsq(short(k.get('released') or '', 40)), jsq(short(k['price'], 14)) if k.get('price') else 'null', jsq(k['tech']) if k.get('tech') else 'null', jsq(TECH.get(k['id']) or short(k.get('tech'), 24)) if k.get('tech') else 'null',
+            jsq(short(k['designer'], 24)) if k.get('designer') else 'null', jsq(dek), ', '.join(jsq(p) for p in paras), ', '.join(cws), jsq(k['moment']) if k.get('moment') else 'null',
             jsq(img) if img else 'null', ', '.join(jsq(v) for v in SHOE_VIDEO.get(k['id'], [])), jsq(k['link']) if k.get('link') else 'null'))
     return '  // KICKS:start (generated by tools/build_data.py)\n  var KICKS = [\n' + ',\n'.join(out) + '\n  ];\n  // KICKS:end\n'
 
