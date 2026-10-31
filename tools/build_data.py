@@ -12,7 +12,9 @@ from scipy import ndimage
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 IMG = ROOT / 'img'
 APP = ROOT / 'src' / 'app.html'
-ALBUM_YT = {'the-letter-o': 'v2QoU54tKK4', 'confirmed': 'ZVBTEIu8F4c', 'big-dolla': 'fyttopyG7Y4', 'doltla': 'JC-2jPdEBt0', 'don-dolla': 'DWCvAvp2SAk'}
+ALBUM_YT = {'letter-o': 'v2QoU54tKK4', 'confirmed': 'ZVBTEIu8F4c', 'big-dolla': 'fyttopyG7Y4', 'doltla': 'JC-2jPdEBt0', 'don-dolla': 'DWCvAvp2SAk'}
+import urllib.parse
+def genius(t): return t['genius'] if t.get('genius') else 'https://genius.com/search?q=' + urllib.parse.quote('Dame D.O.L.L.A. ' + t['title'])
 SHOE_VIDEO = {'d-lillard-1': ['xdF74W0hHJE'], 'dame-9': ['e3sj9FYiSTQ'], 'dame-x': ['PLHYJPJ4RmA']}
 
 def jsq(x): return "'" + str(x).replace('\\', '\\\\').replace("'", "\\'").replace('\n', ' ') + "'"
@@ -39,12 +41,12 @@ def albums(path):
     for a in data:
         img = 'cover_' + a['id']
         if a.get('cover'):
-            im = Image.open(a['cover']).convert('RGB'); im.thumbnail((800, 800), Image.LANCZOS); im.save(IMG / (img + '.jpg'), quality=88)
+            im = Image.open(pathlib.Path(path).parent / a['cover']).convert('RGB'); im.thumbnail((800, 800), Image.LANCZOS); im.save(IMG / (img + '.jpg'), quality=88)
         tr = []
         for t in a['tracks']:
             tr.append('{ n: %d, title: %s, feat: %s, spotify: %s, durationMs: %s, preview: %s, yt: %s, genius: %s, facts: [%s] }' % (
-                t['n'], jsq(t['title']), jsq(t.get('feat') or ''), jsq(t['spotify']) if t.get('spotify') else 'null', t.get('durationMs') or 0,
-                jsq(t['previewUrl']) if t.get('previewUrl') else 'null', jsq(t['yt']) if t.get('yt') else 'null', jsq(t['genius']) if t.get('genius') else 'null',
+                int(t['n']), jsq(t['title']), jsq(', '.join(x.title() if x.isupper() else x for x in (t.get('feat') or '').split(', '))), jsq(t['spotify']) if t.get('spotify') else 'null', int(t.get('durationMs') or 0),
+                jsq(t['previewUrl']) if t.get('previewUrl') else 'null', jsq(t['yt']) if t.get('yt') else 'null', jsq(genius(t)),
                 ', '.join(jsq(f['text'] if isinstance(f, dict) else f) for f in (t.get('facts') or []))))
         out.append('    { id: %s, t: %s, y: %s, released: %s, spotify: %s, yt: %s, img: %s, note: %s, tracks: [\n      %s\n    ] }' % (
             jsq(a['id']), jsq(a['title']), jsq(a['year']), jsq(a.get('released') or a['year']), jsq(a['spotify']) if a.get('spotify') else 'null',
