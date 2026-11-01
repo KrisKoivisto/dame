@@ -122,7 +122,29 @@
   "ab": "UTA",
   "home": false,
   "at": "Delta Center",
-  "tv": "KUNP 16 \u00b7 BlazerVision"
+  "tv": "KUNP 16 \u00b7 BlazerVision",
+  "r": [
+   112,
+   90
+  ],
+  "s": {
+   "min": 27,
+   "pts": 22,
+   "reb": 5,
+   "ast": 4,
+   "fgm": 6,
+   "fga": 17,
+   "tpm": 3,
+   "tpa": 10,
+   "ftm": 7,
+   "fta": 8,
+   "pm": 21
+  },
+  "dnp": null,
+  "vid": [
+   "nS2fiRBZ3j4",
+   "3N5Dxj8LDVM"
+  ]
  },
  {
   "id": "401909918",
