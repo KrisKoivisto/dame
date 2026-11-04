@@ -746,6 +746,19 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
   ];
   // GAMES:end
   GAMES.forEach(function (g) { g.t = Date.parse(g.d); });
+  // the iPhone app ships with the games it was built with, then pulls the latest from the site on launch
+  (function () {
+    if (/claude/.test(location.hostname) || !window.fetch) return;
+    var u = location.hostname === 'dame.kriskoivisto.com' ? 'games.json' : 'https://dame.kriskoivisto.com/games.json';
+    fetch(u, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (list) {
+      if (!list || !list.length || !list[0].d) return;
+      var before = GAMES.filter(function (g) { return g.r; }).length;
+      list.forEach(function (g) { g.t = Date.parse(g.d); if (g.home === false) delete g.home; });
+      GAMES = list;
+      var after = GAMES.filter(function (g) { return g.r; }).length;
+      if (after !== before && typeof redrawGames === 'function') redrawGames();
+    }).catch(function () {});
+  })();
   var LIVE_FOR = 3 * 36e5;
 
   var IC = {
@@ -1254,6 +1267,7 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
     if (p.length > 1) { S.stack.push({ screen: S.screen, tab: S.tab, y: views.scrollTop }); S.screen = screen; S.tab = p[0] === 'ch' ? CH[p[1]].tab : p[0] === 'album' ? 'music' : p[0] === 'shoe' ? 'kicks' : S.tab; draw(''); }
     else { S.stack = []; S.screen = screen; S.tab = screen; draw('tab'); }
   }
+  function redrawGames() { if ((S.screen === 'home' || S.screen === 'hoops' || S.screen === 'ch:season') && views.scrollTop < 400) { var y = views.scrollTop; draw(''); views.scrollTop = y; } }
   function back() { var p = S.stack.pop(); if (!p) return; S.screen = p.screen; S.tab = p.tab; draw('back'); views.scrollTop = p.y || 0; }
 
   function wire() {

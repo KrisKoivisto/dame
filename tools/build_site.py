@@ -43,4 +43,6 @@ head = f'''<!doctype html>
 <body>
 '''
 (ROOT / 'index.html').write_text(head + a + '\n</body>\n</html>\n')
+import shutil
+if (ROOT / 'tools' / 'games.json').exists(): shutil.copy(ROOT / 'tools' / 'games.json', ROOT / 'games.json')
 print('built index.html from src/app.html')

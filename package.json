@@ -1,0 +1,17 @@
+{
+  "name": "dame-dolla",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Dame Dolla: a fan app concept for Damian Lillard, by Kris Koivisto",
+  "scripts": {
+    "www": "python3 tools/build_www.py",
+    "sync": "python3 tools/build_www.py && npx cap sync ios"
+  },
+  "dependencies": {
+    "@capacitor/core": "8.5.2",
+    "@capacitor/ios": "8.5.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.5.2"
+  }
+}

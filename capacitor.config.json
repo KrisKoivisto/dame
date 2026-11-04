@@ -1,0 +1,12 @@
+{
+  "appId": "com.kriskoivisto.damedolla",
+  "appName": "Dame Dolla",
+  "webDir": "www",
+  "backgroundColor": "#0b0b0c",
+  "ios": {
+    "contentInset": "never",
+    "backgroundColor": "#0b0b0c",
+    "scrollEnabled": true,
+    "allowsLinkPreview": false
+  }
+}
