@@ -184,7 +184,28 @@
   "ab": "PHX",
   "home": false,
   "at": "Mortgage Matchup Center",
-  "tv": "KUNP 16 \u00b7 BlazerVision"
+  "tv": "KUNP 16 \u00b7 BlazerVision",
+  "r": [
+   132,
+   119
+  ],
+  "s": {
+   "min": 33,
+   "pts": 25,
+   "reb": 3,
+   "ast": 5,
+   "fgm": 9,
+   "fga": 17,
+   "tpm": 2,
+   "tpa": 8,
+   "ftm": 5,
+   "fta": 5,
+   "pm": 16
+  },
+  "dnp": null,
+  "vid": [
+   "ojJXK-oJh1k"
+  ]
  },
  {
   "id": "401909294",
