@@ -1352,7 +1352,19 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
   setInterval(function () { $$('[data-tip]').forEach(function (c) { var p = left(+c.dataset.tip); $$('[data-u]', c).forEach(function (b) { b.textContent = pad(p[b.dataset.u]); }); }); }, 1000);
 
   draw('tab');
-  var sp = $('#splash'); setTimeout(function () { sp.classList.add('out'); }, 1900);
+  var sp = $('#splash');
+  // inside the iPhone app: while the splash shows, check the site for newer screens and switch to them.
+  // Offline, or if the site is slow, the built-in copy stays.
+  if (/[?&]inapp=1/.test(location.search)) { sp.style.display = 'none'; }
+  else {
+    setTimeout(function () { sp.classList.add('out'); }, 1900);
+    if (window.DD_BUILD && /^(capacitor:|ionic:|https?:\/\/localhost)/.test(location.href) && window.fetch) {
+      var late = false; setTimeout(function () { late = true; }, 1700);
+      fetch('https://dame.kriskoivisto.com/version.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (v) {
+        if (!late && v && v.v && v.v !== window.DD_BUILD) location.replace('https://dame.kriskoivisto.com/?inapp=1' + location.hash);
+      }).catch(function () {});
+    }
+  }
   if (location.hash === '#case') caseEl.classList.add('show');
   window.addEventListener('hashchange', function () { if (location.hash === '#case') { caseEl.scrollTop = 0; caseEl.classList.add('show'); } }); sp.addEventListener('click', function () { sp.classList.add('out'); });
 })();

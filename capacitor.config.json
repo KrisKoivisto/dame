@@ -3,6 +3,9 @@
   "appName": "Dame Dolla",
   "webDir": "www",
   "backgroundColor": "#0b0b0c",
+  "server": {
+    "allowNavigation": ["dame.kriskoivisto.com"]
+  },
   "ios": {
     "contentInset": "never",
     "backgroundColor": "#0b0b0c",

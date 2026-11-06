@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Wrap src/app.html (the artifact source: no doctype/head) into index.html for dame.kriskoivisto.com."""
-import re, pathlib
+import hashlib, re, pathlib
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = 'https://dame.kriskoivisto.com/'
 a = (ROOT / 'src' / 'app.html').read_text()
@@ -45,4 +45,7 @@ head = f'''<!doctype html>
 (ROOT / 'index.html').write_text(head + a + '\n</body>\n</html>\n')
 import shutil
 if (ROOT / 'tools' / 'games.json').exists(): shutil.copy(ROOT / 'tools' / 'games.json', ROOT / 'games.json')
+# the iPhone app compares this with its own build stamp and loads the site when they differ
+import hashlib, json
+(ROOT / 'version.json').write_text(json.dumps({'v': hashlib.sha1((ROOT / 'src' / 'app.html').read_bytes()).hexdigest()[:12]}))
 print('built index.html from src/app.html')

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Build www/ for the iPhone app: src/app.html wrapped in a plain head, plus img/. Capacitor copies www/ into the Xcode project."""
-import pathlib, re, shutil
+import hashlib, pathlib, re, shutil
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 W = ROOT / 'www'
 if W.exists(): shutil.rmtree(W)
@@ -17,9 +17,12 @@ head = '''<!doctype html>
 <title>Dame Dolla</title>
 <meta name="theme-color" content="#0b0b0c">
 <style>html,body{height:100%;margin:0;background:#0b0b0c}*{-webkit-touch-callout:none}</style>
+<script>window.DD_BUILD = '%%STAMP%%';</script>
 </head>
 <body>
 '''
+import hashlib
+head = head.replace('%%STAMP%%', hashlib.sha1((ROOT / 'src' / 'app.html').read_bytes()).hexdigest()[:12])
 (W / 'index.html').write_text(head + a + '\n</body>\n</html>\n')
 shutil.copytree(ROOT / 'img', W / 'img')
 print('www built:', sum(f.stat().st_size for f in W.rglob('*') if f.is_file()) // 1024 // 1024, 'MB')
