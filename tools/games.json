@@ -241,7 +241,25 @@
   "ab": "SA",
   "home": true,
   "at": "Moda Center",
-  "tv": "KUNP 16 \u00b7 BlazerVision"
+  "tv": "KUNP 16 \u00b7 BlazerVision",
+  "r": [
+   103,
+   125
+  ],
+  "s": {
+   "min": 20,
+   "pts": 12,
+   "reb": 0,
+   "ast": 7,
+   "fgm": 4,
+   "fga": 8,
+   "tpm": 2,
+   "tpa": 3,
+   "ftm": 2,
+   "fta": 3,
+   "pm": -15
+  },
+  "dnp": null
  },
  {
   "id": "401909965",
