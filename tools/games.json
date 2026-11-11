@@ -268,7 +268,29 @@
   "ab": "OKC",
   "home": true,
   "at": "Moda Center",
-  "tv": "NBC \u00b7 KSBI"
+  "tv": "NBC \u00b7 KSBI",
+  "r": [
+   123,
+   103
+  ],
+  "s": {
+   "min": 24,
+   "pts": 25,
+   "reb": 3,
+   "ast": 3,
+   "fgm": 8,
+   "fga": 15,
+   "tpm": 4,
+   "tpa": 10,
+   "ftm": 5,
+   "fta": 5,
+   "pm": 20
+  },
+  "dnp": null,
+  "vid": [
+   "vgR_TRc9eqs",
+   "X1RF9sBZ7QE"
+  ]
  },
  {
   "id": "401909975",
