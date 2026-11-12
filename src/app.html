@@ -5,13 +5,13 @@
 <link rel="apple-touch-icon" href="img/icon180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --ink: #0b0b0c; --ink2: #131315; --ink3: #1c1c1f; --line: rgba(255,255,255,.09); --line2: rgba(255,255,255,.16);
   --txt: #f4f1ea; --mute: rgba(244,241,234,.62); --dim: rgba(244,241,234,.4);
   --red: #e03a3e; --red2: #b4262b; --gold: #c8a15a; --purple: #6a4bc4;
-  --disp: 'Archivo', system-ui, sans-serif; --serif: 'Instrument Serif', Georgia, serif; --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --script: 'Alex Brush', 'Snell Roundhand', cursive; --disp: 'Archivo', system-ui, sans-serif; --serif: 'Instrument Serif', Georgia, serif; --mono: 'IBM Plex Mono', ui-monospace, monospace;
   --ease: cubic-bezier(.2,.8,.2,1);
   color-scheme: dark;
 }
@@ -613,6 +613,82 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
 #game .shoot { position: absolute; z-index: 2; left: 20px; right: 20px; bottom: calc(28px + env(safe-area-inset-bottom)); height: 66px; border-radius: 20px; background: var(--red); color: #fff; font: 900 22px/1 var(--disp); font-stretch: 125%; text-transform: uppercase; letter-spacing: .02em; box-shadow: 0 10px 30px rgba(224,58,62,.4); }
 #game .shoot:active { transform: scale(.97); }
 #game .help { font-size: 13.5px; color: var(--mute); max-width: 300px; line-height: 1.45; }
+/* overlays in the logo's script, no boxes */
+.stk { height: auto; padding: 0; border-radius: 0; background: none !important; box-shadow: none !important; transform: none; color: #fff; font: 400 23px/1 var(--script); letter-spacing: 0; text-transform: none; text-shadow: 0 2px 14px rgba(0,0,0,.85), 0 0 2px rgba(0,0,0,.7); }
+.cc .stk { left: 12px; top: 9px; height: auto; padding: 0; font-size: 21px; }
+.cc .len { background: none; padding: 0; top: 14px; right: 12px; text-shadow: 0 1px 8px rgba(0,0,0,.9); }
+.cc .pl { width: 40px; height: 40px; background: rgba(255,255,255,.16); color: #fff; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.5); }
+.cc .pl svg { width: 15px; height: 15px; }
+.cc.tape .tapet { font: 400 34px/1 var(--script); -webkit-line-clamp: 2; }
+.cl .meta .stk { font-size: 30px; }
+.cl .frame .go { width: 66px; height: 66px; background: rgba(255,255,255,.16); color: #fff; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.55); }
+.gamecard .stk { font-size: 28px; margin-bottom: 6px; }
+/* hoops: every game, newest first */
+.glist { display: grid; gap: 16px; padding: 0 14px; }
+.gv { display: block; width: 100%; text-align: left; }
+.gv .ph { aspect-ratio: 16 / 9; border-radius: 18px; }
+.gv .ph::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.4) 0%, transparent 35%, transparent 70%, rgba(0,0,0,.35) 100%); }
+.gv .stk { position: absolute; left: 14px; top: 10px; z-index: 2; }
+.gv .pl { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2; width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.16); color: #fff; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.55); }
+.gv .pl svg { width: 20px; height: 20px; margin-left: 3px; }
+.gvt { display: grid; gap: 4px; padding: 10px 4px 0; }
+.gvt b { font: 800 18px/1.1 var(--disp); font-stretch: 112%; text-transform: uppercase; }
+.gvt b i { font-style: normal; display: inline-grid; place-items: center; width: 24px; height: 24px; margin-right: 4px; border-radius: 7px; font-size: 12px; vertical-align: 2px; background: rgba(255,255,255,.12); }
+.gvt b i.w { background: var(--red); color: #fff; }
+.gvt span { font: 600 10.5px/1.4 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--mute); }
+/* accordions: videos tucked away on Music and Kicks */
+.vtog { position: absolute; right: 16px; top: calc(70px + env(safe-area-inset-top)); z-index: 3; display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; border-radius: 99px; font: 700 13px/1 var(--disp); color: #fff; background: rgba(255,255,255,.12); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: inset 0 0 0 1px rgba(255,255,255,.22); }
+.vtog svg { width: 14px; height: 14px; }
+.acc { margin: 26px 14px 0; border-radius: 20px; background: var(--ink2); box-shadow: inset 0 0 0 1px var(--line); overflow: hidden; }
+.acc > button { display: flex; width: 100%; align-items: center; justify-content: space-between; padding: 16px 18px; text-align: left; }
+.acc > button b { font: 800 16px/1 var(--disp); font-stretch: 112%; text-transform: uppercase; }
+.acc > button span { display: inline-flex; align-items: center; gap: 8px; font: 600 10.5px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--mute); }
+.acc > button svg { width: 16px; height: 16px; transform: rotate(90deg); transition: transform .3s; }
+.acc.open > button svg { transform: rotate(-90deg); }
+.acc .accb { display: none; padding: 0 0 16px; }
+.acc.open .accb { display: block; }
+.acc .crail { padding: 0 18px 4px; }
+/* lyrics placeholder */
+.lyr { border-radius: 14px; padding: 14px 16px; background: rgba(255,255,255,.04); box-shadow: inset 0 0 0 1px var(--line); }
+.lyr small { display: block; font: 600 9.5px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--dim); margin-bottom: 8px; }
+.lyr p { margin: 0; font: italic 400 19px/1.25 var(--serif); color: var(--soft); }
+/* kicks: vertical timeline with a jump bar */
+.kjump { position: sticky; top: calc(58px + env(safe-area-inset-top)); z-index: 6; display: flex; gap: 6px; overflow-x: auto; padding: 10px 14px; margin-bottom: 8px; background: rgba(11,11,12,.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); scrollbar-width: none; }
+.kjump::-webkit-scrollbar { display: none; }
+.kjump button { flex: none; min-width: 40px; height: 40px; padding: 0 8px; border-radius: 12px; font: 900 15px/1 var(--disp); font-stretch: 118%; color: var(--mute); box-shadow: inset 0 0 0 1px var(--line2); }
+.kjump button.on { background: var(--purple); color: #fff; box-shadow: none; }
+.ktl { position: relative; padding: 4px 14px 0 0; }
+.ktl::before { content: ''; position: absolute; left: 34px; top: 0; bottom: 0; width: 2px; background: linear-gradient(var(--purple), rgba(106,75,196,.15)); }
+.kti { position: relative; display: grid; grid-template-columns: 68px 1fr; scroll-margin-top: 130px; padding-bottom: 14px; }
+.kyr { position: relative; padding-top: 18px; text-align: center; }
+.kyr span { position: relative; z-index: 1; display: inline-block; padding: 4px 0; background: var(--ink); font: 600 10px/1 var(--mono); letter-spacing: .08em; color: var(--dim); }
+.kyr::after { content: ''; position: absolute; left: 29px; top: 40px; width: 12px; height: 12px; border-radius: 50%; background: var(--ink); box-shadow: inset 0 0 0 3px var(--purple); }
+.kti.open .kyr::after, .kti.x .kyr::after { background: var(--purple); }
+.kbody { border-radius: 20px; background: var(--ink2); box-shadow: inset 0 0 0 1px var(--line); overflow: hidden; }
+.kti.x .kbody { box-shadow: inset 0 0 0 1.5px rgba(106,75,196,.8); }
+.khead { position: relative; display: grid; grid-template-columns: 112px 1fr; gap: 12px; align-items: center; width: 100%; padding: 10px 14px 10px 8px; text-align: left; }
+.khead .ph { height: 84px; background: transparent; }
+.khead .ph img { object-fit: contain; filter: drop-shadow(0 12px 14px rgba(0,0,0,.55)); }
+.khead .kn { position: absolute; left: 10px; top: 4px; z-index: 0; font: 900 34px/1 var(--disp); font-stretch: 125%; color: transparent; -webkit-text-stroke: 1px rgba(244,241,234,.28); }
+.kti.x .khead .kn { -webkit-text-stroke: 0; color: rgba(106,75,196,.55); }
+.kt2 b { display: block; font: 800 17px/1.05 var(--disp); font-stretch: 112%; text-transform: uppercase; margin-bottom: 5px; }
+.kt2 span { display: block; font: 600 10px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--dim); }
+.kt2 em { display: inline-flex; align-items: center; gap: 4px; margin-top: 8px; font: 700 12px/1 var(--disp); font-style: normal; color: #b7a4f5; }
+.kt2 em svg { width: 13px; height: 13px; transform: rotate(90deg); transition: transform .3s; }
+.kti.open .kt2 em svg { transform: rotate(-90deg); }
+.kcws { display: none; padding: 0 0 14px; }
+.kti.open .kcws { display: block; animation: vfade .35s ease both; }
+.krail { display: flex; gap: 10px; overflow-x: auto; padding: 2px 14px 12px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.krail::-webkit-scrollbar { display: none; }
+.kcw { flex: none; width: 150px; scroll-snap-align: start; display: grid; gap: 5px; align-content: start; }
+.kcw .ph { height: 104px; border-radius: 14px; background: radial-gradient(90% 90% at 50% 30%, #24242a, #151517); }
+.kcw .ph img { object-fit: contain; padding: 6px; }
+.kcw .sw { height: 104px; border-radius: 14px; display: grid; place-items: center; background: linear-gradient(135deg, rgba(106,75,196,.55), rgba(106,75,196,.15)); font: 900 30px/1 var(--disp); color: rgba(244,241,234,.7); }
+.kcw b { font: 700 13px/1.2 var(--disp); }
+.kcw small { font: 600 9.5px/1.3 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--dim); }
+.kopen { margin: 0 14px; height: 42px; font-size: 13px; }
+@keyframes kflash { 0% { box-shadow: inset 0 0 0 2px var(--purple), 0 0 0 0 rgba(106,75,196,.6); } 100% { box-shadow: inset 0 0 0 1px var(--line), 0 0 0 18px rgba(106,75,196,0); } }
+.kti.flash .kbody { animation: kflash 1.1s ease-out; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
 </style>
 
@@ -761,15 +837,15 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
   var GAMES = [
     { d: '2026-10-22T02:00Z', opp: 'Suns', ab: 'PHX', home: 1, at: 'Moda Center', tv: 'KUNP 16 · BlazerVision', r: [124, 83], s: { min: 24, pts: 25, reb: 3, ast: 6, fgm: 7, fga: 12, tpm: 6, tpa: 10, ftm: 5, fta: 5, pm: 23 }, note: ['It was a lot of love. The fans showed a lot of love.', 'Dame, postgame · his first game that counted in 542 days'], vid: ['hixdCrFdOYc', 'UDMiaOIamcw'] },
     { d: '2026-10-24T02:00Z', opp: 'Kings', ab: 'SAC', at: 'Golden 1 Center', tv: 'KUNP 16 · BlazerVision', r: [128, 120], s: { min: 33, pts: 19, reb: 5, ast: 2, fgm: 7, fga: 18, tpm: 2, tpa: 10, ftm: 3, fta: 3, pm: 19 } },
-    { d: '2026-10-28T03:00Z', opp: 'Lakers', ab: 'LAL', at: 'Crypto.com Arena', tv: 'Peacock · NBC', r: [136, 129], s: { min: 31, pts: 21, reb: 5, ast: 4, fgm: 5, fga: 12, tpm: 4, tpa: 8, ftm: 7, fta: 11, pm: -1 } },
-    { d: '2026-10-30T02:00Z', opp: 'Grizzlies', ab: 'MEM', home: 1, at: 'Moda Center', tv: 'KUNP 16 · BlazerVision', r: [103, 124], s: { min: 30, pts: 9, reb: 2, ast: 2, fgm: 3, fga: 13, tpm: 1, tpa: 9, ftm: 2, fta: 4, pm: -11 } },
+    { d: '2026-10-28T03:00Z', opp: 'Lakers', ab: 'LAL', at: 'Crypto.com Arena', tv: 'Peacock · NBC', r: [136, 129], s: { min: 31, pts: 21, reb: 5, ast: 4, fgm: 5, fga: 12, tpm: 4, tpa: 8, ftm: 7, fta: 11, pm: -1 }, vid: ['gIkM_fwA-mM'] },
+    { d: '2026-10-30T02:00Z', opp: 'Grizzlies', ab: 'MEM', home: 1, at: 'Moda Center', tv: 'KUNP 16 · BlazerVision', r: [103, 124], s: { min: 30, pts: 9, reb: 2, ast: 2, fgm: 3, fga: 13, tpm: 1, tpa: 9, ftm: 2, fta: 4, pm: -11 }, vid: ['TWOa2pMjdQE'] },
     { d: '2026-10-31T19:00Z', opp: 'Jazz', ab: 'UTA', at: 'Delta Center', tv: 'KUNP 16 · BlazerVision', r: [112, 90], s: { min: 27, pts: 22, reb: 5, ast: 4, fgm: 6, fga: 17, tpm: 3, tpa: 10, ftm: 7, fta: 8, pm: 21 }, vid: ['nS2fiRBZ3j4', '3N5Dxj8LDVM'] },
-    { d: '2026-11-03T02:00Z', opp: 'Nuggets', ab: 'DEN', at: 'Ball Arena', tv: 'KUNP 16 · BlazerVision', r: [118, 110], s: { min: 30, pts: 20, reb: 6, ast: 6, fgm: 5, fga: 11, tpm: 1, tpa: 5, ftm: 9, fta: 10, pm: 3 }, vid: ['eUP8JDDWCEE', '5P5nbw0uXXk'] },
+    { d: '2026-11-03T02:00Z', opp: 'Nuggets', ab: 'DEN', at: 'Ball Arena', tv: 'KUNP 16 · BlazerVision', r: [118, 110], s: { min: 30, pts: 20, reb: 6, ast: 6, fgm: 5, fga: 11, tpm: 1, tpa: 5, ftm: 9, fta: 10, pm: 3 }, vid: ['5P5nbw0uXXk', 'eUP8JDDWCEE'] },
     { d: '2026-11-05T02:00Z', opp: 'Suns', ab: 'PHX', at: 'Mortgage Matchup Center', tv: 'KUNP 16 · BlazerVision', r: [132, 119], s: { min: 33, pts: 25, reb: 3, ast: 5, fgm: 9, fga: 17, tpm: 2, tpa: 8, ftm: 5, fta: 5, pm: 16 }, vid: ['ojJXK-oJh1k'] },
-    { d: '2026-11-07T03:00Z', opp: 'Lakers', ab: 'LAL', at: 'Crypto.com Arena', tv: 'Prime Video · Spectrum Sports Net', r: [118, 124], s: { min: 37, pts: 22, reb: 0, ast: 4, fgm: 5, fga: 13, tpm: 4, tpa: 10, ftm: 8, fta: 8, pm: 5 } },
-    { d: '2026-11-08T03:00Z', opp: 'Spurs', ab: 'SA', home: 1, at: 'Moda Center', tv: 'KUNP 16 · BlazerVision', r: [103, 125], s: { min: 20, pts: 12, reb: 0, ast: 7, fgm: 4, fga: 8, tpm: 2, tpa: 3, ftm: 2, fta: 3, pm: -15 } },
+    { d: '2026-11-07T03:00Z', opp: 'Lakers', ab: 'LAL', at: 'Crypto.com Arena', tv: 'Prime Video · Spectrum Sports Net', r: [118, 124], s: { min: 37, pts: 22, reb: 0, ast: 4, fgm: 5, fga: 13, tpm: 4, tpa: 10, ftm: 8, fta: 8, pm: 5 }, vid: ['VkDscylVOKA'] },
+    { d: '2026-11-08T03:00Z', opp: 'Spurs', ab: 'SA', home: 1, at: 'Moda Center', tv: 'KUNP 16 · BlazerVision', r: [103, 125], s: { min: 20, pts: 12, reb: 0, ast: 7, fgm: 4, fga: 8, tpm: 2, tpa: 3, ftm: 2, fta: 3, pm: -15 }, vid: ['1aCQux1uCiY'] },
     { d: '2026-11-11T04:00Z', opp: 'Thunder', ab: 'OKC', home: 1, at: 'Moda Center', tv: 'NBC · KSBI', r: [123, 103], s: { min: 24, pts: 25, reb: 3, ast: 3, fgm: 8, fga: 15, tpm: 4, tpa: 10, ftm: 5, fta: 5, pm: 20 }, vid: ['vgR_TRc9eqs', 'X1RF9sBZ7QE'] },
-    { d: '2026-11-12T03:00Z', opp: 'Thunder', ab: 'OKC', home: 1, at: 'Moda Center', tv: 'KUNP 16 · KSBI' },
+    { d: '2026-11-12T03:00Z', opp: 'Thunder', ab: 'OKC', home: 1, at: 'Moda Center', tv: 'KUNP 16 · KSBI', r: [118, 108], s: { min: 32, pts: 18, reb: 3, ast: 3, fgm: 5, fga: 14, tpm: 2, tpa: 10, ftm: 6, fta: 6, pm: 16 }, vid: ['AkCpW4KEm_s'] },
     { d: '2026-11-14T03:00Z', opp: 'Kings', ab: 'SAC', at: 'Golden 1 Center', tv: 'KUNP 16 · BlazerVision' },
     { d: '2026-11-17T01:00Z', opp: 'Timberwolves', ab: 'MIN', at: 'Target Center', tv: 'KUNP 16 · DAZN MIN' },
     { d: '2026-11-18T01:00Z', opp: 'Timberwolves', ab: 'MIN', at: 'Target Center', tv: 'BlazerVision · DAZN MIN' },
@@ -1036,31 +1112,47 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
   // KICKS:end
   // CLIPS:start (generated by tools/build_data.py)
   var CLIPS = [
-    { id: 'MckGmW2UECI', cat: 'highlights', caption: 'Dame hits a 3 with 0.9 seconds left to beat Houston, 2014.', channel: 'NBA', year: 2014, len: '0:38', img: 'clip_MckGmW2UECI' },
-    { id: 'HMm5NtXLVDY', cat: 'highlights', caption: 'Dame\'s long buzzer-beater sends Portland past OKC, 2019.', channel: 'NBA', year: 2019, len: '1:00', img: 'clip_HMm5NtXLVDY' },
-    { id: 'OKOwK6U7sd0', cat: 'highlights', caption: 'Dame scores a career-high 71 points against Houston, 2023.', channel: 'NBA', year: 2023, len: '4:30', img: 'clip_OKOwK6U7sd0' },
-    { id: 'mTl6c2vlmW8', cat: 'highlights', caption: 'Dame scores 61 points against Dallas in the bubble, 2020.', channel: 'NBA', year: 2020, len: '4:06', img: 'clip_mTl6c2vlmW8' },
-    { id: 'hZBJ0DgPZzc', cat: 'highlights', caption: 'Dame scores 60 points against Utah, 2023.', channel: 'NBA', year: 2023, len: '4:26', img: 'clip_hZBJ0DgPZzc' },
-    { id: 'r3yd5B57rhM', cat: 'highlights', caption: 'Dame wins the 3-Point Contest at All-Star weekend, 2023.', channel: 'NBA', year: 2023, len: '4:05', img: 'clip_r3yd5B57rhM' },
-    { id: 'kaE_-INdodE', cat: 'highlights', caption: 'Dame wins the 3-Point Contest for the second year in a row, 2024.', channel: 'NBA', year: 2024, len: '4:19', img: 'clip_kaE_-INdodE' },
-    { id: '-MPDRTvRDvs', cat: 'highlights', caption: 'Dame wins his third 3-Point Contest, 2026.', channel: 'Portland Trail Blazers', year: 2026, len: '1:38', img: 'clip_-MPDRTvRDvs' },
-    { id: 'C8bMBK3_5vA', cat: 'highlights', caption: 'Dame is named MVP of the All-Star Game, 2024.', channel: 'NBA', year: 2024, len: '3:52', img: 'clip_C8bMBK3_5vA' },
-    { id: '3AVQ_N39v3M', cat: 'highlights', caption: 'A look back at Dame\'s game-winning shots for Portland.', channel: 'NBA', year: null, len: '3:13', img: 'clip_3AVQ_N39v3M' },
-    { id: 'hixdCrFdOYc', cat: 'highlights', caption: 'Dame scores 25 in his return game with Portland, 2026.', channel: 'Portland Trail Blazers', year: 2026, len: '1:39', img: 'clip_hixdCrFdOYc' },
-    { id: 'ojJXK-oJh1k', cat: 'highlights', caption: 'Dame scores 25 as Portland beats Phoenix, 2026.', channel: 'Portland Trail Blazers', year: 2026, len: '1:50', img: 'clip_ojJXK-oJh1k' },
-    { id: 'PFuD4brBWB4', cat: 'highlights', caption: 'Dame scores 19 as Team USA beats Spain, 2021.', channel: 'NBA', year: 2021, len: '3:03', img: 'clip_PFuD4brBWB4' },
-    { id: 'vQerl8gcVks', cat: 'dunks', caption: 'A short mix of Dame\'s best dunks, 2014.', channel: 'NBA', year: 2014, len: '1:08', img: 'clip_vQerl8gcVks' },
-    { id: 'n7U6b2T9tAM', cat: 'dunks', caption: 'Dame spins for a 360 double-clutch dunk, 2014.', channel: 'NBA', year: 2014, len: '0:54', img: 'clip_n7U6b2T9tAM' },
-    { id: '3gg4IJ2Rf1w', cat: 'dunks', caption: 'Dame\'s top dunks before the 2014 All-Star dunk contest.', channel: 'Portland Trail Blazers', year: 2014, len: '1:07', img: 'clip_3gg4IJ2Rf1w' },
-    { id: 'j0uX820eRZQ', cat: 'dunks', caption: 'Rookie Dame drives past John Wall and dunks on Nene, 2012-13 season.', channel: 'NBA', year: null, len: '0:31', img: 'clip_j0uX820eRZQ' },
-    { id: '1mOS1uuhUDA', cat: 'dunks', caption: 'Dame rises up and dunks on Rudy Gobert, 2014-15 season.', channel: 'NBA', year: null, len: '0:42', img: 'clip_1mOS1uuhUDA' },
-    { id: 'LvIdqp6Gj5g', cat: 'dunks', caption: 'Dame\'s tomahawk dunk shown from every angle, 2013-14 season.', channel: 'NBA', year: null, len: '0:48', img: 'clip_LvIdqp6Gj5g' },
-    { id: 'RSVRrZvR1Ds', cat: 'dunks', caption: 'Dame cuts backdoor for a big one-handed dunk, 2013-14 season.', channel: 'NBA', year: null, len: '0:32', img: 'clip_RSVRrZvR1Ds' },
-    { id: 'LSLE5oKkQgE', cat: 'dunks', caption: 'Dame drives hard to the rim for a slam, 2013-14 season.', channel: 'NBA', year: null, len: '0:39', img: 'clip_LSLE5oKkQgE' },
-    { id: 'q9OITok40rI', cat: 'dunks', caption: 'Dame throws down a one-handed slam vs the Lakers, 2013-14 season.', channel: 'NBA', year: null, len: '0:31', img: 'clip_q9OITok40rI' },
-    { id: 'fMkM_OiqcwM', cat: 'dunks', caption: 'Steve Blake throws a long lob and Dame slams it home, 2014.', channel: 'Portland Trail Blazers', year: 2014, len: '0:25', img: 'clip_fMkM_OiqcwM' },
-    { id: 'WLCv6QhF9z0', cat: 'dunks', caption: 'Dame finishes an alley-oop with one hand, 2012-13 season.', channel: 'NBA', year: null, len: '0:32', img: 'clip_WLCv6QhF9z0' },
-    { id: 'Eu4pTHWreOc', cat: 'dunks', caption: 'Dame catches a lob and dunks it, 2014-15 season.', channel: 'NBA', year: null, len: '0:31', img: 'clip_Eu4pTHWreOc' },
+    { id: 'MckGmW2UECI', cat: 'moments', caption: 'Dame hits a 3 with 0.9 seconds left to beat Houston, 2014.', channel: 'NBA', year: 2014, len: '0:38', img: 'clip_MckGmW2UECI' },
+    { id: 'HMm5NtXLVDY', cat: 'moments', caption: 'Dame\'s long buzzer-beater sends Portland past OKC, 2019.', channel: 'NBA', year: 2019, len: '1:00', img: 'clip_HMm5NtXLVDY' },
+    { id: 'OKOwK6U7sd0', cat: 'moments', caption: 'Dame scores a career-high 71 points against Houston, 2023.', channel: 'NBA', year: 2023, len: '4:30', img: 'clip_OKOwK6U7sd0' },
+    { id: 'mTl6c2vlmW8', cat: 'moments', caption: 'Dame scores 61 points against Dallas in the bubble, 2020.', channel: 'NBA', year: 2020, len: '4:06', img: 'clip_mTl6c2vlmW8' },
+    { id: 'hZBJ0DgPZzc', cat: 'moments', caption: 'Dame scores 60 points against Utah, 2023.', channel: 'NBA', year: 2023, len: '4:26', img: 'clip_hZBJ0DgPZzc' },
+    { id: 'r3yd5B57rhM', cat: 'moments', caption: 'Dame wins the 3-Point Contest at All-Star weekend, 2023.', channel: 'NBA', year: 2023, len: '4:05', img: 'clip_r3yd5B57rhM' },
+    { id: 'kaE_-INdodE', cat: 'moments', caption: 'Dame wins the 3-Point Contest for the second year in a row, 2024.', channel: 'NBA', year: 2024, len: '4:19', img: 'clip_kaE_-INdodE' },
+    { id: '-MPDRTvRDvs', cat: 'moments', caption: 'Dame wins his third 3-Point Contest, 2026.', channel: 'Portland Trail Blazers', year: 2026, len: '1:38', img: 'clip_-MPDRTvRDvs' },
+    { id: 'C8bMBK3_5vA', cat: 'moments', caption: 'Dame is named MVP of the All-Star Game, 2024.', channel: 'NBA', year: 2024, len: '3:52', img: 'clip_C8bMBK3_5vA' },
+    { id: 'hixdCrFdOYc', cat: 'moments', caption: 'Dame scores 25 in his return game with Portland, 2026.', channel: 'Portland Trail Blazers', year: 2026, len: '1:39', img: 'clip_hixdCrFdOYc' },
+    { id: 'ojJXK-oJh1k', cat: 'moments', caption: 'Dame scores 25 as Portland beats Phoenix, 2026.', channel: 'Portland Trail Blazers', year: 2026, len: '1:50', img: 'clip_ojJXK-oJh1k' },
+    { id: 'PFuD4brBWB4', cat: 'moments', caption: 'Dame scores 19 as Team USA beats Spain, 2021.', channel: 'NBA', year: 2021, len: '3:03', img: 'clip_PFuD4brBWB4' },
+    { id: 'ldJJpy0EYTg', cat: 'moments', caption: 'Dame and LeBron James each score 33 points in Cleveland.', channel: 'NBA', year: null, len: '4:17', img: 'clip_ldJJpy0EYTg' },
+    { id: 'helk6sr7Kbg', cat: 'moments', caption: 'Dame and Steph Curry trade deep threes at the All-Star Game, 2021.', channel: 'NBA', year: 2021, len: '3:37', img: 'clip_helk6sr7Kbg' },
+    { id: 'tX0aHIyTgvI', cat: 'moments', caption: 'Dame scores 48 on a night honoring Kobe Bryant in LA, 2020.', channel: 'ESPN', year: 2020, len: '4:42', img: 'clip_tX0aHIyTgvI' },
+    { id: 'lUihDgPDBpM', cat: 'moments', caption: 'Dame and Deni close out the Thunder in the final two minutes, 2026.', channel: 'House of Highlights', year: 2026, len: '1:55', img: 'clip_lUihDgPDBpM' },
+    { id: 'm6rDiJ8FERo', cat: 'moments', caption: 'Dame drops 55 in a double-overtime playoff game at Denver, 2021.', channel: 'NBA', year: 2021, len: '4:54', img: 'clip_m6rDiJ8FERo' },
+    { id: '3AVQ_N39v3M', cat: 'mixtapes', sub: 'Buzzer beaters', caption: 'A look back at Dame\'s game-winning shots for Portland.', channel: 'NBA', year: null, len: '3:13', img: 'clip_3AVQ_N39v3M' },
+    { id: 'KY8T7gR0WD8', cat: 'mixtapes', sub: 'Buzzer beaters', caption: 'Dame beats the third-quarter buzzer from deep over Aday Mara, 2026.', channel: 'Bleacher Report', year: 2026, len: '0:51', img: 'clip_KY8T7gR0WD8' },
+    { id: 'ESQSecp036I', cat: 'mixtapes', sub: 'Buzzer beaters', caption: 'The logo buzzer-beater that ends the OKC series, 2019.', channel: 'Portland Trail Blazers', year: 2019, len: '1:35', img: 'clip_ESQSecp036I' },
+    { id: 'RxxueDqPAyU', cat: 'mixtapes', sub: 'Career', caption: 'His top 30 career plays.', channel: 'NBA', year: 2020, len: '10:08', img: 'clip_RxxueDqPAyU' },
+    { id: 'B7mh6Hi1ba4', cat: 'mixtapes', sub: 'Career', caption: 'Every time he dropped 50 or more.', channel: 'NBA', year: 2023, len: '51:27', img: 'clip_B7mh6Hi1ba4' },
+    { id: 'ddf96GKhyn4', cat: 'mixtapes', sub: 'Career', caption: 'His top 10 plays as a rookie, 2012-13.', channel: 'NBA', year: 2013, len: '2:52', img: 'clip_ddf96GKhyn4' },
+    { id: 'IgZyihqwZwE', cat: 'mixtapes', sub: 'Career', caption: 'His top 10 plays of the 2014-15 season.', channel: 'NBA', year: 2015, len: '2:32', img: 'clip_IgZyihqwZwE' },
+    { id: 'SsR1f-fVZ9w', cat: 'mixtapes', sub: 'Dimes', caption: 'Dame finishes with 43 points and 16 assists, game-sealing dime included.', channel: 'NBA', year: null, len: '4:05', img: 'clip_SsR1f-fVZ9w' },
+    { id: 'In-wCQeYB54', cat: 'mixtapes', sub: 'Dimes', caption: 'Dame dishes 16 assists with 30 points against Boston.', channel: 'Portland Trail Blazers', year: null, len: '3:37', img: 'clip_In-wCQeYB54' },
+    { id: 'E45BbEQD0uc', cat: 'mixtapes', sub: 'Dimes', caption: 'His NBA debut: 23 points and 11 assists against the Lakers, 2012.', channel: 'Portland Trail Blazers', year: 2012, len: '3:20', img: 'clip_E45BbEQD0uc' },
+    { id: 'vQerl8gcVks', cat: 'mixtapes', sub: 'Dunks', caption: 'A short mix of Dame\'s best dunks, 2014.', channel: 'NBA', year: 2014, len: '1:08', img: 'clip_vQerl8gcVks' },
+    { id: '3gg4IJ2Rf1w', cat: 'mixtapes', sub: 'Dunks', caption: 'Dame\'s top dunks before the 2014 All-Star dunk contest.', channel: 'Portland Trail Blazers', year: 2014, len: '1:07', img: 'clip_3gg4IJ2Rf1w' },
+    { id: 'n7U6b2T9tAM', cat: 'mixtapes', sub: 'Dunks', caption: 'Dame spins for a 360 double-clutch dunk, 2014.', channel: 'NBA', year: 2014, len: '0:54', img: 'clip_n7U6b2T9tAM' },
+    { id: 'j0uX820eRZQ', cat: 'mixtapes', sub: 'Dunks', caption: 'Rookie Dame drives past John Wall and dunks on Nene, 2012-13 season.', channel: 'NBA', year: null, len: '0:31', img: 'clip_j0uX820eRZQ' },
+    { id: '1mOS1uuhUDA', cat: 'mixtapes', sub: 'Dunks', caption: 'Dame rises up and dunks on Rudy Gobert, 2014-15 season.', channel: 'NBA', year: null, len: '0:42', img: 'clip_1mOS1uuhUDA' },
+    { id: 'LvIdqp6Gj5g', cat: 'mixtapes', sub: 'Dunks', caption: 'Dame\'s tomahawk dunk shown from every angle, 2013-14 season.', channel: 'NBA', year: null, len: '0:48', img: 'clip_LvIdqp6Gj5g' },
+    { id: 'RSVRrZvR1Ds', cat: 'mixtapes', sub: 'Dunks', caption: 'Dame cuts backdoor for a big one-handed dunk, 2013-14 season.', channel: 'NBA', year: null, len: '0:32', img: 'clip_RSVRrZvR1Ds' },
+    { id: 'LSLE5oKkQgE', cat: 'mixtapes', sub: 'Dunks', caption: 'Dame drives hard to the rim for a slam, 2013-14 season.', channel: 'NBA', year: null, len: '0:39', img: 'clip_LSLE5oKkQgE' },
+    { id: 'q9OITok40rI', cat: 'mixtapes', sub: 'Dunks', caption: 'Dame throws down a one-handed slam vs the Lakers, 2013-14 season.', channel: 'NBA', year: null, len: '0:31', img: 'clip_q9OITok40rI' },
+    { id: 'fMkM_OiqcwM', cat: 'mixtapes', sub: 'Dunks', caption: 'Steve Blake throws a long lob and Dame slams it home, 2014.', channel: 'Portland Trail Blazers', year: 2014, len: '0:25', img: 'clip_fMkM_OiqcwM' },
+    { id: 'WLCv6QhF9z0', cat: 'mixtapes', sub: 'Dunks', caption: 'Dame finishes an alley-oop with one hand, 2012-13 season.', channel: 'NBA', year: null, len: '0:32', img: 'clip_WLCv6QhF9z0' },
+    { id: 'Eu4pTHWreOc', cat: 'mixtapes', sub: 'Dunks', caption: 'Dame catches a lob and dunks it, 2014-15 season.', channel: 'NBA', year: null, len: '0:31', img: 'clip_Eu4pTHWreOc' },
+    { id: 'VX1AFPmCBAY', cat: 'mixtapes', sub: 'Logo 3s', caption: 'His deepest threes of the 2019-20 season.', channel: 'NBA', year: 2020, len: '6:06', img: 'clip_VX1AFPmCBAY' },
+    { id: 'SqQQ3Sw0rFM', cat: 'mixtapes', sub: 'Logo 3s', caption: 'One hour of his best threes.', channel: 'NBA', year: 2023, len: '1:16:39', img: 'clip_SqQQ3Sw0rFM' },
     { id: 'TA5txnrYL-A', cat: 'kicks', caption: 'Dame goes sneaker shopping in Portland with Complex.', channel: 'Complex', year: null, len: '8:41', img: 'clip_TA5txnrYL-A' },
     { id: 'by2HmWvfKjs', cat: 'kicks', caption: 'Dame shows off his 10th signature shoe, the adidas Dame X.', channel: 'Damian Lillard', year: null, len: '2:11', img: 'clip_by2HmWvfKjs' },
     { id: 'ykG9IS80Adc', cat: 'kicks', caption: 'Dame unveils the adidas Dame 6 and tells stories behind it.', channel: 'Complex', year: null, len: '17:31', img: 'clip_ykG9IS80Adc' },
@@ -1082,6 +1174,8 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
     { id: 'xuhEdfWtGbg', cat: 'music', caption: 'Official video for "Paid In Full" with Tobe Nwigwe.', channel: 'Damian Lillard', year: null, len: '4:12', img: 'clip_xuhEdfWtGbg' },
     { id: 'w8AifaEcVCU', cat: 'music', caption: 'Behind the scenes of the "Dre Grant" video in his hometown, 2019.', channel: 'Damian Lillard', year: 2019, len: '3:48', img: 'clip_w8AifaEcVCU' },
     { id: 'oaK1isIleIw', cat: 'music', caption: 'Official video for Dame D.O.L.L.A.\'s song "Gimme Some Love," 2025.', channel: 'Damian Lillard', year: 2025, len: '2:17', img: 'clip_oaK1isIleIw' },
+    { id: 'JDeNVQ1HS3o', cat: 'music', caption: 'The Jump looks at Dame and Shaq\'s rap battle, 2019.', channel: 'NBA on ESPN', year: 2019, len: '3:09', img: 'clip_JDeNVQ1HS3o' },
+    { id: 'jFsAOeLVbPc', cat: 'music', caption: 'Dame\'s music video "Right One" with Lil Wayne and Mozzy.', channel: 'Damian Lillard', year: null, len: '3:59', img: 'clip_jFsAOeLVbPc' },
     { id: 'cL0N1JDvtME', cat: 'interviews', caption: 'Dame talks to reporters after his series-winning shot, 2019.', channel: 'NBA', year: 2019, len: '2:19', img: 'clip_cL0N1JDvtME' },
     { id: 'xa0mnu79oKg', cat: 'interviews', caption: 'Dame\'s press conference after rejoining the Trail Blazers, 2025.', channel: 'Portland Trail Blazers', year: 2025, len: '28:54', img: 'clip_xa0mnu79oKg' },
     { id: 'U1IIOlwGjaI', cat: 'interviews', caption: 'Dame talks about coming home to Portland and his recovery, 2026.', channel: 'NBA on ESPN', year: 2026, len: '3:18', img: 'clip_U1IIOlwGjaI' },
@@ -1094,16 +1188,9 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
     { id: 'jO1o1ig7uGc', cat: 'interviews', caption: 'Dame sits down with Trae Young to talk basketball.', channel: 'Bleacher Report', year: null, len: '42:59', img: 'clip_jO1o1ig7uGc' },
     { id: 'q259OKRc8Gk', cat: 'interviews', caption: 'Dame speaks after winning Rookie of the Year, 2013.', channel: 'Portland Trail Blazers', year: 2013, len: '5:58', img: 'clip_q259OKRc8Gk' },
     { id: 'yDw8ThkkXA4', cat: 'interviews', caption: 'Dame talks with reporters at Blazers Media Day, 2026.', channel: 'Portland Trail Blazers', year: 2026, len: '27:11', img: 'clip_yDw8ThkkXA4' },
-    { id: 'JDeNVQ1HS3o', cat: 'celebs', caption: 'The Jump looks at Dame and Shaq\'s rap battle, 2019.', channel: 'NBA on ESPN', year: 2019, len: '3:09', img: 'clip_JDeNVQ1HS3o' },
-    { id: 'jFsAOeLVbPc', cat: 'celebs', caption: 'Dame\'s music video "Right One" with Lil Wayne and Mozzy.', channel: 'Damian Lillard', year: null, len: '3:59', img: 'clip_jFsAOeLVbPc' },
-    { id: 'BR_A7lG6qCg', cat: 'celebs', caption: 'Dame is revealed as a cover athlete for NBA 2K21, 2020.', channel: 'NBA 2K', year: 2020, len: '1:01', img: 'clip_BR_A7lG6qCg' },
-    { id: 'ldJJpy0EYTg', cat: 'celebs', caption: 'Dame and LeBron James each score 33 points in Cleveland.', channel: 'NBA', year: null, len: '4:17', img: 'clip_ldJJpy0EYTg' },
-    { id: 'helk6sr7Kbg', cat: 'celebs', caption: 'Dame and Steph Curry trade deep threes at the All-Star Game, 2021.', channel: 'NBA', year: 2021, len: '3:37', img: 'clip_helk6sr7Kbg' },
-    { id: 'tX0aHIyTgvI', cat: 'celebs', caption: 'Dame scores 48 on a night honoring Kobe Bryant in LA, 2020.', channel: 'ESPN', year: 2020, len: '4:42', img: 'clip_tX0aHIyTgvI' },
-    { id: 'zJWH9TUpBqo', cat: 'celebs', caption: 'Kevin Hart introduces Dame at the All-Star Game, 2018.', channel: 'Portland Trail Blazers', year: 2018, len: '0:22', img: 'clip_zJWH9TUpBqo' },
-    { id: '-kpaa7W1tDE', cat: 'celebs', caption: 'Paul Pierce reacts to Dame\'s series-winning shot, 2019.', channel: 'ESPN', year: 2019, len: '3:33', img: 'clip_-kpaa7W1tDE' },
-    { id: 'rqdL4FaBjeE', cat: 'celebs', caption: 'Dame talks about growing up in Oakland near Marshawn Lynch.', channel: 'Club Shay Shay', year: null, len: '3:25', img: 'clip_rqdL4FaBjeE' },
-    { id: 'JprBNvrY-D0', cat: 'celebs', caption: 'Dame calls Kobe the best player he ever played against, 2020.', channel: 'Portland Trail Blazers', year: 2020, len: '4:34', img: 'clip_JprBNvrY-D0' },
+    { id: 'JprBNvrY-D0', cat: 'interviews', caption: 'Dame calls Kobe the best player he ever played against, 2020.', channel: 'Portland Trail Blazers', year: 2020, len: '4:34', img: 'clip_JprBNvrY-D0' },
+    { id: 'BR_A7lG6qCg', cat: 'realtalk', caption: 'Dame is revealed as a cover athlete for NBA 2K21, 2020.', channel: 'NBA 2K', year: 2020, len: '1:01', img: 'clip_BR_A7lG6qCg' },
+    { id: 'rqdL4FaBjeE', cat: 'realtalk', caption: 'Dame talks about growing up in Oakland near Marshawn Lynch.', channel: 'Club Shay Shay', year: null, len: '3:25', img: 'clip_rqdL4FaBjeE' },
     { id: 'eP-6vP-ywlY', cat: 'realtalk', caption: 'Chapter 1 of Dame\'s docuseries: where "Dame Time" comes from.', channel: 'Damian Lillard', year: null, len: '3:52', img: 'clip_eP-6vP-ywlY' },
     { id: 'Ipxz3feeOeQ', cat: 'realtalk', caption: 'Dame works to recover from his Achilles injury, 2025.', channel: 'Damian Lillard', year: 2025, len: '1:59', img: 'clip_Ipxz3feeOeQ' },
     { id: 'Oi6qIVq0Czs', cat: 'realtalk', caption: 'Dame returns to Portland for a Rip City reunion, 2025.', channel: 'Portland Trail Blazers', year: 2025, len: '2:36', img: 'clip_Oi6qIVq0Czs' },
@@ -1122,10 +1209,23 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
   // YouTube plays inline on the site and in the app once it has switched to the site; the claude.ai viewer and the
   // app's offline copy open YouTube instead
   var CAN_EMBED = /^https?:$/.test(location.protocol) && !/claude/.test(location.hostname);
-  var CATS = [['all', 'All'], ['highlights', 'Highlights'], ['dunks', 'Dunks'], ['kicks', 'Kicks'], ['music', 'Music'], ['interviews', 'Interviews'], ['celebs', 'Celebs'], ['realtalk', 'Real talk']];
-  var CATSTK = { highlights: 'red', dunks: 'red', kicks: 'purple', music: '', interviews: '', celebs: 'red', realtalk: 'gold' };
+  var CATS = [['games', 'Games'], ['moments', 'Moments'], ['mixtapes', 'Mixtapes'], ['kicks', 'Kicks'], ['music', 'Music'], ['interviews', 'Interviews'], ['realtalk', 'Real talk']];
+  var TAPES = ['Dunks', 'Buzzer beaters', 'Dimes', 'Logo 3s', 'Career'];
   function catName(c) { for (var i = 0; i < CATS.length; i++) if (CATS[i][0] === c) return CATS[i][1]; return c; }
+  // every finished game with an official highlight, newest first
+  function gameClips() {
+    return GAMES.filter(function (g) { return g.r && g.t < Date.now() && g.vid && g.vid[0]; }).slice().reverse().map(function (g) {
+      var w = g.r[0] > g.r[1];
+      return { id: g.vid[0], cat: 'games', caption: (w ? 'W ' : 'L ') + g.r[0] + '-' + g.r[1] + ' ' + vs(g) + (g.s ? ' · Dame ' + g.s.pts : ''), channel: day(g), year: null, len: null, img: 'yt_' + g.vid[0], g: g };
+    });
+  }
   function clipsOf(cats) { return CLIPS.filter(function (c) { return !cats || cats.indexOf(c.cat) >= 0; }); }
+  function listFor(key) {
+    if (!key || key === 'all') return gameClips().concat(CLIPS);
+    if (key === 'games') return gameClips();
+    if (key.indexOf('mix:') === 0) { var sb = key.slice(4); return CLIPS.filter(function (c) { return c.cat === 'mixtapes' && c.sub === sb; }); }
+    return clipsOf(key.split(','));
+  }
   function byId(list, id) { for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i]; return null; }
 
   var SHOES = [
@@ -1280,10 +1380,10 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
   var TABS = {
     hoops: { t: 'Hoops', line: 'Oakland · Ogden · Portland', img: 'draft', pos: '24% 30%', chs: ['season', 'origin', 'moments', 'resume', 'back'],
       lede: 'A two-star recruit with one real offer became the greatest scorer in Blazers history.', story: ['He shot on a milk crate in East Oakland, played four years at a school nobody watched, and went sixth in 2012. In his 15th season he is back where his NBA career started, and he opened the comeback with 25.'] },
-    kicks: { t: 'Kicks', line: 'adidas · since 2012 · for life', img: 'kicks25', pos: '50% 12%', chs: ['kicks', 'deal'], kicksGrid: true,
+    kicks: { t: 'Kicks', line: 'adidas · since 2012 · for life', img: 'kicks25', pos: '50% 12%', chs: ['kicks', 'deal'], kicksGrid: true, vids: 'kicks',
       lede: 'Ten signature shoes, a family line, and a deal that does not end with his career.', story: ['He grew up in Jordans and gave every pair away the day he signed with adidas. Every shoe since has a piece of him in it: Oakland, Ogden, his kids, the clock.'] },
-    music: { t: 'Music', line: 'Dame D.O.L.L.A. · Front Page Music', chs: ['four', 'label'], albums: true,
-      lede: 'Five albums, his own label, and Lil Wayne on four of his songs.', story: ['Different On Levels The Lord Allows. He writes his own bars, and he has been doing it longer than he has been dunking.'] },
+    music: { t: 'Music', line: 'Dame D.O.L.L.A. · Front Page Music', chs: ['four', 'label'], albums: true, vids: 'music',
+      lede: 'Five albums, his own label.', story: ['Different On Levels The Lord Allows. He writes his own bars, and he has been doing it longer than he has been dunking.'] },
     damian: { t: 'Damian', line: 'Brookfield Village · East Oakland', reel: true, chs: ['homeoak', 'dad', 'next'],
       lede: 'The Oakland tree is tattooed across his chest. Everything else comes from that.', story: ['Damian Lamonte Ollie Lillard. Born July 15, 1990. Son of Gina and Houston, dad of three. Psalm 37 on his left arm.'] }
   };
@@ -1342,7 +1442,7 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
       '<span class="by">Damian Lillard · East Oakland · Sept 5, 2026</span>' +
       '<div class="row"><button class="btn red press" type="button" data-act="reel">' + IC.play + 'Hear him say it</button><button class="btn ghost press" type="button" data-act="down">Explore ' + IC.down + '</button></div></div></section>' +
 
-      clipRail('Clips', null, true, 'home') + gameCard2() +
+      clipRail('Clips', 'games', true, 'home') + gameCard2() +
       '<section class="sec" id="below" style="padding-left:0;padding-right:0;padding-top:34px"><div class="sh pad"><h2 class="h2">Game center</h2><small>' + (gs().live ? 'Live' : '2026-27') + '</small></div>' + gameCard() +
       '<div class="gc-more"><button class="btn ghost press" type="button" data-go="ch:season">Season stats and schedule ' + IC.arrow + '</button></div></section>' +
 
@@ -1356,17 +1456,55 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
       '<div class="endnote"><img src="img/logo.png" alt="">A concept by Kris Koivisto. Not affiliated with Damian Lillard, adidas, the Trail Blazers or the NBA.</div>';
   };
 
-  function clipCard(c, list) {
-    return '<button class="cc press" type="button" data-clip="' + c.id + '" data-list="' + list + '">' + '<div class="ph">' + '<img src="img/' + c.img + '.jpg" alt="" loading="lazy">' +
-      '<span class="stk ' + (CATSTK[c.cat] || '') + '">' + catName(c.cat) + '</span>' + (c.len ? '<span class="len">' + c.len + '</span>' : '') + '<span class="pl">' + IC.play + '</span><span class="cap">' + c.caption + '</span></div></button>';
+  function clipCard(c, key) {
+    return '<button class="cc press" type="button" data-clip="' + c.id + '" data-list="' + key + '"><div class="ph"><img src="img/' + c.img + '.jpg" alt="" loading="lazy">' +
+      '<span class="stk">' + (c.cat === 'games' ? c.channel : (c.sub || catName(c.cat))) + '</span>' + (c.len ? '<span class="len">' + c.len + '</span>' : '') + '<span class="pl">' + IC.play + '</span><span class="cap">' + c.caption + '</span></div></button>';
   }
-  function clipRail(title, cats, chips, key) {
-    var list = clipsOf(cats); if (!list.length) return '';
-    var h = '<section class="sec" style="padding-left:0;padding-right:0"><div class="sh pad"><h2 class="hype">' + title + '</h2><small>' + list.length + ' clips</small></div>';
-    if (chips) h += '<div class="chips" role="tablist">' + CATS.filter(function (c) { return c[0] === 'all' || clipsOf([c[0]]).length; }).map(function (c, i) { return '<button class="chip' + (i === 0 ? ' on' : '') + '" type="button" data-chip="' + c[0] + '" data-rail="' + key + '">' + c[1] + '</button>'; }).join('') + '</div>';
-    h += '<div class="crail" id="rail-' + key + '">' + list.slice(0, 14).map(function (c) { return clipCard(c, cats ? cats.join(',') : 'all'); }).join('') + '</div>';
-    h += '<div class="watchall"><button class="btn ghost press" type="button" data-act="clips" data-list="' + (cats ? cats.join(',') : 'all') + '" id="all-' + key + '">' + IC.play + 'Watch all ' + list.length + '</button></div></section>';
+  function tapeCard(sb) {
+    var L = listFor('mix:' + sb); if (!L.length) return '';
+    return '<button class="cc tape press" type="button" data-clip="' + L[0].id + '" data-list="mix:' + sb + '"><div class="ph"><img src="img/' + L[0].img + '.jpg" alt="" loading="lazy"><span class="stk">Mixtape</span><span class="len">' + L.length + ' clips</span><span class="pl">' + IC.play + '</span><span class="cap tapet">' + sb + '</span></div></button>';
+  }
+  function railCount(key) { return key === 'mixtapes' ? TAPES.filter(function (t) { return listFor('mix:' + t).length; }).length : listFor(key).length; }
+  function railItems(key) { return key === 'mixtapes' ? TAPES.map(tapeCard).join('') : listFor(key).slice(0, 14).map(function (c) { return clipCard(c, key); }).join(''); }
+  function allLabel(key) { var n = key === 'mixtapes' ? clipsOf(['mixtapes']).length : listFor(key).length; return IC.play + (key === 'mixtapes' ? 'Play every mixtape · ' + n : 'Watch all ' + n); }
+  function clipRail(title, key, chips, rid) {
+    if (!railCount(key)) return '';
+    var h = '<section class="sec" style="padding-left:0;padding-right:0"><div class="sh pad"><h2 class="hype">' + title + '</h2><small id="cnt-' + rid + '">' + railCount(key) + (key === 'mixtapes' ? ' mixtapes' : ' clips') + '</small></div>';
+    if (chips) h += '<div class="chips" role="tablist">' + CATS.filter(function (c) { return railCount(c[0]); }).map(function (c) { return '<button class="chip' + (c[0] === key ? ' on' : '') + '" type="button" data-chip="' + c[0] + '" data-rail="' + rid + '">' + c[1] + '</button>'; }).join('') + '</div>';
+    h += '<div class="crail" id="rail-' + rid + '">' + railItems(key) + '</div>';
+    h += '<div class="watchall"><button class="btn ghost press" type="button" data-act="clips" data-list="' + key + '" id="all-' + rid + '">' + allLabel(key) + '</button></div></section>';
     return h;
+  }
+  function accordion(id, title, key) {
+    var n = listFor(key).length; if (!n) return '';
+    return '<section class="acc" id="acc-' + id + '"><button type="button" data-act="acc"><b>' + title + '</b><span>' + n + ' clips ' + IC.chev + '</span></button><div class="accb"><div class="crail">' + railItems(key) + '</div><div class="watchall" style="margin:12px 18px 0"><button class="btn ghost press" type="button" data-act="clips" data-list="' + key + '">' + allLabel(key) + '</button></div></div></section>';
+  }
+  function gamesList() {
+    var L = gameClips(); if (!L.length) return '';
+    return '<section class="sec" style="padding-left:0;padding-right:0"><div class="sh pad"><h2 class="hype">Every game</h2><small>Newest first</small></div><div class="glist">' + L.map(function (c) {
+      var g = c.g, st = g.s, w = g.r[0] > g.r[1];
+      return '<button class="gv press" type="button" data-clip="' + c.id + '" data-list="games"><div class="ph"><img src="img/' + c.img + '.jpg" alt="" loading="lazy"><span class="stk">' + day(g) + '</span><span class="pl">' + IC.play + '</span></div>' +
+        '<div class="gvt"><b><i class="' + (w ? 'w' : 'l') + '">' + (w ? 'W' : 'L') + '</i>' + g.r[0] + '-' + g.r[1] + ' ' + vs(g) + '</b><span>' + (st ? 'Dame ' + st.pts + ' pts · ' + st.ast + ' ast · ' + st.tpm + '-' + st.tpa + ' 3PT · ' + st.min + ' min' : 'Dame did not play') + '</span></div></button>';
+    }).join('') + '</div></section>';
+  }
+  function kyear(k) { var y = /(\d{4})/.exec(k.released || ''); return y ? y[1] : ''; }
+  function kicksTimeline() {
+    var jump = '<div class="kjump" id="kjump">' + KICKS.map(function (k) { return '<button type="button" data-act="kjump" data-to="k-' + k.id + '" aria-label="Jump to ' + k.name + '">' + k.n + '</button>'; }).join('') + '</div>';
+    var items = KICKS.map(function (k) {
+      var cw = (k.colorways || []).map(function (c) { return '<div class="kcw">' + (c.img ? img(c.img, c.name, '50% 50%') : '<span class="sw">' + k.n + '</span>') + '<b>' + c.name + '</b>' + (c.date ? '<small>' + c.date + '</small>' : '') + '</div>'; }).join('');
+      return '<article class="kti' + (k.n === 'X' ? ' x' : '') + '" id="k-' + k.id + '"><div class="kyr"><span>' + kyear(k) + '</span></div><div class="kbody">' +
+        '<button class="khead" type="button" data-act="kx" aria-expanded="false"><span class="kn">' + k.n + '</span>' + img(k.img, k.name, '50% 50%') + '<div class="kt2"><b>' + k.name + '</b><span>' + k.released + (k.price ? ' · ' + k.price : '') + '</span><em>' + (k.colorways ? k.colorways.length : 0) + ' colorways ' + IC.chev + '</em></div></button>' +
+        '<div class="kcws"><div class="krail">' + cw + '</div><button class="btn ghost press kopen" type="button" data-go="shoe:' + k.id + '">The full drop ' + IC.arrow + '</button></div></div></article>';
+    }).join('');
+    return '<section class="sec" style="padding-left:0;padding-right:0;padding-top:24px"><div class="sh pad"><h2 class="hype">The line</h2><small>' + KICKS.length + ' shoes · tap one</small></div>' + jump + '<div class="ktl">' + items + '</div></section>';
+  }
+  function jumpTo(id) {
+    var el = $('#' + id, views); if (!el) return;
+    if (!el.classList.contains('open')) { el.classList.add('open'); fadeIn(el); }
+    views.scrollTo({ top: views.scrollTop + el.getBoundingClientRect().top - views.getBoundingClientRect().top - 124, behavior: 'smooth' });
+    $$('#kjump button', views).forEach(function (b) { b.classList.toggle('on', b.dataset.to === id); });
+    el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
+    var jb = $('#kjump [data-to="' + id + '"]', views), kj = $('#kjump', views); if (jb && kj) kj.scrollTo({ left: jb.offsetLeft - kj.clientWidth / 2 + jb.offsetWidth / 2, behavior: 'smooth' });
   }
   function gameCard2() {
     var best = 0; try { best = +localStorage.getItem('dd_best') || 0; } catch (e) {}
@@ -1377,15 +1515,13 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
     if (T.reel) h = '<section class="cov reel">' + reelVid(5) + '<button class="btn ghost press play" type="button" data-act="reel">' + IC.sound + 'Watch</button>';
     else if (T.albums) h = '<section class="cov albums"><div class="ph" style="background:#0e0e10">' + wall() + '</div>';
     else h = '<section class="cov">' + img(T.img, '', T.pos);
-    h += '<div class="tx rise"><span class="line">' + T.line + '</span><h1 class="disp">' + T.t + '</h1></div></section>';
+    h += '<div class="tx rise"><span class="line">' + T.line + '</span><h1 class="disp">' + T.t + '</h1></div>' + (T.vids && listFor(T.vids).length ? '<button class="vtog press" type="button" data-act="vtog" data-to="acc-' + k + '">' + IC.play + 'Videos · ' + listFor(T.vids).length + '</button>' : '') + '</section>';
     h += '<section class="story" id="story"><p class="lede">' + T.lede + '</p><div class="more">' + T.story.map(function (p) { return '<p class="b">' + p + '</p>'; }).join('') + '</div><button class="readmore" type="button" data-act="more">The story ' + IC.down + '</button></section>';
-    if (k === 'hoops') h += '<section class="sec" style="padding:30px 0 0">' + gameCard() + '</section>' + clipRail('Highlights', ['highlights', 'dunks'], false, 'hoops');
-    if (k === 'kicks') h += clipRail('Drops', ['kicks'], false, 'kicks');
-    if (k === 'music') h += clipRail('Watch', ['music'], false, 'music');
-    if (k === 'damian') h += clipRail('Real talk', ['realtalk', 'interviews'], false, 'damian');
+    if (k === 'hoops') h += '<section class="sec" style="padding:30px 0 0">' + gameCard() + '</section>' + gamesList() + clipRail('Moments', 'moments', false, 'hm') + clipRail('Mixtapes', 'mixtapes', false, 'hx');
+    if (k === 'damian') h += clipRail('Real talk', 'realtalk,interviews', false, 'damian');
     if (T.albums) h += '<section class="sec" style="padding-left:0;padding-right:0"><div class="sh pad"><h2 class="h2">Albums</h2><small>' + ALBUMS.length + ' records · tap to play</small></div><div class="agrid">' + ALBUMS.slice().reverse().map(function (a) { return '<button class="alb press" type="button" data-go="album:' + a.id + '">' + img(a.img, a.t) + '<b>' + a.t + '</b><span>' + a.y + ' · ' + a.tracks.length + ' tracks</span></button>'; }).join('') + '</div></section>';
-    if (T.kicksGrid) h += '<section class="sec" style="padding-left:0;padding-right:0"><div class="sh pad"><h2 class="h2">The line</h2><small>' + KICKS.length + ' shoes</small></div><div class="kgrid">' + KICKS.map(function (k) { return '<div class="kt flip' + (k.n === 'X' ? ' x' : '') + '" role="button" tabindex="0" data-act="flip" aria-label="' + k.name + ' card. Tap to flip"><div class="in"><div class="fc"><span class="num">' + k.n + '</span>' + img(k.img, k.name, '50% 50%') + '<b>' + k.name + '</b><span>' + k.released + '</span><span class="tap">Tap to flip</span></div>' +
-      '<div class="bk"><dl><div><dt>Dropped</dt><dd>' + k.released + '</dd></div>' + (k.price ? '<div><dt>Price</dt><dd>' + k.price + '</dd></div>' : '') + (k.techShort ? '<div><dt>Cushion</dt><dd>' + k.techShort + '</dd></div>' : '') + '<div><dt>Colorways</dt><dd>' + (k.colorways ? k.colorways.length : 0) + ' notable</dd></div></dl><button class="open" type="button" data-go="shoe:' + k.id + '">Open the drop</button></div></div></div>'; }).join('') + '</div></section>';
+    if (T.kicksGrid) h += kicksTimeline();
+    if (T.vids) h += accordion(k, k === 'kicks' ? 'Kicks videos' : 'Music videos', T.vids);
     h += '<section class="sec" style="padding-left:0;padding-right:0"><div class="sh pad"><h2 class="h2">Chapters</h2><small>' + T.chs.length + ' stories</small></div><div class="chs">' +
       T.chs.map(function (id) { var c = CH[id]; return '<button class="ch press" type="button" data-go="ch:' + id + '">' + img(c.thumb, '', c.tpos || '50% 30%') + '<div><div class="n">' + c.n + '</div><b>' + c.t + '</b><span>' + c.list + '</span></div>' + IC.chev + '</button>'; }).join('') + '</div></section>';
     return h;
@@ -1407,6 +1543,7 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
     h += '<div class="trk2">' + a.tracks.map(function (t) {
       var x = '';
       (t.facts || []).forEach(function (f) { x += '<p>' + f + '</p>'; });
+      x += '<div class="lyr"><small>Lyrics</small><p>Dame\'s lyrics, with license approval.</p></div>';
       x += '<div class="lnk">' + (t.genius ? '<a href="' + t.genius + '" target="_blank" rel="noopener">' + IC.out + 'Lyrics</a>' : '') + (t.yt ? '<a href="' + YT(t.yt) + '" target="_blank" rel="noopener">' + IC.play + 'Video</a>' : '') + (t.spotify ? '<a href="https://open.spotify.com/track/' + t.spotify + '" target="_blank" rel="noopener">' + IC.out + 'Spotify</a>' : '') + '</div>';
       return '<div class="tr"><div class="row">' + playBtn(t, a) + '<button class="tt" type="button" data-act="xt"><b>' + t.n + '. ' + t.title + '</b><span>' + (t.feat ? 'feat. ' + t.feat + ' · ' : '') + (t.durationMs ? dur(t.durationMs) : '') + '</span></button><button class="chv" type="button" data-act="xt" aria-label="More">' + IC.chev + '</button></div><div class="x">' + x + '</div></div>';
     }).join('') + '</div>';
@@ -1500,7 +1637,7 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
     if (t.dataset.tab) return go(t.dataset.tab);
     if (t.dataset.go) return go(t.dataset.go);
     if (t.dataset.play) return togglePlay(t);
-    if (t.dataset.clip) { var L = t.dataset.list === 'all' ? clipsOf(null) : clipsOf(t.dataset.list.split(',')); return openClips(L, t.dataset.clip); }
+    if (t.dataset.clip) return openClips(listFor(t.dataset.list), t.dataset.clip);
     if (t.dataset.chip) return pickChip(t);
     var a = t.dataset.act;
     if (a === 'reel') openReel();
@@ -1509,7 +1646,11 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
     else if (a === 'close') closeOv();
     else if (a === 'xt') { var tr = t.closest('.tr'); if (tr) tr.classList.toggle('open'); }
     else if (a === 'flip') { t.classList.toggle('on'); return; }
-    else if (a === 'clips') { var L2 = t.dataset.list === 'all' ? clipsOf(null) : clipsOf(t.dataset.list.split(',')); openClips(L2, L2[0] && L2[0].id); }
+    else if (a === 'clips') { var L2 = t.dataset.list === 'mixtapes' ? clipsOf(['mixtapes']) : listFor(t.dataset.list); openClips(L2, L2[0] && L2[0].id); }
+    else if (a === 'acc') { var ac2 = t.closest('.acc'); ac2.classList.toggle('open'); fadeIn(ac2); }
+    else if (a === 'vtog') { var ac3 = $('#' + t.dataset.to, views); if (ac3) { ac3.classList.add('open'); fadeIn(ac3); views.scrollTo({ top: views.scrollTop + ac3.getBoundingClientRect().top - views.getBoundingClientRect().top - 90, behavior: 'smooth' }); } }
+    else if (a === 'kx') { var kt = t.closest('.kti'); kt.classList.toggle('open'); t.setAttribute('aria-expanded', kt.classList.contains('open')); fadeIn(kt); $$('#kjump button', views).forEach(function (b) { b.classList.toggle('on', b.dataset.to === kt.id); }); }
+    else if (a === 'kjump') jumpTo(t.dataset.to);
     else if (a === 'clipsx') closeClips();
     else if (a === 'clipplay') playClip(t.closest('.cl'), true);
     else if (a === 'clipsnd') { var fr = t.closest('.cl').querySelector('iframe'); if (fr) { yt(fr, 'unMute'); yt(fr, 'playVideo'); t.remove(); } }
@@ -1548,10 +1689,11 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
   // ---------- clips ----------
   var clipsEl = $('#clips'), clipList = [], clipObs = null, soundOn = false;
   function pickChip(btn) {
-    var key = btn.dataset.rail, cat = btn.dataset.chip, list = cat === 'all' ? clipsOf(null) : clipsOf([cat]);
-    $$('[data-rail="' + key + '"]', views).forEach(function (b) { b.classList.toggle('on', b === btn); });
-    var rail = $('#rail-' + key, views); rail.innerHTML = list.slice(0, 14).map(function (c) { return clipCard(c, cat === 'all' ? 'all' : cat); }).join(''); rail.scrollLeft = 0; fadeIn(rail);
-    var all = $('#all-' + key, views); all.dataset.list = cat === 'all' ? 'all' : cat; all.innerHTML = IC.play + 'Watch all ' + list.length;
+    var rid = btn.dataset.rail, key = btn.dataset.chip;
+    $$('[data-rail="' + rid + '"]', views).forEach(function (b) { b.classList.toggle('on', b === btn); });
+    var rail = $('#rail-' + rid, views); rail.innerHTML = railItems(key); rail.scrollLeft = 0; fadeIn(rail);
+    var all = $('#all-' + rid, views); all.dataset.list = key; all.innerHTML = allLabel(key);
+    $('#cnt-' + rid, views).textContent = railCount(key) + (key === 'mixtapes' ? ' mixtapes' : ' clips');
   }
   function yt(fr, func) { try { fr.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: [] }), '*'); } catch (e) {} }
   function openClips(list, startId) {
@@ -1563,7 +1705,7 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
       list.map(function (c, i) {
         return '<section class="cl" data-i="' + i + '" data-id="' + c.id + '"><div class="bg" style="background-image:url(img/' + c.img + '.jpg)"></div>' +
           '<div class="frame"><img src="img/' + c.img + '.jpg" alt=""><button class="go" type="button" data-act="clipplay" aria-label="Play">' + IC.play + '</button></div>' +
-          '<div class="meta"><span class="stk ' + (CATSTK[c.cat] || '') + '">' + catName(c.cat) + '</span><b>' + c.caption + '</b><span>' + c.channel + (c.year ? ' · ' + c.year : '') + '</span></div>' +
+          '<div class="meta"><span class="stk">' + (c.cat === 'games' ? 'Game highlights' : (c.sub || catName(c.cat))) + '</span><b>' + c.caption + '</b><span>' + c.channel + (c.year ? ' · ' + c.year : '') + '</span></div>' +
           (i < list.length - 1 ? '<div class="next">Swipe up</div>' : '') + '</section>';
       }).join('') + '</div>';
     clipsEl.classList.add('show');
@@ -1679,6 +1821,7 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
     }
   }
   if (location.hash === '#case') caseEl.classList.add('show');
+  if (/^#k-/.test(location.hash)) { var kh = location.hash.slice(1); go('kicks'); setTimeout(function () { jumpTo(kh); }, 300); }
   window.addEventListener('hashchange', function () { if (location.hash === '#case') { caseEl.scrollTop = 0; caseEl.classList.add('show'); } }); sp.addEventListener('click', function () { sp.classList.add('out'); });
 })();
 </script>

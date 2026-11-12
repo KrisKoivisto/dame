@@ -86,7 +86,10 @@
    "fta": 11,
    "pm": -1
   },
-  "dnp": null
+  "dnp": null,
+  "vid": [
+   "gIkM_fwA-mM"
+  ]
  },
  {
   "id": "401909895",
@@ -113,7 +116,10 @@
    "fta": 4,
    "pm": -11
   },
-  "dnp": null
+  "dnp": null,
+  "vid": [
+   "TWOa2pMjdQE"
+  ]
  },
  {
   "id": "401909896",
@@ -173,8 +179,8 @@
   },
   "dnp": null,
   "vid": [
-   "eUP8JDDWCEE",
-   "5P5nbw0uXXk"
+   "5P5nbw0uXXk",
+   "eUP8JDDWCEE"
   ]
  },
  {
@@ -232,7 +238,10 @@
    "fta": 8,
    "pm": 5
   },
-  "dnp": null
+  "dnp": null,
+  "vid": [
+   "VkDscylVOKA"
+  ]
  },
  {
   "id": "401909944",
@@ -259,7 +268,10 @@
    "fta": 3,
    "pm": -15
   },
-  "dnp": null
+  "dnp": null,
+  "vid": [
+   "1aCQux1uCiY"
+  ]
  },
  {
   "id": "401909965",
@@ -299,7 +311,28 @@
   "ab": "OKC",
   "home": true,
   "at": "Moda Center",
-  "tv": "KUNP 16 \u00b7 KSBI"
+  "tv": "KUNP 16 \u00b7 KSBI",
+  "r": [
+   118,
+   108
+  ],
+  "s": {
+   "min": 32,
+   "pts": 18,
+   "reb": 3,
+   "ast": 3,
+   "fgm": 5,
+   "fga": 14,
+   "tpm": 2,
+   "tpa": 10,
+   "ftm": 6,
+   "fta": 6,
+   "pm": 16
+  },
+  "dnp": null,
+  "vid": [
+   "AkCpW4KEm_s"
+  ]
  },
  {
   "id": "401909303",
