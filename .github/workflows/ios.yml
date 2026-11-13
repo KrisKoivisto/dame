@@ -6,6 +6,10 @@ on:
         description: What changed in this build (shows in TestFlight)
         required: false
         default: ''
+      send_build:
+        description: Skip building, just hand this existing build number to testers
+        required: false
+        default: ''
 permissions:
   contents: read
 concurrency:
@@ -15,8 +19,11 @@ env:
   BUNDLE_ID: com.kriskoivisto.damedolla
 jobs:
   build:
+    if: inputs.send_build == ''
     runs-on: macos-26
     timeout-minutes: 45
+    outputs:
+      number: ${{ github.run_number }}
     defaults:
       run:
         shell: bash -eo pipefail {0}
@@ -93,6 +100,33 @@ jobs:
             -authenticationKeyPath "$ASC_KEY_PATH" -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID" 2>&1 | tee "$RUNNER_TEMP/export.log" | tail -40
           if grep -q -E "EXPORT FAILED|Upload failed|error:" "$RUNNER_TEMP/export.log"; then echo "::error::Apple did not accept the upload. See the lines above."; exit 1; fi
           echo "Uploaded build ${{ github.run_number }}. Apple processes it in about 10 to 30 minutes, then it shows in TestFlight." >> "$GITHUB_STEP_SUMMARY"
+      - name: Remove the key
+        if: always()
+        run: rm -rf "$RUNNER_TEMP/keys"
+
+  testers:
+    # Apple only emails testers once a build is in a tester group. Wait for processing, then add it.
+    needs: build
+    if: always() && (needs.build.result == 'success' || inputs.send_build != '')
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    defaults:
+      run:
+        shell: bash -eo pipefail {0}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Hand the build to TestFlight testers
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY: ${{ secrets.ASC_KEY }}
+          BUILD: ${{ inputs.send_build || needs.build.outputs.number }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/keys"
+          printf '%s\n' "$ASC_KEY" > "$RUNNER_TEMP/keys/AuthKey_$ASC_KEY_ID.p8"
+          export ASC_KEY_PATH="$RUNNER_TEMP/keys/AuthKey_$ASC_KEY_ID.p8"
+          python3 -m pip install --quiet --break-system-packages pyjwt cryptography
+          python3 tools/asc.py testers "$BUNDLE_ID" "$BUILD" | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Remove the key
         if: always()
         run: rm -rf "$RUNNER_TEMP/keys"
