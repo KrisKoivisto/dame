@@ -4,6 +4,7 @@
   asc.py team <bundle-id> [name]   print the team id, registering the bundle id first if it is new
   asc.py app <bundle-id>           exit 0 if an App Store Connect app record exists for the bundle id, 3 if not
   asc.py testers <bundle-id> <n>   wait for build n to finish processing, then hand it to every internal TestFlight group
+  asc.py certs                     revoke development certificates earlier cloud builds left behind ("Created via API")
 """
 import json, os, sys, time, urllib.request, urllib.error, urllib.parse
 import jwt  # PyJWT
@@ -57,6 +58,15 @@ def testers(bundle, number, wait_min=60):
             sys.stderr.write('Build %s still not ready after %s minutes.\n' % (number, wait_min)); raise SystemExit(5)
         time.sleep(60)
     build = found[0]['id']
+    note = os.environ.get('WHATS_NEW', '').strip()
+    if note:
+        locs = call('GET', 'builds/%s/betaBuildLocalizations' % build).get('data', [])
+        if locs:
+            call('PATCH', 'betaBuildLocalizations/' + locs[0]['id'], {'data': {'type': 'betaBuildLocalizations', 'id': locs[0]['id'], 'attributes': {'whatsNew': note}}})
+        else:
+            call('POST', 'betaBuildLocalizations', {'data': {'type': 'betaBuildLocalizations', 'attributes': {'locale': 'en-US', 'whatsNew': note},
+                                                          'relationships': {'build': {'data': {'type': 'builds', 'id': build}}}}})
+        print('What to Test: ' + note)
     detail = call('GET', 'builds/%s/buildBetaDetail' % build)['data']
     print('TestFlight state: %s, notify testers: %s' % (detail['attributes'].get('internalBuildState'), detail['attributes'].get('autoNotifyEnabled')))
     if not detail['attributes'].get('autoNotifyEnabled'):
@@ -85,8 +95,19 @@ def testers(bundle, number, wait_min=60):
             print('  added build %s to this group' % number)
     print('Done. Build %s is with testers.' % number)
 
+def certs():
+    """Every cloud build makes an Apple Development certificate whose private key dies with the build machine.
+    They pile up until Apple refuses to make more. Only these build-made ones are revoked, never one made on a Mac."""
+    found = call('GET', 'certificates?' + urllib.parse.urlencode({'filter[certificateType]': 'DEVELOPMENT,IOS_DEVELOPMENT', 'limit': 200}))['data']
+    stale = [c for c in found if 'Created via API' in ((c['attributes'].get('displayName') or '') + ' ' + (c['attributes'].get('name') or ''))]
+    print('Development certificates: %s, left by cloud builds: %s' % (len(found), len(stale)))
+    for c in stale:
+        call('DELETE', 'certificates/' + c['id'], ok=(404, 409))
+    if stale: print('Revoked %s certificate(s) from earlier cloud builds' % len(stale))
+
 if __name__ == '__main__':
     cmd = sys.argv[1]
     if cmd == 'team': team(sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else 'Dame Dolla')
     elif cmd == 'app': app(sys.argv[2])
     elif cmd == 'testers': testers(sys.argv[2], sys.argv[3])
+    elif cmd == 'certs': certs()

@@ -475,6 +475,7 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
 .tr.open .x { display: grid; gap: 10px; }
 .tr .x p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--soft); }
 .lnk { display: flex; gap: 8px; flex-wrap: wrap; }
+.ex { display: inline-grid; place-items: center; width: 15px; height: 15px; margin-left: 4px; border-radius: 3px; background: rgba(255,255,255,.22); color: #fff; font: 800 9.5px/1 var(--disp); font-style: normal; vertical-align: 2px; }
 .lnk a, .lnk span, .lnk button { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 12px; border-radius: 99px; font: 700 12px/1 var(--disp); background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px var(--line2); }
 .lnk svg { width: 14px; height: 14px; }
 .pb { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.1); position: relative; color: var(--txt); }
@@ -774,7 +775,7 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
     <span class="c-eyebrow">How it pays</span>
     <div class="c-num" id="cb4">$0</div>
     <p class="c-say">For fans. One partner covers most of it.</p>
-    <p class="c-why">No paywall on anything fans came for. The money comes from three places, per year:</p>
+    <p class="c-why">No paywall and no ads in front of anything fans came for. The video is licensed straight from the source, so it plays clean, unlike YouTube. The money comes from three places, per year:</p>
     <div class="c-split" aria-hidden="true"><i style="flex:300;background:var(--red)"></i><i style="flex:112;background:var(--ink)"></i><i style="flex:38;background:var(--gold)"></i></div>
     <div class="c-legend">
       <div><i style="background:var(--red)"></i><div><b>Presenting partner</b><span>"Presented by ___." One brand, one quiet spot per visit. adidas is the first call.</span></div><em>$300K</em></div>
@@ -1554,9 +1555,9 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
   R.hoops = function () { return tabPage('hoops'); };
   R.kicks = function () { return tabPage('kicks'); };
   function dur(ms) { var t = Math.round(ms / 1000); return Math.floor(t / 60) + ':' + pad(t % 60); }
+  var EXPLICIT = '0ehXrTmjCFxes7pfJt6X8L 3gAM10oyCxOzQ7wfGztCAD 4HTNqAcsXU49mL5zqqcGTt 1tZBz3DTk9I9ZJ3A0JbMts 3FeNe9iOszM98outtXQUEj 69a3MMNcoDtV3mmMUcB7Ou 5Tal0wgupZmLZutGujI0Tf 1n9G9J7TKUy4KaQZcJYxtj 4kIcU6IGcbQVx35nuVybiU 0o1V0QrpIHcTeaUBvGNxGx 5FvMtVfk0G3DTh0JQWJSqU 11IM1EUPVWZxmBEwxVqEWE 021uBU6sptsaOveAt8WavS 4n04F0QdyOeUy8yyccHCfF 7MfZUDuX0uSI7sA40k6AQr 4YfaMew5eAppT2GNmTbuIf 7LSlYoKMLDjLYoyQIHKes7 6ExtoUjIOd3mwVw7VTkDLp 0DBPwJaMIMFqDcxXV79W99 0sXaWf7L3fIaGjofD2sgu6 6dSwSMgYLUnrzZ9LaLFc4r 1VYjBvLpWjg1aMA5hTExRh 4EmmUVAawbY4V0js9uoafE 5YzYatxhTVszijmrb3YaBr 5BmOXXXZJAgFA4IdMGfK15 0zC08Fmk930UuZOCzp3rqD 7yVAbjMWW8W4xTHE6ZqVZ9 4yqZKLlP2J8JsdX0jfTrCX 3YmyuaZybHmO7UYY9E2U4J 7mDaaIoD5Ol9PfOMKQMEwF 7uo3I4pkqjh1ylHmCCfRRH 3RCG8gC9ftJhUARvijodMO 4gDmg8IkDGJbQfE3BxnPGH 01vLpzAPpZwJ0kQF8nlVkA 4Ik0BpzRMpoSOCMLTFtEUN 3FoBHDvl6kGj2MC4L5tGlI 2KcthQvCt0AdmS2bYQyWau'.split(' ');
   function playBtn(t, a) {
     if (CAN_AUDIO && t.preview) return '<button class="pb press" type="button" data-play="' + t.preview + '" data-tt="' + t.title.replace(/"/g, '&quot;') + '" data-aa="' + a.t.replace(/"/g, '&quot;') + '" data-img="img/' + a.img + '.jpg" aria-label="Play a sample of ' + t.title.replace(/"/g, '&quot;') + '"><i class="ring"></i>' + IC.play + '</button>';
-    if (t.spotify) return '<a class="pb press" href="https://open.spotify.com/track/' + t.spotify + '" target="_blank" rel="noopener" aria-label="Play on Spotify">' + IC.play + '</a>';
     return '<span class="pb dim">' + IC.play + '</span>';
   }
   R.album = function (id) {
@@ -1569,10 +1570,10 @@ p.b { margin: 0 0 14px; color: rgba(244,241,234,.8); font-size: 16px; line-heigh
       var x = '';
       (t.facts || []).forEach(function (f) { x += '<p>' + f + '</p>'; });
       x += '<div class="lyr"><small>Lyrics</small><p>Dame\'s lyrics, with license approval.</p></div>';
-      x += '<div class="lnk">' + (t.genius ? '<a href="' + t.genius + '" target="_blank" rel="noopener">' + IC.out + 'Lyrics</a>' : '') + (t.yt ? '<button type="button" data-act="vid" data-id="' + t.yt + '" data-cap="' + esc(t.title) + '" data-sub="' + esc(a.t || '') + '">' + IC.play + 'Video</button>' : '') + (t.spotify ? '<a href="https://open.spotify.com/track/' + t.spotify + '" target="_blank" rel="noopener">' + IC.out + 'Spotify</a>' : '') + '</div>';
-      return '<div class="tr"><div class="row">' + playBtn(t, a) + '<button class="tt" type="button" data-act="xt"><b>' + t.n + '. ' + t.title + '</b><span>' + (t.feat ? 'feat. ' + t.feat + ' · ' : '') + (t.durationMs ? dur(t.durationMs) : '') + '</span></button><button class="chv" type="button" data-act="xt" aria-label="More">' + IC.chev + '</button></div><div class="x">' + x + '</div></div>';
+      x += '<div class="lnk">' + (t.yt ? '<button type="button" data-act="vid" data-id="' + t.yt + '" data-cap="' + esc(t.title) + '" data-sub="' + esc(a.t || '') + '">' + IC.play + 'Video</button>' : '') + '' + '</div>';
+      return '<div class="tr"><div class="row">' + playBtn(t, a) + '<button class="tt" type="button" data-act="xt"><b>' + t.n + '. ' + t.title + (EXPLICIT.indexOf(t.spotify) >= 0 ? ' <i class="ex" title="Explicit">E</i>' : '') + '</b><span>' + (t.feat ? 'feat. ' + t.feat + ' · ' : '') + (t.durationMs ? dur(t.durationMs) : '') + '</span></button><button class="chv" type="button" data-act="xt" aria-label="More">' + IC.chev + '</button></div><div class="x">' + x + '</div></div>';
     }).join('') + '</div>';
-    h += '<div class="lnk" style="padding:22px 20px 0">' + (a.spotify ? '<a href="https://open.spotify.com/album/' + a.spotify + '" target="_blank" rel="noopener">' + IC.out + 'Open on Spotify</a>' : '') + (a.yt ? '<button type="button" data-act="vid" data-id="' + a.yt + '" data-cap="' + esc(a.t || '') + '">' + IC.play + 'Video</button>' : '') + '</div>';
+    h += '<div class="lnk" style="padding:22px 20px 0">' + '' + (a.yt ? '<button type="button" data-act="vid" data-id="' + a.yt + '" data-cap="' + esc(a.t || '') + '">' + IC.play + 'Video</button>' : '') + '</div>';
     h += '<button class="nextch press" type="button" data-go="album:' + nx.id + '"><div><small>Next · Album</small><b>' + nx.t + '</b></div><span>' + IC.arrow + '</span></button>';
     return h;
   };

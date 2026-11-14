@@ -16,7 +16,3 @@
   - 🔹 Any judgment call or recommendation about what he'd want. Also use it inline in the chat and in progress lines.
   - 🔹 stockpile: every 🔹 he hasn't said yay or nay to carries forward in every TL;DR, oldest first, until he answers.
 - If a rule doesn't make sense, ask him. Don't guess.
-
-# Also in this repo
-
-- `ouch-ios.yml` and the `ouch-build` branch are a stopgap: they build Kris's Ouch app with this repo's Apple key. They move to the Ouch repo once it has its own key.

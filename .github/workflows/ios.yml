@@ -28,7 +28,7 @@ jobs:
       run:
         shell: bash -eo pipefail {0}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Use Xcode 26 (Apple requires the iOS 26 SDK for uploads)
         run: |
           XC=$(ls -d /Applications/Xcode_26*.app 2>/dev/null | grep -v -i beta | sort -V | tail -1)
@@ -37,7 +37,7 @@ jobs:
           sudo xcode-select -s "$XC/Contents/Developer"
           xcodebuild -version
           xcodebuild -showsdks | grep -i iphoneos
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
@@ -69,6 +69,8 @@ jobs:
           npm ci
           python3 tools/build_www.py
           npx cap sync ios
+      - name: Clear signing certificates left by earlier cloud builds
+        run: python3 tools/asc.py certs
       - name: Archive
         run: |
           xcodebuild -version
@@ -114,13 +116,14 @@ jobs:
       run:
         shell: bash -eo pipefail {0}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Hand the build to TestFlight testers
         env:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
           ASC_KEY: ${{ secrets.ASC_KEY }}
           BUILD: ${{ inputs.send_build || needs.build.outputs.number }}
+          WHATS_NEW: ${{ inputs.whats_new }}
         run: |
           mkdir -p "$RUNNER_TEMP/keys"
           printf '%s\n' "$ASC_KEY" > "$RUNNER_TEMP/keys/AuthKey_$ASC_KEY_ID.p8"
