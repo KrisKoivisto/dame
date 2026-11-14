@@ -341,7 +341,28 @@
   "ab": "SAC",
   "home": false,
   "at": "Golden 1 Center",
-  "tv": "KUNP 16 \u00b7 BlazerVision"
+  "tv": "KUNP 16 \u00b7 BlazerVision",
+  "r": [
+   120,
+   107
+  ],
+  "s": {
+   "min": 33,
+   "pts": 29,
+   "reb": 2,
+   "ast": 6,
+   "fgm": 6,
+   "fga": 18,
+   "tpm": 6,
+   "tpa": 13,
+   "ftm": 11,
+   "fta": 11,
+   "pm": 8
+  },
+  "dnp": null,
+  "vid": [
+   "bilw4Bl479s"
+  ]
  },
  {
   "id": "401909999",
