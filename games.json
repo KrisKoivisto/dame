@@ -371,7 +371,28 @@
   "ab": "MIN",
   "home": false,
   "at": "Target Center",
-  "tv": "KUNP 16 \u00b7 DAZN MIN"
+  "tv": "KUNP 16 \u00b7 DAZN MIN",
+  "r": [
+   98,
+   106
+  ],
+  "s": {
+   "min": 24,
+   "pts": 9,
+   "reb": 2,
+   "ast": 4,
+   "fgm": 2,
+   "fga": 15,
+   "tpm": 2,
+   "tpa": 8,
+   "ftm": 3,
+   "fta": 3,
+   "pm": -6
+  },
+  "dnp": null,
+  "vid": [
+   "NBZ0241RMfg"
+  ]
  },
  {
   "id": "401910003",
