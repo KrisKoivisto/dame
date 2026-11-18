@@ -401,7 +401,28 @@
   "ab": "MIN",
   "home": false,
   "at": "Target Center",
-  "tv": "BlazerVision \u00b7 DAZN MIN"
+  "tv": "BlazerVision \u00b7 DAZN MIN",
+  "r": [
+   105,
+   106
+  ],
+  "s": {
+   "min": 31,
+   "pts": 25,
+   "reb": 3,
+   "ast": 5,
+   "fgm": 8,
+   "fga": 19,
+   "tpm": 5,
+   "tpa": 11,
+   "ftm": 4,
+   "fta": 5,
+   "pm": 11
+  },
+  "dnp": null,
+  "vid": [
+   "IyqVO4sHU8w"
+  ]
  },
  {
   "id": "401910020",
